@@ -12,8 +12,9 @@ def recPlate(imgName):
     img = cv2.imread(imgName)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     plt.imshow(cv2.cvtColor(gray, cv2.COLOR_BGR2RGB))
-    bfilter = cv2.bilateralFilter(gray, 11, 17, 17) #Noise reduction
-    edged = cv2.Canny(bfilter, 30, 200) #Edge detection
+    bfilter0 = cv2.bilateralFilter(gray, 11, 17, 17) #Noise reduction
+    #bfilter1 = cv2.bilateralFilter(bfilter0, 11, 17, 17) #Noise reduction
+    edged = cv2.Canny(bfilter0, 30, 200) #Edge detection
     plt.imshow(cv2.cvtColor(edged, cv2.COLOR_BGR2RGB))
     keypoints = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     contours = imutils.grab_contours(keypoints)
