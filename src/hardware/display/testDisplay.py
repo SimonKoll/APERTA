@@ -20,4 +20,4 @@ except KeyboardInterrupt:
     pass
 
 finally:
-    pass
+    lcd.clear()
