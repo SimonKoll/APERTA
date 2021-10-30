@@ -1,6 +1,4 @@
 import RPi.GPIO as GPIO
-
-
 class keypad():
     def __init__(self, columnCount=3):
         GPIO.setmode(GPIO.BCM)
@@ -10,17 +8,16 @@ class keypad():
                 [1, 2, 3, "A"],
                 [4, 5, 6, "B"],
                 [7, 8, 9, "C"],
-                ["*", 0, "#", "D"]
-            ]
+                ["*", 0, "#", "D"]]
             self.ROW = [24, 25, 12, 16]
             self.COLUMN = [4, 17, 27]
+
         elif columnCount is 4:
             self.KEYPAD = [
                 [1, 2, 3, "A"],
                 [4, 5, 6, "B"],
                 [7, 8, 9, "C"],
-                ["*", 0, "#", "D"]
-            ]
+                ["*", 0, "#", "D"]]
 
             self.ROW = [24, 25, 12, 16]
             self.COLUMN = [4, 17, 27, 22]
@@ -37,14 +34,11 @@ class keypad():
                 rowVal = -1
                 for i in range(len(self.ROW)):
                     tmpRead = GPIO.input(self.ROW[i])
-                if tmpRead == 0:
-                    rowVal = i
+                    if tmpRead == 0:
+                        rowVal = i
                 if rowVal < 0 or rowVal > 3:
                     self.exit()
-                return
-                if rowVal < 0 or rowVal > 3:
-                    self.exit()
-                return
+                    return
                 for j in range(len(self.COLUMN)):
                     GPIO.setup(self.COLUMN[j], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
