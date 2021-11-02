@@ -39,6 +39,7 @@ class keypad():
             if rowVal < 0 or rowVal > 3:
                 self.exit()
                 return
+
             for j in range(len(self.COLUMN)):
                 GPIO.setup(self.COLUMN[j], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
