@@ -1,0 +1,141 @@
+.MainMain{
+    height: 100vh;
+    width: 100vw;
+}
+.divMainContent {
+    background: #f6f5f7 !important;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shadow {
+    -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.auth_box {
+    height: 50%;
+    min-height: 48%;
+    width: 50%;
+    background: white;
+    display: flex;
+    -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+    border-radius: 15px;
+}
+
+.box_color {
+    border-radius: 0 15px 15px 0;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    transition: 2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.register{
+    margin-left:-50%;
+    opacity: 0;
+    transition: opacity 2s;
+}
+.login{
+    transition: opacity 1s;
+}
+.login, .register {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.item_list {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.item {
+    width: 70%;
+    height: 30%;
+    display: flex;
+    font-size: 21px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.formLogin, .formRegister{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formLogin input, .formRegister input{
+    width: 80%;
+    height: 30%;
+    border: none;
+    background: #e9e9e9;
+    border-radius: 4px;
+    margin-top: 3%;
+    padding: 3%;
+}
+
+.formLogin button[type="submit"], .formRegister button[type="submit"] {
+    width: 80%;
+    height: 100%;
+    border: none;
+    margin-top: 35px;
+    color: white;
+    padding: 3%;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.formLogin button, .formRegister button{
+    width: 290px;
+    height: 40px;
+    border: none;
+    margin-top: 35px;
+    color: white;
+    cursor: pointer;
+}
+
+.forget_password {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.login_btn,.title2{
+    display: none;
+}
+
+.register_btn,.login_btn{
+    background: none;
+    border-radius: 15px;
+    border: 1px solid white;
+    width: 80%;
+    padding: 3%;
+    margin-top: 10%;
+    color: white;
+}
