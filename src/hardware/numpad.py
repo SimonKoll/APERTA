@@ -22,7 +22,7 @@ for i in range(4):
     GPIO.setup(ROW[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 try:
-    while(True):
+    while True:
         for j in range(4):
             GPIO.output(COL[j], 0)
             for i in range(4):
@@ -32,6 +32,8 @@ try:
                     COMBIN = COMBIN + str(MATRIX[i][j])
                     if(COUNT > 5):
                         displayText(COMBIN)
+                        COMBIN = ""
+                        COUNT = 0
                     while(GPIO.input(ROW[i]) == 0):
                         pass
                         time.sleep(0.2)
