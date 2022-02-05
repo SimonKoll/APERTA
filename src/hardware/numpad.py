@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from  hardware.display.testDisplay import displayText
-
+from testDisplay import displayText
 GPIO.setmode(GPIO.BCM)
 
 MATRIX = [[1, 2, 3, 'A'],
