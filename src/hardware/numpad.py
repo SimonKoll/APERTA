@@ -29,7 +29,7 @@ try:
                 if GPIO.input(ROW[i]) == 0:
                     print(MATRIX[i][j])
                     COUNT = COUNT+1
-                    COMBIN = COMBIN + MATRIX[i][j]
+                    COMBIN = COMBIN + str(MATRIX[i][j])
                     if(COUNT > 5):
                         displayText(COMBIN)
                     while(GPIO.input(ROW[i]) == 0):
