@@ -9,8 +9,8 @@ MATRIX = [[1, 2, 3, 'A'],
 ['*', 0, '#', 'D']
 
 
-ROW = [7, 11, 13, 15]
-COL = [12, 16, 18, 22]
+ROW = [18, 23, 24, 25]
+COL = [12, 16, 20, 21]
 
 for j in range(4):
     GPIO.setup(COL[j], GPIO.OUT)
