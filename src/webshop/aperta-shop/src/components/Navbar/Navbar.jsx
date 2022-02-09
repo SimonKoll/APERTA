@@ -38,7 +38,37 @@ const PrimarySearchAppBar = ({ totalItems }) => {
             <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Aperta
           </Typography>
           <div className={classes.grow} />
+          <Typography component={Link} to="/" variant="subtitle1" className={classes.subtitle} color="inherit">
+            Home
+          </Typography>
+          <Typography component={Link} to="/" variant="subtitle1" className={classes.subtitle} color="inherit">
+            About
+          </Typography>
+          <Typography component={Link} to="/packages" variant="subtitle1" className={classes.subtitle} color="inherit">
+            Packages
+          </Typography>
+          <Typography component={Link} to="/components" variant="subtitle1" className={classes.subtitle} color="inherit">
+            Components
+          </Typography>
           {location.pathname === '/' && (
+          <div className={classes.button}>
+            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+              <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </div>
+          )}
+          {location.pathname==='/packages' && (
+          <div className={classes.button}>
+            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+              <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </div>
+          )}
+          {location.pathname==='/components' && (
           <div className={classes.button}>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">

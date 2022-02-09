@@ -17,6 +17,16 @@ export default makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
   },
+  subtitle: {
+    flexGrow: 0.1,
+    alignItems: 'center',
+    display: 'flex',
+    textDecoration: 'none',
+    '&:hover': {
+      opacity: 0.4,
+    },
+  },
+
   image: {
     marginRight: '10px',
   },
