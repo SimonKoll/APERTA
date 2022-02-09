@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Navbar, Products, Cart, Checkout } from './components';
 import { commerce } from './lib/commerce';
@@ -8,15 +8,31 @@ import { commerce } from './lib/commerce';
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
+  const [pproducts, setPproducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
-  const fetchProducts = async () => {
+  /* const fetchProducts = async () => {
     const { data } = await commerce.products.list();
 
+    //get Data from Categorie 'Components'
+    commerce.products.list({category_slug: ['components'],}).then(response => console.log(response));
+
     setProducts(data);
-  };
+  }; */
+  
+  const fetchComponents = async() => {
+    const { data: CProducts } = await commerce.products.list({category_slug: ['components'],});
+
+    setProducts(CProducts);
+  }
+
+   const fetchPackages = async() => {
+    const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
+
+    setPproducts(PProducts);
+  } 
 
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());
@@ -65,28 +81,28 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    // fetchProducts();
+    fetchComponents();
+    fetchPackages();
     fetchCart();
+    
   }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+
+console.log(products);
 
   return (
     <Router>
       <div style={{ display: 'flex' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Switch>
-          <Route exact path="/">
-            <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
-          </Route>
-          <Route exact path="/cart">
-            <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
-          </Route>
-          <Route path="/checkout" exact>
-            <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/components" element={<Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />} />
+          <Route exact path="/packages" element={<Products products={pproducts} onAddToCart={handleAddToCart} handleUpdateCartQty />} />
+          <Route exact path="/cart" element={<Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} /> } />
+          <Route path="/checkout" exact element={ <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} /> } />
+        </Routes>
       </div>
     </Router>
   );
