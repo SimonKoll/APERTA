@@ -1,3 +1,4 @@
+
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
@@ -5,7 +6,7 @@ export default makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(10),
+    paddingTop: theme.spacing(10),
   },
   root: {
     flexGrow: 1,

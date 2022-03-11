@@ -35,13 +35,13 @@ const PrimarySearchAppBar = ({ totalItems }) => {
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-            <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Aperta
+            <img src={logo} alt="Aperta-Logo" height="25px" className={classes.image} /> Aperta
           </Typography>
           <div className={classes.grow} />
-          <Typography component={Link} to="/" variant="subtitle1" className={classes.subtitle} color="inherit">
+          <Typography component={Link} to="/home" variant="subtitle1" className={classes.subtitle} color="inherit">
             Home
           </Typography>
-          <Typography component={Link} to="/" variant="subtitle1" className={classes.subtitle} color="inherit">
+          <Typography component={Link} to="/about" variant="subtitle1" className={classes.subtitle} color="inherit">
             About
           </Typography>
           <Typography component={Link} to="/packages" variant="subtitle1" className={classes.subtitle} color="inherit">
