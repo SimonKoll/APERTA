@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./styles.css";
 import useStyles from './styles';
 
 const NoPage = () => {
@@ -7,7 +7,9 @@ const NoPage = () => {
     return (
         <main className={classes.content}>
             <div className={classes.toolbar} />
-            <h1> Page ist noch in arbeit!</h1>
+            <div className="error">
+                <h1 className="error-text">Error 404: Page not found!</h1>
+            </div>
         </main>
     )
   };
