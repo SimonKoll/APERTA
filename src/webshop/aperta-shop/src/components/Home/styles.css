@@ -92,11 +92,14 @@ main {
   margin-top: 3.5vh;
   background-color: #b90504;
   color: #faf6ea;
-  font-weight: 600;
+  font-weight: 700;
   width: fit-content;
   white-space: nowrap;
   font-size: 1rem;
-  padding: 1.15rem;
+  padding-left: 1.15rem;
+  padding-right: 1.15rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   border-radius: 8pt;
 }
 

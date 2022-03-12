@@ -3,6 +3,8 @@ import Carousel from "react-material-ui-carousel";
 import "./styles.css";
 import useStyles from "./styles.js";
 
+import Product from '../Products/Product/Product';
+
 function Item({ item }: { item: { description: string } }) {
   return (
     <div style={{ width: "100%", height: "100%" }}>{item.description}</div>
@@ -47,8 +49,8 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             swipe
             className="my-carousel"
           >
-            {items.map((item, i) => (
-              <Item key={i} item={item} />
+            {products.map((product:any) => (
+              <Product product={product} onAddToCart={onAddToCart} />
             ))}
           </Carousel>
           <div className="my-carousel__control">
