@@ -2,8 +2,10 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import "./styles.css";
 import useStyles from "./styles.js";
+import { useNavigate } from "react-router-dom";
 
-import Product from '../Products/Product/Product';
+//import Product from '../Products/Product/Product';
+import Product from './Product/Product';
 
 function Item({ item }: { item: { description: string } }) {
   return (
@@ -14,6 +16,7 @@ function Item({ item }: { item: { description: string } }) {
 export default function Home({ products, onAddToCart } : {products:any, onAddToCart:any}) {
   const classes = useStyles();
   const [index, setIndex] = React.useState(0);
+  const navigate = useNavigate();
   if (!products.length) return <p>Loading...</p>;
 
   var items = [
@@ -34,6 +37,10 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
   const handleChange = (cur: number, prev: number) => {
     setIndex(cur);
   };
+
+  const goToAbout = () => {
+    navigate("/packages");
+  }
   
     return (
       <main className={classes.content}>
@@ -54,12 +61,12 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             ))}
           </Carousel>
           <div className="my-carousel__control">
-            {items.map((item, i) => (
+            {products.map((product:any, p:any) => (
               <div
                 className="control_Button"
-                onClick={() => setIndex(i)}
+                onClick={() => setIndex(p)}
                 style={{
-                  background: i === index ? "#B90504" : "#FFEDED"
+                  background: p === index ? "#B90504" : "#FFEDED"
                 }}
               ></div>
             ))}
@@ -73,7 +80,7 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
               garage-door via a licenseplate-recognition.
             </div>
             <div className="about-button">
-              <div className="about-btn-content">
+              <div className="about-btn-content" onClick={goToAbout}>
                 <span className="aboutn-btn-text">Find out more</span>
                 <span className="icon-arrow-right">&#8594;</span>
               </div>
