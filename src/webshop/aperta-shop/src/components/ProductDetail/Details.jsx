@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { commerce } from '../../lib/commerce';
 import "./styles.css";
 import useStyles from './styles';
-import { Typography } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
+import { AddShoppingCart } from '@material-ui/icons';
 
 const createMarkup = (text) => {
     return { __html: text };
   };
 
-const Details = () => {
+const Details = ({ onAddToCart }) => {
     const classes = useStyles();
     const url_id = window.location.pathname.split("/");
     const pID = url_id[2];
     const [detail, setDetail] = useState({});
+    const handleAddToCart = () => onAddToCart(detail.ID, 1);
 
     const fetchProduct = async (ID) => {
         //const { data: Product } = await commerce.products.retrieve(pID);
@@ -52,13 +54,20 @@ const Details = () => {
                     <Typography>
                        {detail.name}
                     </Typography>
-                    <Typography>
-                       {detail.description}
-                    </Typography>
+
                     <Typography>
                        {detail.price}
                     </Typography>
                     </span>
+                    <span>
+                    <Typography dangerouslySetInnerHTML={{ __html: detail.description }} variant="body2" color="textSecondary" component="p" />
+                    </span>
+                       
+                </div>
+                <div className='cartButton'>
+                <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+                    <AddShoppingCart />
+                </IconButton>    
                 </div>
             </div>
         </main>
