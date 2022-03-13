@@ -13,14 +13,14 @@ main {
 
 .main__wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
 }
 
 .my-carousel__wrapper {
   display: flex;
   align-items: center;
   width: 50vw;
-  height: 90vh;
+  height: 93vh;
   /*background-color: lightgray;
   background-color: #ccc; 
   border: 1px solid black; */
@@ -64,7 +64,7 @@ main {
   justify-content: center;
   align-self: center;
   width: 50vw;
-  height: 90vh;
+  height: 93vh;
   background-color: #f2f0f0;
 }
 

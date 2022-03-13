@@ -19,27 +19,12 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
   const navigate = useNavigate();
   if (!products.length) return <p>Loading...</p>;
 
-  var items = [
-    {
-      name: "Random Name #1",
-      description: "First Product"
-    },
-    {
-      name: "Random Name #2",
-      description: "Zweites Produkt"
-    },
-    {
-      name: "Random Name #3",
-      description: "Third Project"
-    }
-  ];
-
   const handleChange = (cur: number, prev: number) => {
     setIndex(cur);
   };
 
   const goToAbout = () => {
-    navigate("/packages");
+    navigate("/about");
   }
   
     return (

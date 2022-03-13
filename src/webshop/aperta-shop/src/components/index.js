@@ -4,4 +4,5 @@ export { default as Cart } from './Cart/Cart';
 export { default as Checkout } from './CheckoutForm/Checkout/Checkout';
 export { default as Home } from './Home/Home';
 export { default as NoPage } from './NoPage/NoPage';
+export { default as About } from './About/About';
 
