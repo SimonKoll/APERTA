@@ -35,11 +35,12 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             index={index}
             onChange={handleChange}
             interval={5000}
-            animation="slide"
+            animation="fade"
+            timeout={350}
             indicators={false}
-            stopAutoPlayOnHover
-            swipe
+            stopAutoPlayOnHover={false}
             className="my-carousel"
+            navButtonsAlwaysInvisible={true}
           >
             {products.map((product:any) => (
               <Product product={product} onAddToCart={onAddToCart} />

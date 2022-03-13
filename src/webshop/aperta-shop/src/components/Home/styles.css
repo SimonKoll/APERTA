@@ -32,27 +32,21 @@ main {
   /*border: 5px solid black; */
 }
 .my-carousel__control {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
+  margin-left: 47vw;
+  margin-right: 3rem;
+  background-color: rgb(250, 250, 250);
 }
 
 .control_Button {
-  height: 10vh;
+  height: 8vh;
   width: 4pt;
   border: 0;
   font-size: 0;
 }
 
-.control_Button:first-of-type {
-  border-top-left-radius: 8pt;
-  border-top-right-radius: 8pt;
-}
-
-.control_Button:last-of-type {
-  border-bottom-left-radius: 8pt;
-  border-bottom-right-radius: 8pt;
-}
 
 .control_Button:hover {
   cursor: pointer;
