@@ -36,7 +36,11 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             onChange={handleChange}
             interval={5000}
             animation="fade"
-            timeout={350}
+            timeout={{
+              appear: 350,
+              enter: 350,
+              exit:0
+            }}
             indicators={false}
             stopAutoPlayOnHover={false}
             className="my-carousel"
@@ -60,9 +64,9 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
         </div>
         <div className="about-section">
           <div className="about-content">
-            <div className="about-title">About Aperta</div>
+            <div className="about-title">About APERTA</div>
             <div className="about-text">
-              Aperta is a smart garage-door system, which allows you to open your
+              APERTA is a smart garage-door system, which allows you to open your
               garage-door via a licenseplate-recognition.
             </div>
             <div className="about-button">

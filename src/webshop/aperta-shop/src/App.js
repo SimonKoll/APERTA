@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Navbar, Products, Cart, Checkout, Home, NoPage, About } from './components';
+import { Navbar, Products, Cart, Checkout, Home, NoPage, About, Details } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
@@ -32,6 +32,7 @@ const App = () => {
     const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
 
     setPproducts(PProducts);
+    console.log(PProducts)
   } 
 
   const fetchCart = async () => {
@@ -103,6 +104,7 @@ const App = () => {
           <Route path="/cart" element={<Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} /> } />
           <Route exact path="/checkout" element={ <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} /> } />
           <Route exact path="/" element={<Home products={pproducts} onAddToCart={handleAddToCart} handleUpdateCartQty/>} />
+          <Route exact path="/detail/:id" element={<Details  />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </div>
