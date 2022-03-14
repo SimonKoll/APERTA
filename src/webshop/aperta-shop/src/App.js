@@ -32,7 +32,6 @@ const App = () => {
     const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
 
     setPproducts(PProducts);
-    console.log(PProducts)
   } 
 
   const fetchCart = async () => {

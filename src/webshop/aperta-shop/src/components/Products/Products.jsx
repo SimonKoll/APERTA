@@ -22,7 +22,7 @@ const Products = ({ products, onAddToCart }) => {
           </Typography>
         </div>
         <div className='content-wrapper'>
-          <Grid container justify="center" direction="row" spacing={2}>
+          <Grid container justifyContent="center" direction="row" spacing={10}>
             {products.map((product) => (
               <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
                   <Product product={product} onAddToCart={onAddToCart} />

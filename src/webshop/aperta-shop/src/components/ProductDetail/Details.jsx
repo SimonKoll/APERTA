@@ -5,10 +5,6 @@ import useStyles from './styles';
 import { IconButton, Typography } from "@material-ui/core";
 import { AddShoppingCart } from '@material-ui/icons';
 
-const createMarkup = (text) => {
-    return { __html: text };
-  };
-
 const Details = ({ onAddToCart }) => {
     const classes = useStyles();
     const url_id = window.location.pathname.split("/");
@@ -31,7 +27,6 @@ const Details = ({ onAddToCart }) => {
     }
 
     useEffect(() => {
-        console.log(pID);
         fetchProduct(pID);
     }, []);
 

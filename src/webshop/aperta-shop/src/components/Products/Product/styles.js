@@ -1,10 +1,10 @@
-import { colors } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
   root: {
     // maxWidth: 345, original width style
-    width: '90%',
+    //width: '90% !important',
+    width: '35vh !important',
   },
   media: {
     height: 0,

@@ -7,12 +7,6 @@ import { useNavigate } from "react-router-dom";
 //import Product from '../Products/Product/Product';
 import Product from './Product/Product';
 
-function Item({ item }: { item: { description: string } }) {
-  return (
-    <div style={{ width: "100%", height: "100%" }}>{item.description}</div>
-  );
-}
-
 export default function Home({ products, onAddToCart } : {products:any, onAddToCart:any}) {
   const classes = useStyles();
   const [index, setIndex] = React.useState(0);
@@ -39,7 +33,7 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             timeout={{
               appear: 350,
               enter: 350,
-              exit:0
+              exit:100
             }}
             indicators={false}
             stopAutoPlayOnHover={false}
@@ -47,7 +41,7 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             navButtonsAlwaysInvisible={true}
           >
             {products.map((product:any) => (
-              <Product product={product} onAddToCart={onAddToCart} />
+              <Product key={product.id} product={product} onAddToCart={onAddToCart} />
             ))}
           </Carousel>
           <div className="my-carousel__control">
@@ -58,6 +52,7 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
                 style={{
                   background: p === index ? "#B90504" : "#FFEDED"
                 }}
+                key={product.id}
               ></div>
             ))}
           </div>
@@ -66,7 +61,7 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
           <div className="about-content">
             <div className="about-title">About APERTA</div>
             <div className="about-text">
-            APERTA helps to solve the common problems faced in everyday life with entering your garage. 
+            APERTA helps to solve the common problems faced in everyday life when entering your garage. 
             The garage transmitter has been misplaced, the battery has gone flat, or you want to enter 
             the garage without your car.
             Until now, you had to buy and install several systems for this, but APERTA combines number 
