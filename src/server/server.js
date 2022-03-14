@@ -37,23 +37,27 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
             licensplateCollection.findOneAndDelete({ "licenseplate": req.body(id) })
         })
         app.post('/add-licenseplate', (req, res) => {
+            console.log(req)
             licensplateCollection.insertOne(req.body)
                 .then(result => {
-                    res.redirect('/')
+                    console.log('licenseplate added')
+                    res.send(200)
                 })
                 .catch(error => console.error(error))
         })
         app.post('/add-numpad', (req, res) => {
             numpadCollection.insertOne(req.body)
                 .then(result => {
-                    res.redirect('/')
+                    console.log('numpad code added')
+                    res.send(200)
                 })
                 .catch(error => console.error(error))
         })
         app.post('/add-rfid', (req, res) => {
             rfidCollection.insertOne(req.body)
                 .then(result => {
-                    res.redirect('/')
+                    console.log('rfid code added')
+                    res.send(200)
                 })
                 .catch(error => console.error(error))
         })
