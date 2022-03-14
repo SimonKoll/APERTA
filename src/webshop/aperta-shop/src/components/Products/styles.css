@@ -6,3 +6,11 @@
     color: black;
     text-decoration: none;
 }
+
+.p-wrapper{
+    margin-top: 15vh;
+}
+
+.content-wrapper{
+    margin-top: 1rem;
+} 

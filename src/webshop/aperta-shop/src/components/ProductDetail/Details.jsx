@@ -17,12 +17,6 @@ const Details = ({ onAddToCart }) => {
     const handleAddToCart = () => onAddToCart(detail.ID, 1);
 
     const fetchProduct = async (ID) => {
-        //const { data: Product } = await commerce.products.retrieve(pID);
-        //setProduct(Product);
-        //console.log("details: " + Product);
-        //await commerce.products.retrieve(pID).then((Product) => setProduct(Product));
-        //const { data } = await commerce.products.retrieve(ID);
-        //setDetail(data);
 
         const { name, price, image, quantity, description } = await commerce.products.retrieve(ID);
 
@@ -44,7 +38,6 @@ const Details = ({ onAddToCart }) => {
     return (
         <main className={classes.content}>
             <div className={classes.toolbar} />
-            <h3>Detail-View</h3>
             <div className='wrapper'>
                 <div className='pImg'>
                 <img className="img" src={detail.src} alt="Product-Image" />
