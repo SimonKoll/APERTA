@@ -2,6 +2,7 @@ import time
 import cv2
 import os
 import requests
+import json
 
 prev_time = time.time()
 count = 0
@@ -11,7 +12,7 @@ headers = {
 }
 
 files = {
-    'upload': ('./images/image0.jpg', open('./images/image0.jpg', 'rb')),
+    'upload': ('/home/pi/Desktop/anprtest/Image.jpg', open('/home/pi/Desktop/anprtest/Image.jpg', 'rb')),
     'regions': (None, 'at'),
 }
 cam = cv2.VideoCapture(0)
@@ -27,5 +28,7 @@ while True:
         ret, image = cam.read()
         cv2.imwrite('/home/pi/Desktop/anprtest/Image.jpg', image)
         response = requests.post('https://api.platerecognizer.com/v1/plate-reader', headers=headers, files=files)
-        print(str(response))
+        x = str(response)
+        y = json.loads(x)
+        print(y)
         prev_time = time.time()
