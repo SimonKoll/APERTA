@@ -22,8 +22,14 @@ export default makeStyles((theme) => ({
   },
   cardDetails: {
     display: 'flex',
-    marginTop: '10%',
+    marginTop: '10vh',
     width: '100%',
     justifyContent: 'space-between',
+  },
+  label: {
+    color: 'white',
+  },
+  cartContent: {
+    marginTop: '5vh',
   },
 }));

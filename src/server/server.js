@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 app.set('view engine', 'ejs')
 const MongoClient = require('mongodb').MongoClient
-connstring = 'mongodb+srv://aperta:SiDaBe2021@cluster0.xh3v9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+connstring = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.2.3'
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(function(req, res, next) {
     // Website you wish to allow to connect
@@ -21,17 +21,17 @@ app.use(function(req, res, next) {
 MongoClient.connect(connstring, { useUnifiedTopology: true })
     .then(client => {
         console.log('Connected to Database')
-        const db = client.db('ApertaDB')
+        const db = client.db('aperta')
 
-        const licensplateCollection = db.collection('licenseplates')
+        const licensplateCollection = db.collection('licenseplate')
         const rfidCollection = db.collection('rfid')
-        const keypadCollection = db.collection('keypad')
+        const numpadCollection = db.collection('numpad')
             // All your handlers here...
         app.delete('/delete-rfid', (req, res) => {
             rfidCollection.findOneAndDelete({ "chip_id": req.body(id) })
         })
-        app.delete('/delete-keypad', (req, res) => {
-            keypadCollection.findOneAndDelete({ "pi": req.body(id) })
+        app.delete('/delete-numpad', (req, res) => {
+            numpadCollection.findOneAndDelete({ "pi": req.body(id) })
         })
         app.delete('/delete-licenseplate', (req, res) => {
             licensplateCollection.findOneAndDelete({ "licenseplate": req.body(id) })
@@ -43,8 +43,8 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
                 })
                 .catch(error => console.error(error))
         })
-        app.post('/add-keypad', (req, res) => {
-            keypadCollection.insertOne(req.body)
+        app.post('/add-numpad', (req, res) => {
+            numpadCollection.insertOne(req.body)
                 .then(result => {
                     res.redirect('/')
                 })
@@ -57,10 +57,10 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
                 })
                 .catch(error => console.error(error))
         })
-        app.get('/get-keypad-codes', function(req, res) {
-            db.collection('keypad').find().toArray()
+        app.get('/get-numpad-codes', function(req, res) {
+            db.collection('numpad').find().toArray()
                 .then(results => {
-                    console.log("retrieving keypad codes")
+                    console.log("retrieving numpad codes")
                     res.send(results)
                 })
                 .catch(error => console.error(error))
@@ -70,7 +70,6 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
             licensplateCollection.find().toArray()
                 .then(results => {
                     console.log("retrieving licenseplates")
-                    console.log(results)
                     res.send(results)
                 })
                 .catch(error => console.error(error))
