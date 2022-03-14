@@ -66,8 +66,11 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
           <div className="about-content">
             <div className="about-title">About APERTA</div>
             <div className="about-text">
-              APERTA is a smart garage-door system, which allows you to open your
-              garage-door via a licenseplate-recognition.
+            APERTA helps to solve the common problems faced in everyday life with entering your garage. 
+            The garage transmitter has been misplaced, the battery has gone flat, or you want to enter 
+            the garage without your car.
+            Until now, you had to buy and install several systems for this, but APERTA combines number 
+            plate recognition with a number field, as well as the possibility of using RFID chips. 
             </div>
             <div className="about-button">
               <div className="about-btn-content" onClick={goToAbout}>
