@@ -28,21 +28,25 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
         const numpadCollection = db.collection('numpad')
             // All your handlers here...
         app.delete('/delete-rfid', (req, res) => {
-            rfidCollection.findOneAndDelete({ "chip_id": req.body(id) })
+            console.log("deleting rfid code"+req.body.rfid_code)
+            rfidCollection.findOneAndDelete({ "rfid_code": req.body.rfid_code }).then(result =>{res.sendStatus(200)})
+
         })
         app.delete('/delete-numpad', (req, res) => {
-            numpadCollection.findOneAndDelete({ "pi": req.body(id) })
+            console.log("deleting numpad "+req.body.numpad_code)
+            numpadCollection.findOneAndDelete({ "numpad_code": req.body.numpad_code }).then(result => {res.sendStatus(200)})
         })
         app.delete('/delete-licenseplate', (req, res) => {
-            licensplateCollection.findOneAndDelete({ "licenseplate": req.body(id) })
+            console.log("deletin licenseplate "+req.body.licenseplate)
+            licensplateCollection.findOneAndDelete({ "licenseplate": req.body.licenseplate }).then(result => {res.sendStatus(200)})
         })
         app.post('/add-licenseplate', (req, res) => {
-            console.log(req)
+            licensplateCollection.findOneAndDelete({"licenseplate":req.body.licenseplate}).then(result => {
             licensplateCollection.insertOne(req.body)
                 .then(result => {
                     console.log('licenseplate added')
                     res.send(200)
-                })
+                })})
                 .catch(error => console.error(error))
         })
         app.post('/add-numpad', (req, res) => {
@@ -54,6 +58,8 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
                 .catch(error => console.error(error))
         })
         app.post('/add-rfid', (req, res) => {
+            console.log(req.body.rfid_code)
+            checkRFID = req.body.rfid_code
             rfidCollection.insertOne(req.body)
                 .then(result => {
                     console.log('rfid code added')
