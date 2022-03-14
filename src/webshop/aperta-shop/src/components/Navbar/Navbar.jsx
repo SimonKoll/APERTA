@@ -34,14 +34,14 @@ const PrimarySearchAppBar = ({ totalItems }) => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-            <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Aperta
+          <Typography component={Link} to="/home" variant="h6" className={classes.title} color="inherit">
+            <img src={logo} alt="Aperta-Logo" height="25px" className={classes.image} /> APERTA
           </Typography>
           <div className={classes.grow} />
-          <Typography component={Link} to="/" variant="subtitle1" className={classes.subtitle} color="inherit">
+          <Typography component={Link} to="/home" variant="subtitle1" className={classes.subtitle} color="inherit">
             Home
           </Typography>
-          <Typography component={Link} to="/" variant="subtitle1" className={classes.subtitle} color="inherit">
+          <Typography component={Link} to="/about" variant="subtitle1" className={classes.subtitle} color="inherit">
             About
           </Typography>
           <Typography component={Link} to="/packages" variant="subtitle1" className={classes.subtitle} color="inherit">
@@ -50,25 +50,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           <Typography component={Link} to="/components" variant="subtitle1" className={classes.subtitle} color="inherit">
             Components
           </Typography>
-          {location.pathname === '/' && (
-          <div className={classes.button}>
-            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={totalItems} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </div>
-          )}
-          {location.pathname==='/packages' && (
-          <div className={classes.button}>
-            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={totalItems} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </div>
-          )}
-          {location.pathname==='/components' && (
+          {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
           <div className={classes.button}>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">

@@ -16,6 +16,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
+    color: '#B90504',
   },
   subtitle: {
     flexGrow: 0.1,

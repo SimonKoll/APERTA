@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.wrapper {
+    padding: 8rem;
+}
+
+.media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img {
+    width: 25vw;
+    height: 45vh;
+    object-fit: cover;
+}
+
+.textAndButtonWrapper {
+    margin-top: 8vh;
+} 
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.price {
+    font-size: 1.2rem;
+}
+
+.addToCartBTN {
+    margin-top: 2vh;
+    background-color: #b90504;
+    color: #faf6ea;
+    font-weight: 700;
+    width: fit-content;
+    white-space: nowrap;
+    font-size: 1rem;
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 6pt;
+}
+
+.addToCartBTN:hover {
+    cursor: pointer;
+}
+
+.atcBtn-text {
+    font-weight: 600;
+}
+
+.atcBtn-arrowRight {
+    vertical-align: middle;
+    margin-left: 0.5vw;
+    font-size: 1.2rem;
+}
+
+.BTN-Content{
+    transition: transform 0.5s ease;
+}
+
+.addToCartBTN:hover > .BTN-Content {
+    transform: scale(1.05);
+  }

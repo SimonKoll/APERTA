@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.App {
+  font-family: "Raleway", sans-serif;
+  padding: 20px;
+}
+
+main {
+  display: flex;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+
+.main__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+}
+
+.my-carousel__wrapper {
+  display: flex;
+  align-items: center;
+  width: 50vw;
+  height: 93vh;
+  /*background-color: lightgray;
+  background-color: #ccc; 
+  border: 1px solid black; */
+}
+
+.my-carousel {
+  width: 100%;
+  height: 100%;
+  /*border: 5px solid black; */
+}
+.my-carousel__control {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-left: 47vw;
+  margin-right: 3rem;
+}
+
+.control_Button {
+  height: 8vh;
+  width: 4pt;
+  border: 0;
+  font-size: 0;
+}
+
+
+.control_Button:hover {
+  cursor: pointer;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  width: 50vw;
+  height: 93vh;
+  background-color: #f2f0f0;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  height: 30vh;
+  padding: 5rem;
+  /* background-color: goldenrod; */
+}
+
+.about-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.about-text {
+  margin-top: 2vh;
+  font-size: 1.1rem;
+}
+
+.about-button {
+  margin-top: 3.5vh;
+  background-color: #b90504;
+  color: #faf6ea;
+  font-weight: 700;
+  width: fit-content;
+  white-space: nowrap;
+  font-size: 1rem;
+  padding-left: 1.15rem;
+  padding-right: 1.15rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 6pt;
+}
+
+.about-button:hover {
+  cursor: pointer;
+}
+
+.about-btn-content {
+  transition: transform 0.5s ease;
+}
+
+.aboutn-btn-text {
+  display: inline-block;
+}
+
+.icon-arrow-right {
+  vertical-align: middle;
+  margin-left: 1vw;
+  font-size: 1.5rem;
+}
+
+.about-button:hover > .about-btn-content {
+  transform: scale(1.05);
+}

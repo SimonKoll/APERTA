@@ -1,0 +1,9 @@
+a {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+a:visited {
+    color: black !important;
+    text-decoration: none !important;
+}
