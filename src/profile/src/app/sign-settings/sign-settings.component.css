@@ -1,0 +1,147 @@
+/*Aperta CSS*/
+
+.divMainContent{
+  height: 90vh;
+  width:100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.divLeftContent, .divRightContent{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.divRightContent{
+  justify-content: center;
+}
+
+
+
+.divMainContent h1, .divMainContent h2{
+  margin-left: 7%;
+}
+
+.form h2{
+  margin: 0;
+  padding: 0
+}
+
+.divMainContent h2{
+  margin-top: 13%;
+}
+.divRightContent h2{
+  margin-bottom: 0%;
+}
+
+.formSignSettings{
+  margin-bottom: 10%;
+  width: 94%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5%;
+}
+
+.divSignNameSettings, .divCarBrandSettings, .divTimeSettings{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2vh;
+  margin-right: 3%;
+  padding: 0;
+}
+
+.Period{
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  padding-top: 9%;
+  justify-content: space-around;
+}
+
+.TimeTo, .TimeFrom{
+  opacity: 20%;
+}
+
+
+.SignName, .SignNumber, .CarBrand, .TimeTo, .TimeFrom{
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  padding-top: 3%;
+}
+
+.SignName label, .SignNumber label, .CarBrand label, .TimeFrom label, .TimeTo label{
+  padding-bottom: 7%;
+  font-size: 105%;
+}
+
+
+.SignName input[type=text], .SignNumber input[type=text], .CarBrand input[type=text], .TimeTo input[type=date], .TimeFrom input[type=date]{
+  padding: 4%;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px 1px #77777794;
+}
+
+.CarBrand input[type=date]{
+  padding: 3.2%;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px 1px #77777794;
+}
+
+.divButton{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5%;
+}
+
+.btSave, .btDelete, .btAddMore{
+  text-align: center;
+  border-radius: 5px;
+  width: 20%;
+  height: 80%;
+  text-decoration: none;
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 2px 3px 5px 1px #77777794;
+  margin-right: 5%;
+}
+
+.btAddMore a{
+  text-transform: none;
+  text-decoration: none;
+}
+.btAddMore a:visited{
+  color: black;
+}
+
+.divActiveSigns{
+  width: 95%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 3%;
+  padding: 0;
+}
+
+.verticalLine{
+  height: 98%;
+  position: relative;
+  left: 0%;
+  border-left: 2px solid #858585;
+  opacity: 30%;
+}
+
