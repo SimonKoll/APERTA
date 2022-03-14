@@ -22,7 +22,8 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
     .then(client => {
         console.log('Connected to Database')
         const db = client.db('ApertaDB')
-        const licensplateCollection = db.collection('licenseplate')
+
+        const licensplateCollection = db.collection('licenseplates')
         const rfidCollection = db.collection('rfid')
         const keypadCollection = db.collection('keypad')
             // All your handlers here...
@@ -66,9 +67,10 @@ MongoClient.connect(connstring, { useUnifiedTopology: true })
                 // do something here
         })
         app.get('/get-licenseplates', function(req, res) {
-            db.collection('licenseplate').find().toArray()
+            licensplateCollection.find().toArray()
                 .then(results => {
                     console.log("retrieving licenseplates")
+                    console.log(results)
                     res.send(results)
                 })
                 .catch(error => console.error(error))
