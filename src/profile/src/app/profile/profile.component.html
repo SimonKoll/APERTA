@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="divMainContent">
+    <div class="divLeftContent">
+      <h1>My Profile</h1>
+      <h2>Settings</h2>
+
+      <div class="Form">
+        <form class="formProfileSettings" name="formProfileSettings">
+          <div class="divNameSettings">
+            <div class="Firstname">
+              <label name="lbFirstName">First Name</label>
+              <input name="txFirstName" type="text" placeholder="First Name">
+            </div>
+            <div class="Lastname">
+              <label name="lbLastName">Last Name</label>
+              <input name="txLastName" type="text" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="divPersonalSettings">
+            <div class="Birthday">
+              <label name="lbBirthday">Birthday</label>
+              <input name="dtBirthday" type="date">
+            </div>
+            <div class="Phonenumber">
+              <label name="lbPhonenumber">Phonenumber</label>
+              <input name="nbPhonennumber" type="tel" placeholder="+43 660 123 123 12">
+            </div>
+          </div>
+          <div class="divPersonalSettings">
+            <div class="City">
+              <label name="lbCity">City</label>
+              <input name="txCity" type="text" placeholder="Linz">
+            </div>
+            <div class="Postcode">
+              <label name="lbPostcode">Postcode</label>
+              <input name="nbPostcode" type="number" placeholder="4020">
+            </div>
+          </div>
+
+
+          <div class="divButton">
+            <button class="btSubscribe" name="btSubscribe">Save</button>
+          </div>
+        </form>
+        <hr class="horizontalLine">
+      </div>
+      <div class="divMoreSettings">
+        <a href="/keyPadSettings">Key-Pad Settings</a>
+        <a href="#">NFC Settings</a>
+        <a href="/signSettings">Sign Settings</a>
+      </div>
+    </div>
+    <div class="verticalLine"></div>
+    <div class="divRightContent">
+      <div class="ActiveSignh2"><h2>Active Sign</h2></div>
+      <div class="divActiveSigns">
+
+        <app-sign></app-sign>
+        <app-sign></app-sign>
+        <app-sign></app-sign>
+
+
+
+
+
+
+      </div>
+        <div class="divButton">
+          <button class="btSubscribe" name="AddMore"><a href="/addSign">Add More</a></button>
+        </div>
+
+      <hr class="horizontalLineRight">
+      <div class="Moreh2">
+        <h2>More</h2>
+        <div class="divButton">
+          <button class="btSubscribe" name="AddMore">Add More</button>
+        </div>
+      </div>
+      <div class="divMore">
+        <div class="Components">
+          <div class="ComponentsName">Key-Pad</div>
+          <div class="ComponentPic">
+            <img src="../../assets/keypad.png" alt ="Key Pad"/>
+          </div>
+          <div class="MoreCheckbox">
+            <div class="CheckActive">
+              <img src="../../assets/checkmark-outline.svg" alt="Checkmark" />
+            </div>
+            <div class="CheckInactive">
+              <img src="../../assets/close-outline.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="Components">
+          <div class="ComponentsName">NFC-Chip</div>
+          <div class="ComponentPic">
+            <img src="../../assets/nfc.png" alt ="NFC-Chip"/>
+          </div>
+          <div class="MoreCheckbox">
+            <div class="CheckActive">
+              <img src="../../assets/checkmark-outline.svg" alt="Checkmark" />
+            </div>
+            <div class="CheckInactive">
+              <img src="../../assets//close-outline.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
