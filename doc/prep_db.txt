@@ -1,0 +1,44 @@
+db.numpad.insertMany([
+   {
+      numpad_id: 1,
+      numpad_code: '123456',
+      time_created: 1647252201,
+	active: true
+   },
+   {
+      numpad_id: 2,
+      numpad_code: 'ABCD12',
+      time_created: 1647252201,
+	active: false
+   }
+])
+
+db.rfid.insertMany([
+   {
+      rfid_id: 1,
+      rfid_code: '1234567890',
+      time_created: 1647252201,
+	active: true
+   },
+   {
+      rfid_id: 2,
+      rfid_code: '0987654321',
+      time_created: 1647252201,
+	active: false
+   }
+])
+
+db.licenseplate.insertMany([
+   {
+      licenseplate_id: 1,
+      licenseplate: 'RO 108DV',
+      time_created: 1647252201,
+	active: true
+   },
+   {
+      licenseplate_id: 2,
+      licenseplate: 'UU 124LY',
+      time_created: 1647252201,
+	active: false
+   }
+])
