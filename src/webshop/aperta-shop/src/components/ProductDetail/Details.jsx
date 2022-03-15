@@ -4,12 +4,14 @@ import "./styles.css";
 import useStyles from './styles';
 import { IconButton, Typography } from "@material-ui/core";
 import { AddShoppingCart } from '@material-ui/icons';
+import Spinner from "../Spinner/spinner";
 
 const Details = ({ onAddToCart }) => {
     const classes = useStyles();
     const url_id = window.location.pathname.split("/");
     const pID = url_id[2];
     const [detail, setDetail] = useState({});
+    const [loading, setLoading] = useState(true);
     const handleAddToCart = () => onAddToCart(detail.ID, 1);
 
     const fetchProduct = async (ID) => {
@@ -35,7 +37,7 @@ const Details = ({ onAddToCart }) => {
             <div className={classes.toolbar} />
             <div className='wrapper'>
                 <div className='pImg'>
-                <img className="img" src={detail.src} alt="Product-Image" />
+                <img className="img" onLoad={() => { setLoading(false); }} src={detail.src} alt="Product-Image" />
                 </div>
                 <div className='text'>
                     <span>
@@ -58,6 +60,7 @@ const Details = ({ onAddToCart }) => {
                 </IconButton>    
                 </div>
             </div>
+            {loading && <Spinner />}
         </main>
     )
 };
