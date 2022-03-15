@@ -1,15 +1,13 @@
 import React from 'react';
-import useStyles from './styles';
 import "./styles.css";
 
 const Product =({ product, onAddToCart }) => {
-    const classes = useStyles();
     const handleAddToCart = () => onAddToCart(product.id, 1);
 
     return (
         <div className="wrapper">
             <div className="media">
-                <img className="img" src={product.image.url} alt="Product-Image" />
+                <img className="product-image" src={product.image.url} alt={product.name} />
             </div>
             <div className="textAndButtonWrapper">
                 <div className="titlePriceWrapper">

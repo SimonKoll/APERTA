@@ -11,11 +11,6 @@ main {
   font-weight: 500;
 }
 
-.main__wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-}
-
 .my-carousel__wrapper {
   display: flex;
   align-items: center;
