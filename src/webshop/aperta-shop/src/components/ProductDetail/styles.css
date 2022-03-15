@@ -19,6 +19,11 @@ main {
     height: 93vh;
 }
 
+.product-image {
+    width: 100%;
+    height: 100%;
+}
+
 .product-img {
     width: 100%;
     height: 100%;

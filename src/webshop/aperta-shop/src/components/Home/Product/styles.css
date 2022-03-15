@@ -8,16 +8,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.product-image {
-    width: 25vw;
-    height: 45vh;
     object-fit: cover;
+    overflow: hidden;
+    transform:scale(1.5);
 }
 
 .textAndButtonWrapper {
-    margin-top: 8vh;
+    margin-top: 10vh;
 } 
 
 .title {

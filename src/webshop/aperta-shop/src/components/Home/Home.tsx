@@ -31,9 +31,9 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             interval={5000}
             animation="fade"
             timeout={{
-              appear: 350,
-              enter: 350,
-              exit:100
+              appear: 400,
+              enter: 400,
+              exit: 600
             }}
             indicators={false}
             stopAutoPlayOnHover={false}
