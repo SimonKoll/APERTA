@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
+import "./styles.css";
 
 const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   const classes = useStyles();
@@ -20,33 +21,45 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderCart = () => (
     <>
-      <Grid className={classes.cartContent} container spacing={3}>
-        {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={4} key={lineItem.id}>
-            <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
+      <div className='c-content-wrapper'>
+          <Grid container justifyContent="center" direction="row" spacing={6}>
+            {cart.line_items.map((lineItem) => (
+              <Grid key={lineItem.id} item xs={12} sm={6} md={4} lg={3}>
+                  <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+      </div>
       <div className={classes.cardDetails}>
         <Typography variant="h5" style={{ fontWeight: 600 }}>Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
         <div>
-          <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty cart</Button>
-          <Button className={classes.checkoutButton}  classes={{ root: classes.root, label: classes.label, }} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">
-            <span style={{ color: 'white !important' }}>
-             Checkout
-            </span>
-          </Button>
+          <div className="empty-button">
+            <div className="empty-btn-content" onClick={handleEmptyCart}>
+              <span className="empty-btn-text">Empty</span>
+            </div>
+          </div>
+          <div className="checkout-button">
+            <div className="checkout-btn-content" component={Link} to="/checkout">
+              <span className="checkout-btn-text">Checkout</span>
+            </div>
+          </div>
         </div>
       </div>
     </>
   );
 
   return (
-    <Container>
-      <div className={classes.toolbar}/>
-      <Typography className={classes.title} variant="h4" style={{ fontWeight: 600 }} gutterBottom>Your Shopping Cart:</Typography>
-      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
-    </Container>
+    <main className={classes.mainCartContent}>
+      <div className={classes.cartToolbar} />
+      <div className="c-wrapper">
+          <div className="cart-title">
+            <Typography className={classes.title} variant="h5" style={{ fontWeight: 600 }} gutterBottom>Your Shopping Cart:</Typography>
+          </div>
+          <div className="cart-content-wrapper">
+            { !cart.line_items.length ? renderEmptyCart() : renderCart() }
+          </div>
+      </div>
+    </main>
   );
 };
 

@@ -7,3 +7,41 @@ a:visited {
     color: black !important;
     text-decoration: none !important;
 }
+
+.buy-btn {
+    margin-top: 3.5vh;
+    /* background-color: #b90504; */
+    border: 1px solid #B3ADAD;
+    color: #fff;
+    font-weight: 700;
+    width: fit-content;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+    border-radius: 6pt;
+  }
+  
+  .buy-btn:hover {
+    cursor: pointer;
+    background-color: rgba(200, 200, 200, 0.2);
+    transition: all 0.5s ease;
+  }
+
+  .buy-btn:hover > .buyBTN-text {
+    transition: all 0.5s ease;
+    color: #A10403;
+  }
+
+  .buyBTN-text {
+    display: inline-block;
+    color: #b90504;
+  }
+
+  .addShoppingC {
+    vertical-align: middle;
+    margin-left: 0.65vw;
+    line-height: 0rem;
+  }

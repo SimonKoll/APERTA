@@ -60,7 +60,7 @@ const Details = ({ onAddToCart }) => {
                             <span className="buy-btn-text">Add to Cart</span>
                             <span className="asc"><AddShoppingCart className={classes.ascIcon} /></span>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
         {loading && <Spinner />}

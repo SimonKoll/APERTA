@@ -4,7 +4,8 @@ export default makeStyles(() => ({
   root: {
     // maxWidth: 345, original width style
     //width: '90% !important',
-    width: '38vh !important',
+    width: '20vw !important',
+    borderRadius: '6pt !important',
   },
   media: {
     height: 0,
@@ -18,5 +19,9 @@ export default makeStyles(() => ({
   cardContent: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  ascIcon: {
+    fontSize: '1rem',
+    color: '#b90504',
   },
 }));
