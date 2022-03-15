@@ -33,7 +33,7 @@ export default function Home({ products, onAddToCart } : {products:any, onAddToC
             timeout={{
               appear: 400,
               enter: 400,
-              exit: 600
+              exit: 0
             }}
             indicators={false}
             stopAutoPlayOnHover={false}

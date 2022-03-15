@@ -10,4 +10,7 @@ export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  ascIcon: {
+    fontSize: '1.25rem',
+  },
 }));

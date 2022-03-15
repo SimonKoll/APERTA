@@ -35,7 +35,7 @@ main {
 }
 
 .control_Button {
-  height: 8vh;
+  height: 9vh;
   width: 4pt;
   border: 0;
   font-size: 0;
@@ -68,12 +68,12 @@ main {
 
 .about-title {
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 .about-text {
   margin-top: 2vh;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.7rem;
   text-align: justify;
 }
@@ -85,7 +85,7 @@ main {
   font-weight: 700;
   width: fit-content;
   white-space: nowrap;
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding-left: 1.15rem;
   padding-right: 1.15rem;
   padding-top: 0.5rem;
@@ -108,7 +108,7 @@ main {
 .icon-arrow-right {
   vertical-align: middle;
   margin-left: 1vw;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .about-button:hover > .about-btn-content {

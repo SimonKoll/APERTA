@@ -18,11 +18,11 @@ const Products = ({ products, onAddToCart }) => {
       <div className='p-wrapper'>
        <div className='page-title'>
           <Typography className={classes.pTitle} variant="h5" style={{ fontWeight: 600, margin: '0 !important' }} gutterBottom>
-            {uTitle}:
+            {uTitle}
           </Typography>
         </div>
         <div className='content-wrapper'>
-          <Grid container justifyContent="center" direction="row" spacing={10}>
+          <Grid container justifyContent="center" direction="row" spacing={6}>
             {products.map((product) => (
               <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
                   <Product product={product} onAddToCart={onAddToCart} />

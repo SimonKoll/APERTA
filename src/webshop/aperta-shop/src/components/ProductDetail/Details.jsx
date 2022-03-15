@@ -48,7 +48,7 @@ const Details = ({ onAddToCart }) => {
                         </Typography>
                     </div>
                     <div className="content-price">
-                        <Typography className="product-price" style={{ fontWeight:"600", fontSize: "1.2rem" }}>
+                        <Typography className="product-price" style={{ fontWeight:"550", fontSize: "1.2rem" }}>
                             {detail.price}
                         </Typography>
                     </div>
@@ -58,7 +58,7 @@ const Details = ({ onAddToCart }) => {
                     <div className="buy-button">
                         <div className="buy-btn-content" onClick={handleAddToCart}>
                             <span className="buy-btn-text">Add to Cart</span>
-                            <span className="asc"><AddShoppingCart /></span>
+                            <span className="asc"><AddShoppingCart className={classes.ascIcon} /></span>
                         </div>
                      </div>
                 </div>
