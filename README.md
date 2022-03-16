@@ -3,10 +3,8 @@
 **Diplomarbeit 2021/2022**<br>
 **Projekt-Team:** Koll Simon, Golic Benjamin, Hauser David
 
-<br>
 ## Web-Shop
 <img src="doc/webshop.png">
-<br>
 <!-- Table of Contents -->
 
 <!-- Description -->
