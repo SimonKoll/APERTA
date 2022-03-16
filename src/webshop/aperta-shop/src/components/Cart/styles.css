@@ -19,7 +19,7 @@
 
 .c-content-wrapper{
     margin-top: 2rem;
-    width: 100% !important;
+    width: 95% !important;
 }
 
 .MuiGrid-spacing-xs-6 {
@@ -45,7 +45,7 @@
 }
 
 .cart-content-wrapper {
-    width: 80vw !important;
+    width: 85vw !important;
 }
 
 /* Primary Button - Checkout Button */
@@ -62,10 +62,13 @@
     padding-bottom: 0.65rem;
     border-radius: 6pt;
     margin-left: 1vw;
+    transition: all 0.5s ease;
 }
 
 .checkout-button:hover {
     cursor: pointer;
+    color: rgba(255, 255, 255,1);
+    background-color: rgb(255, 10, 10);
 }
 
 .checkout-btn-content {

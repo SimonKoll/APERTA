@@ -45,10 +45,13 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border-radius: 6pt;
+    transition: all 0.5s ease;
 }
 
 .addToCartBTN:hover {
     cursor: pointer;
+    color: rgba(255, 255, 255,1);
+    background-color: rgb(255, 10, 10);
 }
 
 .atcBtn-text {
@@ -61,10 +64,3 @@
     font-size: 1.2rem;
 }
 
-.BTN-Content{
-    transition: transform 0.5s ease;
-}
-
-.addToCartBTN:hover > .BTN-Content {
-    transform: scale(1.05);
-  }

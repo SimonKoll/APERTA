@@ -91,14 +91,17 @@ main {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 6pt;
+  transition: all 0.5s ease;
 }
 
 .about-button:hover {
   cursor: pointer;
+  color: rgba(255, 255, 255,1);
+  background-color: rgb(255, 10, 10);
 }
 
 .about-btn-content {
-  transition: transform 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .aboutn-btn-text {
@@ -109,8 +112,4 @@ main {
   vertical-align: middle;
   margin-left: 1vw;
   font-size: 1.3rem;
-}
-
-.about-button:hover > .about-btn-content {
-  transform: scale(1.05);
 }

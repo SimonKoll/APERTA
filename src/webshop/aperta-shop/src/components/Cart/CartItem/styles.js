@@ -4,7 +4,7 @@ export default makeStyles(() => ({
   Croot: {
     // maxWidth: 345, original width style
     //width: '90% !important',
-    width: '16vw !important',
+    width: '18vw !important',
     borderRadius: '6pt !important',
     //marginBottom: '1.25rem',
     //display: 'grid',

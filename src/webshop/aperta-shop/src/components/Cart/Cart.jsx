@@ -24,7 +24,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
       <div className='c-content-wrapper'>
           <Grid container justifyContent="center" direction="row" spacing={6}>
             {cart.line_items.map((lineItem) => (
-              <Grid key={lineItem.id} item sm={6} md={4} lg={3}>
+              <Grid key={lineItem.id} item sm={5} md={4} lg={3}>
                   <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
               </Grid>
             ))}
