@@ -6,33 +6,12 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(10),
+    height: '100%',
   },
   root: {
     flexGrow: 1,
   },
-
-  emptyButton: {
-    minWidth: '150px',
-    [theme.breakpoints.down('xs')]: {
-      marginBottom: '5px',
-    },
-    [theme.breakpoints.up('xs')]: {
-      marginRight: '20px',
-    },
-  },
-  checkoutButton: {
-    minWidth: '150px',
-  },
   link: {
     textDecoration: 'none',
-  },
-  cardDetails: {
-    display: 'flex',
-    marginTop: '10vh',
-    width: '100%',
-    justifyContent: 'space-between',
-  },
-  label: {
-    color: 'white',
   },
 }));

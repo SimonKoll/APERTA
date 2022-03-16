@@ -1,5 +1,14 @@
+a {
+    color: black !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black !important;
+    text-decoration: none;
+}
+
 .rmv-button {
-    margin-top: 3.5vh;
     /* background-color: #b90504; */
     border: 1px solid #B3ADAD;
     color: #fff;
@@ -17,18 +26,10 @@
   .rmv-button:hover {
     cursor: pointer;
     background-color: rgba(200, 200, 200, 0.4) !important;
-  }
-  
-  .rmv-btn-content {
-    transition: transform 0.5s ease;
+    transition: all 0.5s ease;
   }
 
   .rmv-btn-text {
     display: inline-block;
     color: #b90504;
-  }
-  
-  .rmv-button:hover > .rmv-btn-content {
-    transform: scale(1.1);
-    
   }

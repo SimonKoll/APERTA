@@ -4,8 +4,13 @@ export default makeStyles(() => ({
   Croot: {
     // maxWidth: 345, original width style
     //width: '90% !important',
-    width: '20vw !important',
+    width: '16vw !important',
     borderRadius: '6pt !important',
+    //marginBottom: '1.25rem',
+    //display: 'grid',
+    //gridTemplateColumns: 'repeat(auto-fit, minmax(256px, 1fr))',
+    //gap between cards 1.25rem
+    //gridGap: '1.25rem',
   },
   Cmedia: {
     height: 0,

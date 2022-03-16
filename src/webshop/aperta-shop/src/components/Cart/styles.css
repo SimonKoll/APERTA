@@ -1,3 +1,13 @@
+.checkout-button a {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.checkout-button a:visited {
+    color: #fff !important;
+    text-decoration: none;
+}
+
 .product-link {
     text-decoration: none;
 }
@@ -7,17 +17,39 @@
     text-decoration: none;
 }
 
-.c-wrapper{
-    margin-top: 11vh;
-}
-
 .c-content-wrapper{
     margin-top: 2rem;
-} 
+    width: 100% !important;
+}
+
+.MuiGrid-spacing-xs-6 {
+    margin: 0 !important;
+}
+
+.details-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.subtotalText {
+    display: flex;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.button-wrapper {
+    display: flex;
+}
+
+.cart-content-wrapper {
+    width: 80vw !important;
+}
 
 /* Primary Button - Checkout Button */
 .checkout-button {
-    margin-top: 3.5vh;
     background-color: #b90504;
     color: #faf6ea;
     font-weight: 700;
@@ -29,6 +61,7 @@
     padding-top: 0.65rem;
     padding-bottom: 0.65rem;
     border-radius: 6pt;
+    margin-left: 1vw;
 }
 
 .checkout-button:hover {
@@ -39,14 +72,10 @@
     transition: transform 0.5s ease;
 }
 
-.checkout-btn-text {
-    display: inline-block;
-}
-
 /* Secondary Button - Empty Button */
 .empty-button {
-    margin-top: 3.5vh;
     /* background-color: #b90504; */
+    background-color: #fff;
     border: 1px solid #B3ADAD;
     font-weight: 700;
     width: fit-content;
@@ -71,6 +100,5 @@
 }
 
 .empty-btn-text {
-    display: inline-block;
     color: #b90504;
 }

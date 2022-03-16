@@ -15,8 +15,12 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
     <Card className={classes.Croot}>
       <CardMedia image={item.image.url} alt={item.name} className={classes.Cmedia} />
       <CardContent className={classes.CcardContent}>
-        <Typography variant="h6" style={{ fontWeight: 600 }}>{item.name}</Typography>
-        <Typography variant="h6">{item.line_total.formatted_with_symbol}</Typography>
+        <Typography gutterBottom variant="h6" component="h2">
+          {item.name}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="h2">
+          {item.line_total.formatted} €
+        </Typography>
       </CardContent>
       <CardActions className={classes.CcardActions}>
         <div className={classes.Cbuttons}>
@@ -29,7 +33,6 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
             <span className="rmv-btn-text">Remove</span>
           </div>
         </div>
-       
       </CardActions>
     </Card>
   );
