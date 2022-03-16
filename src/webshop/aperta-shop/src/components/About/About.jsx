@@ -35,7 +35,7 @@ const About = () => {
                         Watch this quick visualisation to see how APERTA works:
                     </span>
                     <div className="bottom-video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/KrHYiyQgCX8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/jwW-u_upmHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

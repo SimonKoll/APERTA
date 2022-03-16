@@ -74,26 +74,21 @@ main {
     padding-top: 0.65rem;
     padding-bottom: 0.65rem;
     border-radius: 6pt;
-  }
+    transition: all 0.5s ease;
+}
   
-  .buy-button:hover {
+.buy-button:hover {
     cursor: pointer;
-  }
+    color: rgba(255, 255, 255,1);
+    background-color: rgb(255, 10, 10);
+}
   
-  .buy-btn-content {
-    transition: transform 0.5s ease;
-  }
-  
-  .buy-btn-text {
+.buy-btn-text {
     display: inline-block;
-  }
+}
 
-  .asc {
+.asc {
     vertical-align: middle;
     margin-left: 0.65vw;
     line-height: 0rem;
-  }
-  
-  .buy-button:hover > .buy-btn-content {
-    transform: scale(1.05);
-  }
+}
