@@ -19,7 +19,7 @@ main {
 }
 
 .about-hr {
-    width: 100%;
+    width: 100vw;
     background-color: #D9D7D7;
     margin-top: 3vh;
     margin-left: 0;
@@ -27,12 +27,18 @@ main {
     opacity: 0.8;
 }
 
+.about-desc-wrapper {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+}
+
 .about-desc {
     font-size: 1rem;
     line-height: 1.7rem;
     margin-top: 2vh;
     text-align: justify;
-    width: 60vw;
 }
 
 .top-wrapper, .bottom-wrapper {
