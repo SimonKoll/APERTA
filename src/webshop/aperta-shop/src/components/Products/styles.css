@@ -14,3 +14,9 @@
 .content-wrapper{
     margin-top: 2rem;
 } 
+
+.MuiGrid-spacing-xs-6 > .MuiGrid-item {
+    padding: 0 !important;
+    padding-right: 1vw !important;
+    padding-bottom: 4vh !important;
+}
