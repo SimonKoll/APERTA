@@ -12,4 +12,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  fakeArray = new Array(3);
+
 }
