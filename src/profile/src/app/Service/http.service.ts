@@ -9,7 +9,7 @@ import {Sign} from "../Model/sign";
 })
 export class HttpService {
 
-  baseUrl = "http://130.162.215.116:3000";
+  baseUrl = "http://130.162.215.116";
 
   constructor(private http: HttpClient) { }
 

@@ -3,16 +3,34 @@
   height: 10%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.logo{
-  margin-left: 2%;
-  color: #B90504;
+.leftSide{
+  width: 50%;
+  height:10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.aperta{
+  margin:0;
+  padding: 0;
+  transform: scale(0.1);
+}
+
+.logo h1{
+  margin:0;
+  padding:0;
+  color: black;
+  margin-left: 50%;
 }
 
 .pageList{
-  width: 40%;
+  width: 50%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;

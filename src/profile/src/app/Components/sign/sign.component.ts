@@ -12,6 +12,7 @@ export class SignComponent implements OnInit {
 
   signId: number | undefined;
   Signs: Sign[] | undefined;
+  licensename: String | undefined;
 
   constructor(private httpService: HttpService) { }
 
@@ -23,13 +24,19 @@ export class SignComponent implements OnInit {
     this.httpService.getSigns().subscribe((data:Sign[])=>{
       this.Signs = data;
       console.log(data);
-      this.getSignName(1)
+      this.getSignName()
     })
   }
 
-  getSignName(signId: number){
-    var licensename = this.Signs?.find(element => element.licenseplateId == signId)?.licenseplate
-    return licensename;
-  }
+
+  // @ts-ignore
+  getSignName() {
+    for(var i = 0; i <= 3; i++) {
+      // @ts-ignore
+      this.licensename = this.Signs[i].licenseplate;
+      console.log(this.licensename);
+      return this.licensename;
+    }
+    }
 
 }

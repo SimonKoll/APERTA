@@ -22,4 +22,6 @@ export class SignSettingsComponent implements OnInit {
     })
   }
 
+  fakeArray = new Array(6);
+
 }
