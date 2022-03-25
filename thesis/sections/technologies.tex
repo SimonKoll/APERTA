@@ -20,14 +20,27 @@ Das Herz von APERTA ist die Kennzeichenerkennung. Dieses Alleinstellungsmerkmal 
 \section{Auswahl der Technologie - Backend[SK]}
 \setauthor{Simon Koll}
 \subsection{Anforderungen an das Backend}
-Für das Backend kamen mehrere Technologien in Frage, wie unter anderem Java, JavaScript, Python, PHP, C$\sharp$, und viele mehr. 
-Um das Backend zu realisieren, muss die Technologie einige bestimmte Eigenschaften besitzen. 
+Für das Backend kamen mehrere Technologien in Frage, wie unter anderem Java, JavaScript, Python, PHP, C$\sharp$, und viele mehr.
+Um das Backend zu realisieren, muss die Technologie einige bestimmte Eigenschaften besitzen.
 \begin{itemize}
-    \item \textit{Java:} APERTA soll bei jedem Garagentor mit bereits verbautem Motor nachrüstbar sein. So können mehr potentielle Käufer angesprochen werden.
-    \item \textit{JavaScript:} Aufgrund der vielen Möglichkeiten kann APERTA für manche Käufer in der Vollausstattung nicht geeignet sein. Das Produkt soll daher im Onlineshop konfiguriert werden können, sodass bestimmte Komponenten entfernt werden können. Diese sollen nachträglich eingebaut werden können.
-    \item \textit{Python:} Um den Nutzer zu unterstützen, soll die Verwaltung von Nummernfeldkombinationen, NFC-Details und Kennzeichen einfach und schnell funktionieren. Der Käufer soll mithilfe von Texteingaben neue Einträge hinzufügen können und diese mit einem Knopfdruck wieder entfernen können.
-    \item \textit{PHP:}
-    Um die Erfahrung für den Käufer von Anfang an gut zu gestalten, soll ein optisch ansprechender Onlineshop der erste Kontakt mit dem Produkt sein.
-    \item \textit{C$\sharp$: }
+    \item \textit{Java:} Die Vorteile von Java liegen in der Fehlerbehandlung, sowie in Bereichen wie Multithreading und Performanz. Die strikte Fehlerbehandlung führt dabei aber zum Verlust von Flexibilität und Kompaktheit des Codes.
+    \item \textit{JavaScript:} Die Syntax von JavaScript ähnelt der von Java. Entwickelt als Scripting-Sprache für HTML, ist JavaScript einfach zu lernen und zu benutzen. Bei der Entwicklung von Websites kann JavaScript direkt in den Quellcode der HTML-Seite eingearbeitet werden. Aber auch im Backend-Bereich kann mit NodeJS in JavaScript entwickelt werden.
+    \item \textit{Python:} Python ist eine der mit Abstand am leichtesten zu lesenden Programmiersprachen. Die flache Hierarchie ermöglicht ein einfaches Verständnis von Programmen und Codestücken. Weiters macht Python den Entwickler auf jeden Fehler aufmerksam, wenn dieser nicht ausdrücklich ignoriert werden soll.
+    Jedoch ist Python manchmal langsamer in der Ausführung als die konkurrierenden Sprachen. Zusätzlich ist durch die Verwendung von Leerzeichen zur Einrückung ein häufiger Fehlergrund hinzugekommen.
+    \item \textit{PHP:} Die PHP Syntax erinnert an eine Mischung aus C, Java und Perl. Das Ziel von PHP ist es, Entwickler schnell und einfach dynamisch generierte Webpages zu bauen. Die vermischte Syntax ist jedoch etwas chaotisch, darum ist es leicht sich in falschen Angewohnheiten zu verirren und Sicherheitslücken offen zu lassen.
+  \end{itemize}
+  Aufgrund vorhandener Vorkenntnisse standen für das Team 3 der oben genannten Technologien zur Auswahl:
+
+  \begin{itemize}
+    \item Java,
+    \item JavaScript und
+    \item Python
+  \end{itemize}
+
+  Von diesen konnte sich JavaScript durchsetzen. Die Gründe dafür waren:
+  \begin{itemize}
+    \item NPM,
+    \item Verwendung einer NoSQL Datenbank
+    \item Echtzeit-Performance
   \end{itemize}
 
