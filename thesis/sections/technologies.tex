@@ -21,13 +21,17 @@ Das Herz von APERTA ist die Kennzeichenerkennung. Dieses Alleinstellungsmerkmal 
 \setauthor{Simon Koll}
 \subsection{Anforderungen an das Backend}
 Für das Backend kamen mehrere Technologien in Frage, wie unter anderem Java, JavaScript, Python, PHP, C$\sharp$, und viele mehr.
-Um das Backend zu realisieren, muss die Technologie einige bestimmte Eigenschaften besitzen.
+Um das Backend zu realisieren, muss die Technologie einige bestimmte Eigenschaften besitzen.\cite{CompareBackendLanguage}
 \begin{itemize}
-    \item \textit{Java:} Die Vorteile von Java liegen in der Fehlerbehandlung, sowie in Bereichen wie Multithreading und Performanz. Die strikte Fehlerbehandlung führt dabei aber zum Verlust von Flexibilität und Kompaktheit des Codes.
-    \item \textit{JavaScript:} Die Syntax von JavaScript ähnelt der von Java. Entwickelt als Scripting-Sprache für HTML, ist JavaScript einfach zu lernen und zu benutzen. Bei der Entwicklung von Websites kann JavaScript direkt in den Quellcode der HTML-Seite eingearbeitet werden. Aber auch im Backend-Bereich kann mit NodeJS in JavaScript entwickelt werden.
-    \item \textit{Python:} Python ist eine der mit Abstand am leichtesten zu lesenden Programmiersprachen. Die flache Hierarchie ermöglicht ein einfaches Verständnis von Programmen und Codestücken. Weiters macht Python den Entwickler auf jeden Fehler aufmerksam, wenn dieser nicht ausdrücklich ignoriert werden soll.
+    \item \textit{Java:} 
+    \subitem Die Vorteile von Java liegen in der Fehlerbehandlung, sowie in Bereichen wie Multithreading und Performanz. Die strikte Fehlerbehandlung führt dabei aber zum Verlust von Flexibilität und Kompaktheit des Codes.
+    \item \textit{JavaScript:} 
+    \subitem Die Syntax von JavaScript ähnelt der von Java. Entwickelt als Scripting-Sprache für HTML, ist JavaScript einfach zu lernen und zu benutzen. Bei der Entwicklung von Websites kann JavaScript direkt in den Quellcode der HTML-Seite eingearbeitet werden. Aber auch im Backend-Bereich kann mit NodeJS in JavaScript entwickelt werden.
+    \item \textit{Python:}
+    \subitem Python ist eine der mit Abstand am leichtesten zu lesenden Programmiersprachen. Die flache Hierarchie ermöglicht ein einfaches Verständnis von Programmen und Codestücken. Weiters macht Python den Entwickler auf jeden Fehler aufmerksam, wenn dieser nicht ausdrücklich ignoriert werden soll.
     Jedoch ist Python manchmal langsamer in der Ausführung als die konkurrierenden Sprachen. Zusätzlich ist durch die Verwendung von Leerzeichen zur Einrückung ein häufiger Fehlergrund hinzugekommen.
-    \item \textit{PHP:} Die PHP Syntax erinnert an eine Mischung aus C, Java und Perl. Das Ziel von PHP ist es, Entwickler schnell und einfach dynamisch generierte Webpages zu bauen. Die vermischte Syntax ist jedoch etwas chaotisch, darum ist es leicht sich in falschen Angewohnheiten zu verirren und Sicherheitslücken offen zu lassen.
+    \item \textit{PHP:} 
+    \subitem Die PHP Syntax erinnert an eine Mischung aus C, Java und Perl. Das Ziel von PHP ist es, Entwickler schnell und einfach dynamisch generierte Webpages zu bauen. Die vermischte Syntax ist jedoch etwas chaotisch, darum ist es leicht sich in falschen Angewohnheiten zu verirren und Sicherheitslücken offen zu lassen.
   \end{itemize}
   Aufgrund vorhandener Vorkenntnisse standen für das Team 3 der oben genannten Technologien zur Auswahl:
 
@@ -37,10 +41,68 @@ Um das Backend zu realisieren, muss die Technologie einige bestimmte Eigenschaft
     \item Python
   \end{itemize}
 
-  Von diesen konnte sich JavaScript durchsetzen. Die Gründe dafür waren:
+  \subsection{Verwendung von NodeJS}
+  Von diesen konnte sich JavaScript durchsetzen. Die Gründe dafür waren:\cite{WhyNodeJs}
   \begin{itemize}
-    \item NPM,
-    \item Verwendung einer NoSQL Datenbank
-    \item Echtzeit-Performance
+    \item NPM:
+    Der NPM oder \textit{Node Package Manager}, ist ein Paketmanager für JavaScript, welcher bei NodeJS standardmäßig mitgeliefert wird. Bei NPM werden wiederverwendbare Programmteilen veröffentlicht. Diese können mittels des NPM eingenen Command Line Interfaces installiert werden. Weiters bietet der NPM eine integrierte Versionsverwaltung der Pakete sowie eine Verwaltung der Abhängigkeiten. 
+    In diesem Projekt wurden beispielsweise die Module \textit{express} und \textit{mongodb} verwendet. 
+    \linebreak
+    \textit{express} ist ein Framework, welches vor allem in NodeJS Projekten verwendet wird. Die Vorteile von Express sind unter anderem die dem Team bereits bekannte Programmiersprache JavaScript, die Unterstützung der Google V8 engine für bessere Performance, die Robustheit bei einer Vielzahl an HTTP-Anfragen, sowie die einfache Einbindung weiterer Module und Drittanbieterapplikationen. \cite{WhyExpress}
+    \linebreak
+    \linebreak
+    \textit{mongodb} stellt dem Entwickler eine API zur Verfügung, welche die Nutzung einer MongoDB-Datenbank stark vereinfacht.
+    \item Verwendung einer NoSQL Datenbank:
+    Aufgrund des Formates, mit dem die Daten aus dem Frontend kommen, bat sich eine nicht relationale Datenbank für das Team an. Die dokumentenorientierte Datenbank MongoDB ist bekannt für ihre hohe Verfügbarkeit, sowie die gute Skalierbarkeit.\cite{WhyMongoDB}
+    \linebreak
+    \item Behandlung von JSON:
+    NodeJS zeichnet sich durch seine einfach Verwendung von JSON-Daten aus. Diese können ohne Parsing oder andere Konvertierungen verarbeitet und darauf zugegriffen werden. Dank NodeJS können JSON Objekte mittels REST-API Anfragen direkt für den Client bereitgestellt werden.
+    Danke NodeJS kann eine Einfache Verbindung zwischen Frontend-Clients und dem Backend-Server geschaffen werden.
   \end{itemize}
 
+\section{Auswahl der Technologie - Hardware[SK]}
+\setauthor{Simon Koll}
+\subsection{Anforderungen an die Hardware}
+Das Projekt sollte so vielseitig wie möglich, jedoch auch so kompakt wie möglich sein. Dazu musste auf kleine Komponenten gesetzt werden. Diese soll dennoch leistungsfähig genug sein, um jede der drei Zugangsmöglichkeiten parallel zu verwalten.
+\subsubsection{Raspberry Pi}
+Die Wahl des Herzstückes fiel auf einen Raspberry Pi.
+Der Raspberry Pi ist ein vollwertiger Computer, welcher etwas größer als eine Kreditkarte ist. Er besitzt alle bekannten Anschlüsse eines normalgroßen PCs, wie HDMI-Ausgänge für Monitore, USB-Ports für Peripherie wie Maus, Tastatur oder Webcams, sowie einen LAN-Port für eine kabelgebundene Netzwerkverbindung.
+Als Betriebssystem des Raspberry Pi wurde das vom Hersteller empfohlene Raspbian OS verwendet. Dieses bietet eine grafische Benutzeroberfläche, sowie die Möglichkeit den Raspberry auch ohne angeschlossenen Monitor betreiben zu können. \cite{WhatIsRaspberryPi}
+\begin{figure}[h]
+  \includegraphics[width=8cm]{pics/raspberry-pi-4-labelled-dc5d034fb85873018dff0857352b40bf.png}
+  \end{figure}
+\cite{RaspberryImage}
+
+Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffungskosten von ab 35 US-\$, sowie seine leistungsstarken Komponenten.
+\begin{table}[ht]
+  \centering
+  \caption{Übersicht der Komponenten des Raspberry Pi \cite{RaspySpecs}}
+  \label{Komponenten des Raspberry Pi}
+    \begin{adjustbox}{width=\textwidth}
+      \begin{tabular}{lll}
+      \hline
+      \textbf{Komponente}                    & \textbf{Spezifikation}                                                    & \textbf{Besonderheiten}                    \\ \hline
+      \multicolumn{1}{l|}{\textbf{Prozessor}} &
+        \begin{tabular}[c]{@{}l@{}}Broadcom BCM2711\\ - Quad Core Prozessor @ 1.5GHz\end{tabular} &
+        \begin{tabular}[c]{@{}l@{}}ARM Architektur\\ 64-Bit SoC\end{tabular} \\ \hline
+      \multicolumn{1}{l|}{\textbf{RAM}}      & 1GB, 2GB, 4GB oder 8GB LPDDR4 SDRAM                                                          & Tatktung von 3200MHz                       \\ \hline
+      \multicolumn{1}{l|}{\textbf{USB}}      & \begin{tabular}[c]{@{}l@{}}2 USB 3.0 Ports\\ 2 USB 2.0 Ports\end{tabular} &                                            \\ \hline
+      \multicolumn{1}{l|}{\textbf{GPIO}}     & 40 Pin Header                                                             & Abwärtskompatibel mit Vorgängermodellen    \\ \hline
+      \multicolumn{1}{l|}{\textbf{Display}}  & 2 micro-HDMI Ports                                                        & jeweils bis zu 4k60 möglich                \\ \hline
+      \multicolumn{1}{l|}{\textbf{Speicher}} & Micro-SD Kartenslot                                                       & Speicherplatz für Betriebssystem und Daten \\ \hline
+      \multicolumn{1}{l|}{\textbf{Strom}} &
+        \begin{tabular}[c]{@{}l@{}}5V Eingang über USB-C Port\\ 5V Ausgang über GPIO-Header\end{tabular} &
+        Anforderung an Stromquelle: mindestens 3A \\ \hline
+      \end{tabular}
+    \end{adjustbox}
+  \end{table}
+
+Der Raspberry Pi ist einer der am weitesten verbreiteten Ein-Platinen-Computer der Welt. Trotz der im Verhältnis zu größeren Systemen schwache Leistung im Jahr 2020 mehr als 7 Millionen mal verkauft worden. Daraus ergibt sich ein Marktanteil von allen PCs von 2.69\%.
+\cite{RaspyMarketShare}
+Für ein ausgewogenes Verhältnis zwischen Kompaktheit und Leistung griff man auf einen Raspberry Pi 4 Model B in der Ausführung mit 4GB Arbeitsspeicher zurück. Weiters waren die Anschaffungskosten von etwa 100\$ ein weiterer Grund für die Auswahl.
+\textbf{Bestandteile des Raspberry Pi}
+
+\subsubsection{NFC-Leser}
+\subsubsection{Numpad}
+\subsubsection{Kamera}
+\subsubsection{Display}
