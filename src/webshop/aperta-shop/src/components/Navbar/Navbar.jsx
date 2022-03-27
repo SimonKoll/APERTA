@@ -61,7 +61,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           )}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+      
     </>
   );
 };
