@@ -1,6 +1,7 @@
 import requests
 import json
 import string
+from relais import initiateOpeningSequence
 
 
 def checkPlate(text):
@@ -18,5 +19,6 @@ def checkPlate(text):
                   value["licenseplate"].translate(table).replace(" ", ""))
             if text.replace(" ", "").translate(table) == value["licenseplate"].translate(table).replace(" ", ""):
                 print("licenseplate recognized, initiating opening sequence")
+                initiateOpeningSequence()
             else:
                 print("not recognized, staying closed")

@@ -1,5 +1,6 @@
 import requests
 import json
+from relais import initiateOpeningSequence
 
 
 def checkNFC(numpad_code):
@@ -11,5 +12,6 @@ def checkNFC(numpad_code):
         if value["active"]:
             if numpad_code == value["numpad_code"]:
                 print("numpad code recognized, initiating opening sequence")
+                initiateOpeningSequence()
             else:
                 print("not recognized, staying closed")

@@ -1,6 +1,6 @@
 import requests
 import json
-
+from relais import initiateOpeningSequence
 
 def checkNFC(rfid_id):
     print(type(rfid_id))
@@ -12,5 +12,6 @@ def checkNFC(rfid_id):
         if value["active"]:
             if rfid_id == value["rfid_code"]:
                 print("rfid code recognized, initiating opening sequence")
+                initiateOpeningSequence()
             else:
                 print("not recognized, staying closed")
