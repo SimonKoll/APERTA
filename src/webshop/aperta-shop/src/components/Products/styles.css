@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 .product-link {
     text-decoration: none;
 }
@@ -7,16 +11,12 @@
     text-decoration: none;
 }
 
-.p-wrapper{
-    margin-top: 11vh;
+.content-wrapper {
+    width: 100%;
 }
 
-.content-wrapper{
-    margin-top: 2rem;
-} 
-
-.MuiGrid-spacing-xs-6 > .MuiGrid-item {
-    padding: 0 !important;
-    padding-right: 1vw !important;
-    padding-bottom: 4vh !important;
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    place-items: center;  /* centers content */
 }
