@@ -26,12 +26,24 @@ def displayText(writingString):
         lcd.clear()
 
 
-def readUnsuccessful():
+def readNFCUnsuccessful():
     try:
         signal(SIGTERM, safe_exit)
         signal(SIGHUP, safe_exit)
 
         lcd.text("Error at reading", 1)
+        lcd.text("Please try again", 2)
+
+        time.sleep(5)
+    finally:
+        lcd.clear()
+
+def readNumpadUnsuccessful():
+    try:
+        signal(SIGTERM, safe_exit)
+        signal(SIGHUP, safe_exit)
+
+        lcd.text("Wrong combination", 1)
         lcd.text("Please try again", 2)
 
         time.sleep(5)

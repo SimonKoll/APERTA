@@ -2,20 +2,14 @@
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
-from testDisplay import displayText, readUnsuccessful
+from checkNFC import checkNFC
 
 reader = SimpleMFRC522()
 
-knownIDs= [933269900326]
 
 try:
-        id, text = reader.read()
-        print(id)
-        for _id in knownIDs:
-                if(id == _id):
-                   displayText(str(id))   
-                else:
-                        readUnsuccessful()
-        
+    id, text = reader.read()
+    print(id)
+    checkNFC(id)
 finally:
-        GPIO.cleanup()
+    GPIO.cleanup()

@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 from testDisplay import displayText
+from checkNumpad import checkNumpad
 GPIO.setmode(GPIO.BCM)
 
 MATRIX = [[1, 2, 3, 'A'],
@@ -31,7 +32,7 @@ try:
                     COUNT = COUNT+1
                     COMBIN = COMBIN + str(MATRIX[i][j])
                     if(COUNT > 5):
-                        displayText(COMBIN)
+                        checkNumpad(COMBIN)
                         COMBIN = ""
                         COUNT = 0
                     while(GPIO.input(ROW[i]) == 0):

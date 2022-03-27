@@ -1,21 +1,20 @@
-import cv2
+import cv2, os
 import imutils
 import numpy as np
 import pytesseract
 import re
-from checkPlate import checkPlate
-cap = cv2.VideoCapture(0)
-if not cap.isOpened():
-    print("cannot open camera")
-    exit()
-while(True):
-    ret, frame = cap.read()
-    if not ret:
-        print("Can't receive frame (stream end?). Exiting ...")
-        break
-    cv2.imshow("Frame", frame)
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord("s"):
+from checkLicensePlate import checkPlate
+def npr():
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        print("cannot open camera")
+        exit()
+    while(True):
+        ret, frame = cap.read()
+        if not ret:
+            print("Can't receive frame (stream end?). Exiting ...")
+            break
+        cv2.imshow("Frame", frame)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # convert to grey scale
         gray = cv2.bilateralFilter(gray, 11, 17, 17)  # Blur to reduce noise
         edged = cv2.Canny(gray, 30, 200)  # Perform Edge detection
@@ -50,10 +49,11 @@ while(True):
         text_replaced = re.sub('[^a-zA-Z0-9 \n\.]', '', text)
         text_replaced = text_replaced.replace(" ", "")
         print("Detected Number is:", text_replaced)
+        
         checkPlate(text_replaced)
         cv2.imshow("Frame", frame)
         cv2.imshow('Cropped', Cropped)
-        cv2.waitKey(0)
         break
-cv2.destroyAllWindows()
-cap.release()
+    cv2.destroyAllWindows()
+    cap.release()
+    os.system("python new_anpr.py")
