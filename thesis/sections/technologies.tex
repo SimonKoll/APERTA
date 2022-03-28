@@ -45,7 +45,7 @@ Das Team entschied sich für eine der bekanntesten NoSQL-Datenbanken, \textbf{Mo
 \cite{VorteileMongoDB}
 \section{Auswahl der Technologie - Kennzeichenerkennung[SK]}
 \setauthor{Simon Koll}
-Das Herz von APERTA ist die Kennzeichenerkennung. Dieses Alleinstellungsmerkmal separiert das Projekt von möglicher Konkurrenz. Um eine schnelle, und problemfreie Lösung zu liefern, versuchte das Team, eine für österreichische Kennzeichen optimierte Lösung zu implementieren. 
+Das Herz von APERTA ist die Kennzeichenerkennung. Dieses Alleinstellungsmerkmal separiert das Projekt von möglicher Konkurrenz. Um eine schnelle, und problemfreie Lösung zu liefern, versuchte das Team, eine für österreichische Kennzeichen optimierte Lösung zu implementieren.
 
 \section{Auswahl der Technologie - Backend[SK]}
 \setauthor{Simon Koll}
@@ -53,14 +53,14 @@ Das Herz von APERTA ist die Kennzeichenerkennung. Dieses Alleinstellungsmerkmal 
 Für das Backend kamen mehrere Technologien in Frage, wie unter anderem Java, JavaScript, Python, PHP, C$\sharp$, und viele mehr.
 Um das Backend zu realisieren, muss die Technologie einige bestimmte Eigenschaften besitzen.\cite{CompareBackendLanguage}
 \begin{itemize}
-    \item \textit{Java:} 
+    \item \textit{Java:}
     \subitem Die Vorteile von Java liegen in der Fehlerbehandlung, sowie in Bereichen wie Multithreading und Performanz. Die strikte Fehlerbehandlung führt dabei aber zum Verlust von Flexibilität und Kompaktheit des Codes.
-    \item \textit{JavaScript:} 
+    \item \textit{JavaScript:}
     \subitem Die Syntax von JavaScript ähnelt der von Java. Entwickelt als Scripting-Sprache für HTML, ist JavaScript einfach zu lernen und zu benutzen. Bei der Entwicklung von Websites kann JavaScript direkt in den Quellcode der HTML-Seite eingearbeitet werden. Aber auch im Backend-Bereich kann mit NodeJS in JavaScript entwickelt werden.
     \item \textit{Python:}
     \subitem Python ist eine der mit Abstand am leichtesten zu lesenden Programmiersprachen. Die flache Hierarchie ermöglicht ein einfaches Verständnis von Programmen und Codestücken. Weiters macht Python den Entwickler auf jeden Fehler aufmerksam, wenn dieser nicht ausdrücklich ignoriert werden soll.
     Jedoch ist Python manchmal langsamer in der Ausführung als die konkurrierenden Sprachen. Zusätzlich ist durch die Verwendung von Leerzeichen zur Einrückung ein häufiger Fehlergrund hinzugekommen.
-    \item \textit{PHP:} 
+    \item \textit{PHP:}
     \subitem Die PHP Syntax erinnert an eine Mischung aus C, Java und Perl. Das Ziel von PHP ist es, Entwickler schnell und einfach dynamisch generierte Webpages zu bauen. Die vermischte Syntax ist jedoch etwas chaotisch, darum ist es leicht sich in falschen Angewohnheiten zu verirren und Sicherheitslücken offen zu lassen.
   \end{itemize}
   Aufgrund vorhandener Vorkenntnisse standen für das Team 3 der oben genannten Technologien zur Auswahl:
@@ -100,11 +100,12 @@ Der Raspberry Pi ist ein vollwertiger Computer, welcher etwas größer als eine 
 Als Betriebssystem des Raspberry Pi wurde das vom Hersteller empfohlene Raspbian OS verwendet. Dieses bietet eine grafische Benutzeroberfläche, sowie die Möglichkeit den Raspberry auch ohne angeschlossenen Monitor betreiben zu können. \cite{WhatIsRaspberryPi}
 \begin{figure}[h]
   \centering
-  \includegraphics[width=8cm]{pics/raspberry-pi-4-labelled-dc5d034fb85873018dff0857352b40bf.png}
+  \includegraphics[width=10cm]{pics/2560px-RaspberryPi_4_Model_B.svg.png}
   \end{figure}
 \cite{RaspberryImage}
 
-Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffungskosten von ab 35 US-\$, sowie seine leistungsstarken Komponenten.
+Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffungskosten von ab 35 US-\$, sowie seine leistungsstarken Komponenten. \\ \\
+\textbf{Bestandteile des Raspberry Pi} 
 \begin{table}[ht]
   \centering
   \caption{Übersicht der Komponenten des Raspberry Pi \cite{RaspySpecs}}
@@ -127,11 +128,30 @@ Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffu
       \end{tabular}
     \end{adjustbox}
   \end{table}
-
+  \\
 Der Raspberry Pi ist einer der am weitesten verbreiteten Ein-Platinen-Computer der Welt. Trotz der im Verhältnis zu größeren Systemen schwache Leistung im Jahr 2020 mehr als 7 Millionen mal verkauft worden. Daraus ergibt sich ein Marktanteil von allen PCs von 2.69\%.
 \cite{RaspyMarketShare}
 Für ein ausgewogenes Verhältnis zwischen Kompaktheit und Leistung griff man auf einen Raspberry Pi 4 Model B in der Ausführung mit 4GB Arbeitsspeicher zurück. Weiters waren die Anschaffungskosten von etwa 100\$ ein weiterer Grund für die Auswahl. \\
-\textbf{Bestandteile des Raspberry Pi}
+
+\textbf{Kernkomponenten des Raspberry Pi}\\
+\textit{GPIO-Header}\\
+Zu den Kernkomponenten, die den Raspberry Pi von anderen PC-Systemen unterscheidet, ist der GPIO-Header. GPIO steht für General Purpose Input / Output, und kann wörtlich zu Allzweckeingabe bzw. -ausgabe übersetzt werden. Sie bezeichnen selbst programmierbare Ein- und Ausgänge, die auf dem Raspberry Pi als angelötete Pins zur Verfügung stehen.
+Der Raspberry kann über diese Schnittstellen digitale Signale von außen annehmen, sowie auch Signale abgeben.
+Der Raspberry Pi in der Ausführung Model 4 B hat einen 40-köpfigen GPIO-Header in Form einer Stiftleiste mit zwei Reihen. Davon gibt es einige GPIOs mit bestimmten Zusatzfunktionen, wie I2C, SPI oder seriellen Schnittstellen. Weiters gibt es Pins, welche vom Raspberry eine +5V-Spannung, eine +3.3V Spannung, oder die Möglichkeit der Erdung liefern.\\ \\
+\textit{GPIO-Belegung und elektrische Eigenschaften} \\
+Grundsätzlich kann in elektronischen Systemen auf elektrische Eigenschaften zurückgegriffen werden, die beobachtet werden müssen. Oft sind diese Eigenschaften Grenzwerte des Systems, welche nicht überschritten werden dürfen. Wird dies ignoriert, kann das System nach Start beschädigt werden und im weiteren Verlauf Defekte aufweisen.
+Die Eingangsspannung des Raspberry Pi beträgt zwar 5V, jedoch arbeitet der Prozessor selbst nur mit 3.3V. Daher haben auch die GPIOs nur 3.3V zur Verfügung. Dies gilt für die Ausgangsspannung, jedoch auch für die Eingangsspannung, da sonst der Chip des Raspberry Pi beschädigt werden kann. \\
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{pics/GPIO.png}
+\end{figure}
+GPIOs sind empfindliche Schnittstellen, denn sie können schon bei geringen Stromstärken Schaden nehmen. Theoretisch ist eine Stromstärke von 16mA (Milliampere) möglich, wobei diese nie benötigt wird, da die GPIOs schon mit einer Stromstärke von 0.5mA geschalten werden können. Um die Langlebigkeit des Raspberry Pi zu gewährleisten, sollten nie mehr als 8mA von einem GPIO abgegeben werden. \\
+Es gibt jedoch Ausnahmen, wie die +5V-Pins. Diese bieten für externe Schaltungen eine Spannung bis zu 5V an, sind jedoch ebenfalls bei der Stromentnahme begrenzt. Man spricht hier von etwa 25mA pro 5V-Pin. Sollte dies für eine Schaltung nicht ausreichen, kann auf externe Stromquellen zurückgegriffen werden, wie eine Stromversorgung über ein separates Netzteil mit USB-Anschluss, oder die Versorgung über einen der verfügbaren USB-Ports des Raspberry Pi selbst. \\
+\cite{GPIOLayout}
+
+
+\cite{GPIO}
+
 
 \subsubsection{NFC-Leser}
 \subsubsection{Numpad}
@@ -145,11 +165,12 @@ Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde di
 \end{figure}
 \cite{PiCamera}
 \subsubsection{Display}
-\begin{figure}
-  \centering
-  \includegraphics[width=8cm]{pics/RaspberryDisplay.jpg}
-\end{figure}
-\cite{RaspberryDisplay}
+
+%\begin{figure}
+  %\centering
+ % \includegraphics[width=8cm]{pics/RaspberryDisplay.jpg}
+%\end{figure}
+
 Um dem Nutzer vor der Garage mitzuteilen, was gerade geschieht, wird ein Display verwendet, auf dem mitgeteilt wird, ob die Kombination, welche auf dem Nummernfeld eingegeben wurde, korrekt ist, oder ob die NFC-Karte autorisiert ist.
 Da auf diesem Display nur kurze Textausgaben angezeigt werden, fiel die Entscheidung auf ein LCD-Display gesetzt, welches in zwei Zeilen beschrieben werden kann. Dieses bat zudem weitere Vorteile wie die geringen Kosten von 9€ pro Stück, die Spannungsversorgung durch den Raspberry Pi selbst, sowie die einfache Möglichkeit, Text darauf auszugeben.
 Im Lieferumfang des Displays war zudem ein I2C Serial Adapter, welcher durch seine 4 benötigen Ports um 8 Pins auf dem Raspberry Pi weniger benötigt, als das direkt angeschlossene Display. \\
@@ -164,3 +185,4 @@ Die technischen Daten des Displays lauten:
   \item Blaue Hintergrundbeleuchtung
   \item 5V Versorgungsspannung
 \end{itemize}
+\cite{RaspberryDisplay}
