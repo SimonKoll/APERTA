@@ -21,14 +21,12 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderCart = () => (
     <>
-      <div className='c-content-wrapper'>
-          <Grid container justifyContent="center" direction="row" spacing={6}>
+      <div className="c-content-wrapper">
+          <div className="product-grid">
             {cart.line_items.map((lineItem) => (
-              <Grid key={lineItem.id} item sm={5} md={4} lg={3}>
-                  <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
-              </Grid>
+              <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
             ))}
-          </Grid>
+          </div>
       </div>
       <div className="details-wrapper">
         <div className='subtotalText'>Subtotal: {cart.subtotal.formatted_with_symbol}</div>
@@ -55,7 +53,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
       <div className={classes.cartToolbar} />
       <div className="c-wrapper">
           <div className="cart-title">
-            <Typography className={classes.title} variant="h5" style={{ fontWeight: 600 }} gutterBottom>Your Shopping Cart:</Typography>
+            <Typography className={classes.title} variant="h5" style={{ fontWeight: 600, marginBottom: '1rem' }} gutterBottom>Your Shopping Cart:</Typography>
           </div>
           <div className="cart-content-wrapper">
             { !cart.line_items.length ? renderEmptyCart() : renderCart() }

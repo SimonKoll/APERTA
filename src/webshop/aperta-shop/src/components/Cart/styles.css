@@ -17,20 +17,18 @@
     text-decoration: none;
 }
 
-.c-content-wrapper{
-    margin-top: 2rem;
-    width: 95% !important;
-}
-
-.MuiGrid-spacing-xs-6 {
-    margin: 0 !important;
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1rem;
 }
 
 .details-wrapper {
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 97%;
 }
 
 .subtotalText {
