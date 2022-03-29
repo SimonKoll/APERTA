@@ -12,11 +12,12 @@
 }
 
 .content-wrapper {
-    width: 100%;
+    width: 100vw;
+    padding: 1.5rem;
 }
 
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    place-items: center;  /* centers content */
+    gap: 1rem;
 }

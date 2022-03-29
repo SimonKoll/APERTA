@@ -13,19 +13,19 @@ const Products = ({ products, onAddToCart }) => {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar}/>
-      <div className='content-wrapper'>
-        <div className='content-header'>
-          <Typography variant="h5" style={{ fontWeight: 600 }} gutterBottom>
-            {uTitle}
-          </Typography>
+        <div className='content-wrapper'>
+          <div className='content-header'>
+            <Typography variant="h5" style={{ fontWeight: 600, marginLeft: 10 }} gutterBottom>
+              {uTitle}
+            </Typography>
+          </div>
+          
+          <div className="product-grid">
+            {products.map(product => (
+              <Product key={product.id} product={product} onAddToCart={onAddToCart} />
+            ))}
+          </div>
         </div>
-        
-        <div className="product-grid">
-          {products.map(product => (
-            <Product key={product.id} product={product} onAddToCart={onAddToCart} />
-          ))}
-        </div>
-      </div>
     </main>
   );
 };

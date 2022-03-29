@@ -8,6 +8,42 @@ a:visited {
     text-decoration: none;
 }
 
+.buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.quantitityButtonsWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 3rem;
+  font-size: 1rem;
+}
+
+.minusButton, .plusButton {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 4pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.5rem;
+}
+
+.quantity:hover {
+  cursor: default;
+}
+
+.minusButton:hover, .plusButton:hover {
+  cursor: pointer;
+  background-color: rgba(200, 200, 200, 0.4) !important;
+  transition: all 0.5s ease;
+}
+
 .rmv-button {
     /* background-color: #b90504; */
     border: 1px solid #B3ADAD;
@@ -21,6 +57,7 @@ a:visited {
     padding-top: 0.65rem;
     padding-bottom: 0.65rem;
     border-radius: 6pt;
+    margin-right: 0.5rem;
   }
   
   .rmv-button:hover {
