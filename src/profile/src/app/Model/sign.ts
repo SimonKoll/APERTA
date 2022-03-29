@@ -1,5 +1,6 @@
 export class Sign {
-  Id : number | undefined;
-  licenseplateId : number | undefined;
+  Id : number = 0;
+  licenseplateId : number = 0;
   licenseplate : String = "";
+  active: boolean = false;
 }

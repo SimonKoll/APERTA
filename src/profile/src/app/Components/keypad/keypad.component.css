@@ -93,10 +93,14 @@
 
 .CurrentCode label, .NewCode label{
   font-size: 105%;
-  margin-right: 10%;
+  margin-right: 8%;
 }
-
-.CurrentCode input[type=text], .NewCode input[type=text]{
+.numpadCode{
+  width: 44%;
+  margin-right: 0;
+  margin-left: 3%;
+}
+.numpadCode, .NewCode input[type=text]{
   padding: 4%;
   border: 0;
   border-radius: 5px;

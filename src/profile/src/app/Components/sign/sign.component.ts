@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../../Service/http.service";
 import {Sign} from "../../Model/sign";
 import {elementAt} from "rxjs/operators";
+import { ProfileComponent } from '../profile/profile.component';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-sign',
@@ -10,33 +12,23 @@ import {elementAt} from "rxjs/operators";
 })
 export class SignComponent implements OnInit {
 
-  signId: number | undefined;
-  Signs: Sign[] | undefined;
-  licensename: String | undefined;
 
-  constructor(private httpService: HttpService) { }
+  @Input() licensename: String = "";
+
+
+
+  constructor() {}
+  /*constructor(licenseplateId: number, licenseplate: String, isActive: boolean) {
+    this.licenseplateId = licenseplateId;
+    this.licenseplate = licenseplate;
+    this.isActive = isActive;
+    console.log(licenseplateId, licenseplate, isActive);
+  }*/
 
   ngOnInit(): void {
-    this.getSigns()
-  }
 
-  getSigns(){
-    this.httpService.getSigns().subscribe((data:Sign[])=>{
-      this.Signs = data;
-      console.log(data);
-      this.getSignName()
-    })
   }
 
 
-  // @ts-ignore
-  getSignName() {
-    for(var i = 0; i <= 3; i++) {
-      // @ts-ignore
-      this.licensename = this.Signs[i].licenseplate;
-      console.log(this.licensename);
-      return this.licensename;
-    }
-    }
 
 }

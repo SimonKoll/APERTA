@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./keypad.component.css']
 })
 export class KeypadComponent implements OnInit {
+
+  @Input() numpadCode : String = "";
 
   constructor() { }
 

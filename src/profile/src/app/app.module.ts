@@ -25,7 +25,7 @@ import { SignComponent } from './Components/sign/sign.component';
 import { HttpClientModule } from "@angular/common/http";
 
 const routes: Routes = [
-  { path: '', component: ProfileComponent },
+  { path: '', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'nfcSettings', component: NfcSettingsComponent},
   { path: 'keyPadSettings', component: KeyPadSettingsComponent},
