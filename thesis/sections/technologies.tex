@@ -161,7 +161,14 @@ Um genug Auflösung für die Kennzeichenerkennung zu gewährleisten, wurde auf e
 Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde die aufgrund ihres kurzen Flachbandkabels nicht verwendet, um die Kamera auch in größere Entfernung vom Raspberry Pi nutzen zu können.
 \begin{figure}
   \centering
+  \includegraphics[width=8cm]{pics/Webcam.jpg}
+  \caption{Webcam mit gleichen Spezifikationen}
+\end{figure}
+\cite{Webcam}
+\begin{figure}
+  \centering
   \includegraphics[width=8cm]{pics/RaspberryPiCameraModule2.jpg}
+  \caption{Raspberry Pi Camera Module 2}
 \end{figure}
 \cite{PiCamera}
 \subsubsection{Display}
@@ -174,7 +181,6 @@ Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde di
 Um dem Nutzer vor der Garage mitzuteilen, was gerade geschieht, wird ein Display verwendet, auf dem mitgeteilt wird, ob die Kombination, welche auf dem Nummernfeld eingegeben wurde, korrekt ist, oder ob die NFC-Karte autorisiert ist.
 Da auf diesem Display nur kurze Textausgaben angezeigt werden, fiel die Entscheidung auf ein LCD-Display gesetzt, welches in zwei Zeilen beschrieben werden kann. Dieses bat zudem weitere Vorteile wie die geringen Kosten von 9€ pro Stück, die Spannungsversorgung durch den Raspberry Pi selbst, sowie die einfache Möglichkeit, Text darauf auszugeben.
 Im Lieferumfang des Displays war zudem ein I2C Serial Adapter, welcher durch seine 4 benötigen Ports um 8 Pins auf dem Raspberry Pi weniger benötigt, als das direkt angeschlossene Display. \\
-\subsubsection{Display}
 \begin{figure}
   \centering
   \includegraphics[width=15cm]{pics/DisplayComparison.jpg}
@@ -186,3 +192,31 @@ Die technischen Daten des Displays lauten:
   \item 5V Versorgungsspannung
 \end{itemize}
 \cite{RaspberryDisplay}
+
+ \subsubsection{Relais}
+Handelsübliche Garagentore werden mit einer Spannung von 230 Volt betrieben. Der Raspberry Pi diese nicht direkt ansteuern, da diese Spannung die interne Elektronik des Pi zerstören würde. Dennoch ist es nötig, wie bei einem Schalter den Steuerstromkreis des Garagentores zu schließen, um den Öffnungsmechanismus zu aktivieren. Um dies zu erreichen, wird ein Relais verwendet, welches in den externen Stromkreis geschalten wird und wie eine Brücke den Stromkreis schließen kann. Ein Relais besteht aus einer Spule aus Draht und einem Metallkern. Schickt man Strom durch den Draht, wird der Kern magnetisiert. Ohne Strom verschwindet das Magnetfeld des Kerns wieder.
+
+Das Relais ist ein Elektromagnet, welcher durch den Steuerkreis einen Eisenanker zu sich zieht und somit den Arbeitsstromkreis schließt. Der Arbeitsstromkreis kann unabhängig vom Steuerkreis aufgebaut sein und auch unterschiedliche Spannungen und Stromstärken besitzen. Wichtig ist nur, dass das richtige Relais für den Arbeitskreis verwendet wird. Im Fall diese Projektes wird ein Relais verwendet, welches für bis zu 250 Volt Gleichstrom des Arbeitskreises verwendet werden kann.
+\cite{Relais}
+\begin{figure}
+  \centering
+  \includegraphics[width=8cm]{pics/Relais.png}
+  \caption{Funktionsweise eines Relais als Schema}
+\end{figure}
+\cite{RelaisBild}
+
+\subsubsection{Steuerung der Hardware}
+Um die Komponenten miteinander zu verbinden, war eine Programmiersprache notwendig, die mit den über GPIOs angeschlossenen Bauteilen kommunizieren kann. Dazu gab es eine Handvoll von Programmiersprachen, welche für die Entwicklung von Projekten mit dem Raspberry Pi in Frage kamen.
+
+\begin{itemize}
+  \item \textit{Scratch: }Scratch ist eine baukastenartige Programmiersprache, bei der Befehlsblöcke mithilfe der Maus aneinander angereiht werden. Entwickelt vom MIT Media Lab, richtet Scratch an Programmierneulinge Kinder, da es sie unterstützen soll, programmieren zu lernen und Code lesen und verstehen zu können.
+  \item \textit{Python: }Python zählt zu den meistverwendeten Programmiersprachen in Verbindung mit dem Raspberry Pi. Es zeichnet sich durch seine einsteigerfreundliche Syntax und die riesige Community aus, welche es ermöglicht, auf eine Vielzahl an Frameworks und Libraries zurückzugreifen. Python beschränkt sich dabei nicht auf einen bestimmten Einsatzbereich, sondern kann für die Entwicklung von graphischen Nutzeroberflächen, im Webdevelopment, zum Trainieren von Künstlichen Intelligenzen sowie für Automatisierung verwendet werden.
+  \item \textit{JavaScript: } JavaScript ist nicht nur eine Erweiterung von HTML als Scripting Sprache, sondern viel mehr eine ganz eigenständige umfangreiche Programmiersprache. Sie wird meistens mit Webentwicklung in Verbindung gebracht, ist jedoch auch fähig, bereits bestehende Applikationen zu erweitern.
+  \item \textit{Java: } Java ist eine der vielseitigsten Programmiersprachen, da sie erlaubt, unabhängig von Betriebssystem zu entwickeln, ohne den Code für jede Plattform verändern zu müssen. Mit mehr als 3 Milliarden Geräten, auf denen Java läuft, ist sie eine der meist verbreiteten Programmiersprachen.
+  \item \textit{C: } C ist einer der stärksten Konkurrenten von Java. Raspbian OS, das Betriebssystem des Raspberry Pi, wurde beispielsweise in C geschrieben. C zeichnet sich durch einen klar strukturierten Programmierstil und die Möglichkeit, Arbeitsspeicher direkt anzusprechen, aus. Die Haupteinsatzgebiete von C sind die Entwicklung von Betriebssystemen und Compilern.
+  \item \textit{C++: } Vergleicht man C mit C++, kann sich C++ mit objektorientierter Programmierung auszeichnen. Die Kombination aus prozeduraler und objektorientierterer Programmierung machen C++ zu einer Allzwecklösung, mit welcher von Betriebssystemen über Spiele bis hin zu Webbrowsern alles entwickelt werden kann.
+  \item \textit{Perl: } Die Perl Org hat mit Perl eine Sprache entwickelt, welche für fast jede Aufgabe, die mit C oder C++ Libraries zu tun hat, geeignet ist. Die große Auswahl an Libraries und Modulen sprechen trotz der geringen Bekanntheit für Perl, welche weiters für die Webentwicklung, Systemadministration, GUI-Entwicklung und vielem mehr verwendet werden kann.
+  \item \textit{Erlang: } Erlang ist eine relativ unbekannte Sprache, da sie meist für Industrieapplikationen verwendet wird. Auszeichnungsmerkmale von Erlang sind beispielsweise die Fähigkeit, extrem skalierbare Echtzeitsysteme zu entwickeln. Auch bei dezentralisierten Systemen ist Erlang eine gute Wahl, da das Programm bei Ausfall eines Rechners aus dem Cluster problemlos weiter arbeiten kann. Verwender sind unteranderem Banken und Telekommunikationsunternehmen.
+\end{itemize}
+\cite{RaspberryProgramming}
+Durch die einfache Möglichkeit, mit den GPIOs zu arbeiten, sowie der einfach verständlichen Syntax, wurde Python verwendet. Das Team konnte somit zusätzlich auf bereits bestehende Kenntnisse aufbauen.
