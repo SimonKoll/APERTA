@@ -4,6 +4,7 @@ import numpy as np
 import pytesseract
 import re
 from checkLicensePlate import checkPlate
+import os
 def npr():
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
@@ -49,7 +50,6 @@ def npr():
         text_replaced = re.sub('[^a-zA-Z0-9 \n\.]', '', text)
         text_replaced = text_replaced.replace(" ", "")
         print("Detected Number is:", text_replaced)
-        
         checkPlate(text_replaced)
         cv2.imshow("Frame", frame)
         cv2.imshow('Cropped', Cropped)

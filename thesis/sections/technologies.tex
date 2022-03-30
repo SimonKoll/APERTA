@@ -103,16 +103,16 @@ Das Projekt sollte so vielseitig wie möglich, jedoch auch so kompakt wie mögli
 Die Wahl des Herzstückes fiel auf einen Raspberry Pi.
 Der Raspberry Pi ist ein vollwertiger Computer, welcher etwas größer als eine Kreditkarte ist. Er besitzt alle bekannten Anschlüsse eines normalgroßen PCs, wie HDMI-Ausgänge für Monitore, USB-Ports für Peripherie wie Maus, Tastatur oder Webcams, sowie einen LAN-Port für eine kabelgebundene Netzwerkverbindung.
 Als Betriebssystem des Raspberry Pi wurde das vom Hersteller empfohlene Raspbian OS verwendet. Dieses bietet eine grafische Benutzeroberfläche, sowie die Möglichkeit den Raspberry auch ohne angeschlossenen Monitor betreiben zu können. \cite{WhatIsRaspberryPi}
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=10cm]{pics/2560px-RaspberryPi_4_Model_B.svg.png}
   \caption{Komponenten eines Raspberry Pi}
   \end{figure}
 \cite{RaspberryImage}
 
-Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffungskosten von ab 35 US-\$, sowie seine leistungsstarken Komponenten.
-\textbf{Bestandteile des Raspberry Pi} 
-\begin{table}[ht]
+Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffungskosten von ab 35 US-\$, sowie seine leistungsstarken Komponenten.\\
+%\textbf{Bestandteile des Raspberry Pi} 
+\begin{table}[H]
   \centering
   \caption{Übersicht der Komponenten des Raspberry Pi \cite{RaspySpecs}}
   \label{Komponenten des Raspberry Pi}
@@ -136,15 +136,14 @@ Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffu
   \end{table}
   
 Der Raspberry Pi ist einer der am weitesten verbreiteten Ein-Platinen-Computer der Welt. Trotz der im Verhältnis zu größeren Systemen schwache Leistung im Jahr 2020 mehr als 7 Millionen mal verkauft worden. Daraus ergibt sich ein Marktanteil von allen PCs von 2.69\%.
-\cite{RaspyMarketShare}
-Für ein ausgewogenes Verhältnis zwischen Kompaktheit und Leistung griff man auf einen Raspberry Pi 4 Model B in der Ausführung mit 4GB Arbeitsspeicher zurück. Weiters waren die Anschaffungskosten von etwa 100\$ ein weiterer Grund für die Auswahl. 
+Für ein ausgewogenes Verhältnis zwischen Kompaktheit und Leistung griff man auf einen Raspberry Pi 4 Model B in der Ausführung mit 4GB Arbeitsspeicher zurück. Weiters waren die Anschaffungskosten von etwa 100\$ ein weiterer Grund für die Auswahl. \cite{RaspyMarketShare}
 
-\textbf{Kernkomponenten des Raspberry Pi}
-\textit{GPIO-Header}
+\textbf{Kernkomponenten des Raspberry Pi}\\
+\textit{GPIO-Header}\\
 Zu den Kernkomponenten, die den Raspberry Pi von anderen PC-Systemen unterscheidet, ist der GPIO-Header. GPIO steht für General Purpose Input / Output, und kann wörtlich zu Allzweckeingabe bzw. -ausgabe übersetzt werden. Sie bezeichnen selbst programmierbare Ein- und Ausgänge, die auf dem Raspberry Pi als angelötete Pins zur Verfügung stehen.
 Der Raspberry kann über diese Schnittstellen digitale Signale von außen annehmen, sowie auch Signale abgeben.
-Der Raspberry Pi in der Ausführung Model 4 B hat einen 40-köpfigen GPIO-Header in Form einer Stiftleiste mit zwei Reihen. Davon gibt es einige GPIOs mit bestimmten Zusatzfunktionen, wie I2C, SPI oder seriellen Schnittstellen. Weiters gibt es Pins, welche vom Raspberry eine +5V-Spannung, eine +3.3V Spannung, oder die Möglichkeit der Erdung liefern. 
-\textit{GPIO-Belegung und elektrische Eigenschaften} 
+Der Raspberry Pi in der Ausführung Model 4 B hat einen 40-köpfigen GPIO-Header in Form einer Stiftleiste mit zwei Reihen. Davon gibt es einige GPIOs mit bestimmten Zusatzfunktionen, wie I2C, SPI oder seriellen Schnittstellen. Weiters gibt es Pins, welche vom Raspberry eine +5V-Spannung, eine +3.3V Spannung, oder die Möglichkeit der Erdung liefern.\\ \\
+\textit{GPIO-Belegung und elektrische Eigenschaften}\\ 
 Grundsätzlich kann in elektronischen Systemen auf elektrische Eigenschaften zurückgegriffen werden, die beobachtet werden müssen. Oft sind diese Eigenschaften Grenzwerte des Systems, welche nicht überschritten werden dürfen. Wird dies ignoriert, kann das System nach Start beschädigt werden und im weiteren Verlauf Defekte aufweisen.
 Die Eingangsspannung des Raspberry Pi beträgt zwar 5V, jedoch arbeitet der Prozessor selbst nur mit 3.3V. Daher haben auch die GPIOs nur 3.3V zur Verfügung. Dies gilt für die Ausgangsspannung, jedoch auch für die Eingangsspannung, da sonst der Chip des Raspberry Pi beschädigt werden kann. 
 \begin{figure}
@@ -166,13 +165,13 @@ Es gibt jedoch Ausnahmen, wie die +5V-Pins. Diese bieten für externe Schaltunge
 Die Kamera ermöglicht dem Raspberry Pi, die Kennzeichen zu sehen und darauf die Kennzeichen zu erkennen. Dazu wird bei APERTA eine handelsübliche Webcam verwendet, die über einen der beiden USB 3.0 Ports am Raspberry angeschlossen wird.
 Um genug Auflösung für die Kennzeichenerkennung zu gewährleisten, wurde auf eine Webcam zurückgegriffen, welche mit bis zu 1920 Pixeln mal 1080 Pixeln aufnehmen kann.
 Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde die aufgrund ihres kurzen Flachbandkabels nicht verwendet, um die Kamera auch in größere Entfernung vom Raspberry Pi nutzen zu können.
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=8cm]{pics/Webcam.jpg}
   \caption{Webcam mit gleichen Spezifikationen}
 \end{figure}
 \cite{Webcam}
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=8cm]{pics/RaspberryPiCameraModule2.jpg}
   \caption{Raspberry Pi Camera Module 2}
@@ -188,7 +187,7 @@ Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde di
 Um dem Nutzer vor der Garage mitzuteilen, was gerade geschieht, wird ein Display verwendet, auf dem mitgeteilt wird, ob die Kombination, welche auf dem Nummernfeld eingegeben wurde, korrekt ist, oder ob die NFC-Karte autorisiert ist.
 Da auf diesem Display nur kurze Textausgaben angezeigt werden, fiel die Entscheidung auf ein LCD-Display gesetzt, welches in zwei Zeilen beschrieben werden kann. Dieses bat zudem weitere Vorteile wie die geringen Kosten von 9€ pro Stück, die Spannungsversorgung durch den Raspberry Pi selbst, sowie die einfache Möglichkeit, Text darauf auszugeben.
 Im Lieferumfang des Displays war zudem ein I2C Serial Adapter, welcher durch seine 4 benötigen Ports um 8 Pins auf dem Raspberry Pi weniger benötigt, als das direkt angeschlossene Display. 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=15cm]{pics/DisplayComparison.jpg}
   \caption{Display direkt angeschlossen / Display über I2C Adapter angeschlossen}
@@ -206,7 +205,7 @@ Handelsübliche Garagentore werden mit einer Spannung von 230 Volt betrieben. De
 
 Das Relais ist ein Elektromagnet, welcher durch den Steuerkreis einen Eisenanker zu sich zieht und somit den Arbeitsstromkreis schließt. Der Arbeitsstromkreis kann unabhängig vom Steuerkreis aufgebaut sein und auch unterschiedliche Spannungen und Stromstärken besitzen. Wichtig ist nur, dass das richtige Relais für den Arbeitskreis verwendet wird. Im Fall diese Projektes wird ein Relais verwendet, welches für bis zu 250 Volt Gleichstrom des Arbeitskreises verwendet werden kann.
 \cite{Relais}
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=8cm]{pics/Relais.png}
   \caption{Funktionsweise eines Relais als Schema}

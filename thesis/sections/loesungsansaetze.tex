@@ -1,16 +1,20 @@
 \section{Profil Management}
 \setauthor{David Hauser}
-
 \section{Webshop}
 \setauthor{Benjamin Golic}
-
-
-\section{Automatic Number Plate Recognition (ANPR)}
-
+\section{Automatic Number Plate Recognition (ANPR)[SK]}
 \setauthor{Simon Koll}
+Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Das Bild der Kamera muss zuerst eingelesen werden. Danach werden verschiedene Filter auf das Bild angewendet, um zuerst das Bild in Graustufen zu konvertieren, dann das Bild zu schärfen um dann die Konturen im Bild zu erkennen. Darauf folgt die eigentliche Erkennung der Kennzeichen. Hier wird mittels OCR-Technik der Text, den die Konturen bilden, erkannt und ausgegeben. Da bei diesem Ablauf auch Buchstaben erkannt werden, welche nicht auf dem Kennzeichen vorhanden sind, werden unteranderem Sonderzeichen und Leerzeichen verworfen. Das Ergebnis wird zur weiteren Überprüfung des Kennzeichens weiter gegeben.
 
+\subsection{Überprüfung der Kennzeichen}
+Die erkannten Buchstaben werden genutzt, um eine Funktion aufzurufen, welche diese mit den zugelassenen Kennzeichen vergleicht. Dazu werden die zugelassenen Kennzeichen vom Server abgefragt, welcher diese aus der Datenbank lädt. Die Abfrage erfolgt über einen REST-Abfrage.
+REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentational State Transfer, API für Application Programming Interface, welche gemeinsam eine Programmierschnittstelle bilden, mit der eine Anwendung mit einem Server kommunizieren kann. Dies wird meist mit dem HTTP-Protokoll genutzt, um Services über URLs zu erreichen. Dazu stehen die HTTP-Methoden GET, POST, PUT und DELETE zur Verfügung.
+\begin{itemize}
+    \item \textit{GET: } GET ist eine Methode, welche einen Inhalt eines Servers abruft.
+    \item \textit{POST: } POST ist eine Methode, um vom Client Daten an den Server zu senden, welcher diese weiter verarbeiten und in die Datenbank speichern kann.
+    \item \textit{PUT: } PUT bietet die Möglichkeit, bereits bestehende Daten zu ändern.
+    \item \textit{DELETE: } DELETE bietet die Möglichkeit, bestehende Daten zu löschen.
+\end{itemize}\cite{WhatIsREST}
 \section{Backend}
 \setauthor{Simon Koll}
-
-
-
+Der Server bildet das Rückgrat des Projektes. Hier werden die Daten aus der Datenbank abgefragt. Diese werden von einem Client über einen REST-Aufruf abgefragt. Der Server kann zudem die neu zugelassenen Kennzeichen in die Datenbank speichern.
