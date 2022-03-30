@@ -3,8 +3,6 @@ import os
 import time
 from checkNumpad import checkNumpad
 def numpad():
-    GPIO.setmode(GPIO.BCM)
-
     MATRIX = [[1, 2, 3, 'A'],
     [4, 5, 6, 'B'],
     [7, 8, 9, 'C'],

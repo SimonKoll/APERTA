@@ -1,7 +1,10 @@
 from multiprocessing import Process
+import RPi.GPIO as GPIO
 from new_anpr import npr
 from numpad import numpad
 from read import read
+
+GPIO.setmode(GPIO.BCM)
 if __name__ == '__main__':
   p1 = Process(target=npr)
   p1.start()
