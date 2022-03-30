@@ -1,4 +1,5 @@
 import time
+import RPi.GPIO as GPIO
 in1 = 7
 
 GPIO.setup(in1, GPIO.OUT)
