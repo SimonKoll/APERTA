@@ -18,7 +18,7 @@ def displayText(writingString):
 
         outString = writingString
 
-        lcd.text("Text Read:", 1)
+        lcd.text("Combination:", 1)
         lcd.text(outString, 2)
 
         time.sleep(5)
@@ -43,8 +43,8 @@ def readNumpadUnsuccessful():
         signal(SIGTERM, safe_exit)
         signal(SIGHUP, safe_exit)
 
-        lcd.text("Wrong combination", 1)
-        lcd.text("Please try again", 2)
+        lcd.text("Wrong code,", 1)
+        lcd.text("please try again", 2)
 
         time.sleep(5)
     finally:
