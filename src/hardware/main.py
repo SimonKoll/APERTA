@@ -4,8 +4,8 @@ from new_anpr import npr
 from numpad import numpad
 from read import read
 
-GPIO.setmode(GPIO.BCM)
 if __name__ == '__main__':
+  GPIO.setmode(GPIO.BCM)
   p1 = Process(target=npr)
   p1.start()
   p2 = Process(target=numpad)
