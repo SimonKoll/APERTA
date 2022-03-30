@@ -1,1 +1,11 @@
-<p>nfc-settings works!</p>
+<div class="container">
+
+  <div class="divMainContent">
+    <div class="MainContentH2">
+      <h2>NFC Settings</h2>
+    </div>
+    <div class="divKeyPads">
+      <app-nfc *ngFor="let a of fakeArray; let index = index" [rfid_code]="rfid_code"></app-nfc>
+    </div>
+  </div>
+</div>

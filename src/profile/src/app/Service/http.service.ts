@@ -21,4 +21,9 @@ export class HttpService {
     var keyPad = this.http.get<[]>(this.baseUrl + "/get-numpad-codes")
     return keyPad;
   }
+
+  getNFC(){
+    var nfc = this.http.get<[]>(this.baseUrl + "/get-rfid-codes")
+    return nfc;
+  }
 }

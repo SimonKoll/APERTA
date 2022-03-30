@@ -23,6 +23,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { KeypadComponent } from './Components/keypad/keypad.component';
 import { SignComponent } from './Components/sign/sign.component';
 import { HttpClientModule } from "@angular/common/http";
+import { NfcComponent } from './Components/nfc/nfc.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -45,7 +46,8 @@ const routes: Routes = [
     LoginComponent,
     NavbarComponent,
     KeypadComponent,
-    SignComponent
+    SignComponent,
+    NfcComponent
   ],
   imports: [
     BrowserModule,
