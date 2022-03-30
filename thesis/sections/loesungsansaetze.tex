@@ -15,6 +15,62 @@ REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentationa
     \item \textit{PUT: } PUT bietet die Möglichkeit, bereits bestehende Daten zu ändern.
     \item \textit{DELETE: } DELETE bietet die Möglichkeit, bestehende Daten zu löschen.
 \end{itemize}\cite{WhatIsREST}
+Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeit, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} parallel gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. Dies kann beispielsweise wie folgt erfolgen: 
+\begin{lstlisting}[language=Python, caption=Funktionsweise von Multiprocessing, label=lst:lsg:multiprocessing]
+import time
+from threading import Thread
+    def funktion_1():
+        while True:
+            print("Funktion 1")
+            time.sleep(1)
+    
+    
+    def funktion_2():
+        while True:
+            print("Funktion 2")
+            time.sleep(1)
+    
+    
+    thread_1 = Thread(target=funktion_1)
+    thread_2 = Thread(target=funktion_2)
+    
+    thread_1.start()
+    thread_2.start()
+\end{lstlisting}
+\verb|thread_1| und \verb|thread_2| sind Threads, welche parallel ausgeführt werden. Sie bekommen als Parameter eine Funktion, welche ausgeführt werden soll, in diesem Fall \verb|funktion_1| und \verb|funktion_2|. Mit \verb|start()| werden die Threads gestartet.
+    \cite{threading}
 \section{Backend}
 \setauthor{Simon Koll}
 Der Server bildet das Rückgrat des Projektes. Hier werden die Daten aus der Datenbank abgefragt. Diese werden von einem Client über einen REST-Aufruf abgefragt. Der Server kann zudem die neu zugelassenen Kennzeichen in die Datenbank speichern.
+\subsection{Oracle VM}
+Der Server läuft auf einer Instanz einer Oracle Virtual Machine, ebenso die MongoDB-Datenbank. Die Oracle VM bietet die Möglichkeit, eine leistungsstarke Basis für den Server sowie die Datenbank bereitzustellen. Die technischen Daten der Instanz sind:
+\begin{table}[ht]
+    \caption{Technische Daten der Oracle VM Instanz}
+    \label{tab:vm}
+    \begin{tabular}{|l|llll}
+    \cline{1-2}
+    \textbf{Komponente} & \multicolumn{1}{l|}{\textbf{Wert}} &  &  &  \\ \cline{1-2}
+    \textbf{CPU}        & 2 OCPU                             &  &  &  \\ \cline{1-1}
+    \textbf{RAM}        & 16 GB                              &  &  &  \\ \cline{1-1}
+    \textbf{Netzwerk}   & 1.4 GBit Bandbreite                &  &  &  \\ \cline{1-1}
+    \end{tabular}
+    \end{table}
+
+    Im Vergleich zu anderen Cloudanbietern wie AWS, Microsoft oder Google, verwendet die Oracle Cloud Infrastructure, kurz OCI, anstelle von virtuellen CPUs sogenannte OCPUs. Jede vCPU ist als ein Hyperthread eines Intel Xeon-Kerns definiert. Ein Standard-Intel-Prozessorkern mit aktiviertem Hyperthreading hat 2 Threads.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/vCPU.jpg}
+    \caption{Visualisierung von vCPUs}
+    \cite{vcpuPic}
+    \label{fig:vm:vCPU}
+\end{figure}
+
+    Eine OCPU ist definiert als die CPU-Kapazität, die einem physischen Kern eines Intel Xeon-Prozessors mit aktiviertem Hyperthreading oder einem physischen Kern eines Oracle SPARC-Prozessors entspricht.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{pics/OCPU.jpg}
+        \caption{Visualisierung von OCPUs}
+        \cite{ocpuPic}
+        \label{fig:vm:OCPU}
+    \end{figure}
+\cite{vcpuVsocpu}

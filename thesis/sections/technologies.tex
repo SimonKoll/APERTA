@@ -107,8 +107,9 @@ Als Betriebssystem des Raspberry Pi wurde das vom Hersteller empfohlene Raspbian
   \centering
   \includegraphics[width=10cm]{pics/2560px-RaspberryPi_4_Model_B.svg.png}
   \caption{Komponenten eines Raspberry Pi}
+  \cite{RaspberryImage}
   \end{figure}
-\cite{RaspberryImage}
+
 
 Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffungskosten von ab 35 US-\$, sowie seine leistungsstarken Komponenten.\\
 %\textbf{Bestandteile des Raspberry Pi} 
@@ -134,7 +135,6 @@ Auszeichnungsmerkmale des Raspberry Pi sind unter anderem die geringen Anschaffu
       \end{tabular}
     \end{adjustbox}
   \end{table}
-  
 Der Raspberry Pi ist einer der am weitesten verbreiteten Ein-Platinen-Computer der Welt. Trotz der im Verhältnis zu größeren Systemen schwache Leistung im Jahr 2020 mehr als 7 Millionen mal verkauft worden. Daraus ergibt sich ein Marktanteil von allen PCs von 2.69\%.
 Für ein ausgewogenes Verhältnis zwischen Kompaktheit und Leistung griff man auf einen Raspberry Pi 4 Model B in der Ausführung mit 4GB Arbeitsspeicher zurück. Weiters waren die Anschaffungskosten von etwa 100\$ ein weiterer Grund für die Auswahl. \cite{RaspyMarketShare}
 
@@ -150,15 +150,12 @@ Die Eingangsspannung des Raspberry Pi beträgt zwar 5V, jedoch arbeitet der Proz
   \centering
   \includegraphics[width=10cm]{pics/GPIO.png}
   \caption{Belegung der GPIOs eines Raspberry Pi Model 4B oder Raspberry Pi Zero}
+  \cite{GPIOLayout}
 \end{figure}
 GPIOs sind empfindliche Schnittstellen, denn sie können schon bei geringen Stromstärken Schaden nehmen. Theoretisch ist eine Stromstärke von 16mA (Milliampere) möglich, wobei diese nie benötigt wird, da die GPIOs schon mit einer Stromstärke von 0.5mA geschalten werden können. Um die Langlebigkeit des Raspberry Pi zu gewährleisten, sollten nie mehr als 8mA von einem GPIO abgegeben werden. 
 Es gibt jedoch Ausnahmen, wie die +5V-Pins. Diese bieten für externe Schaltungen eine Spannung bis zu 5V an, sind jedoch ebenfalls bei der Stromentnahme begrenzt. Man spricht hier von etwa 25mA pro 5V-Pin. Sollte dies für eine Schaltung nicht ausreichen, kann auf externe Stromquellen zurückgegriffen werden, wie eine Stromversorgung über ein separates Netzteil mit USB-Anschluss, oder die Versorgung über einen der verfügbaren USB-Ports des Raspberry Pi selbst. 
-\cite{GPIOLayout}
-
 
 \cite{GPIO}
-
-
 \subsubsection{NFC-Leser}
 \subsubsection{Numpad}
 \subsubsection{Kamera}
@@ -169,14 +166,16 @@ Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde di
   \centering
   \includegraphics[width=8cm]{pics/Webcam.jpg}
   \caption{Webcam mit gleichen Spezifikationen}
+  \cite{Webcam}
 \end{figure}
-\cite{Webcam}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=8cm]{pics/RaspberryPiCameraModule2.jpg}
   \caption{Raspberry Pi Camera Module 2}
+  \cite{PiCamera}
 \end{figure}
-\cite{PiCamera}
+
 \subsubsection{Display}
 
 %\begin{figure}
@@ -209,8 +208,9 @@ Das Relais ist ein Elektromagnet, welcher durch den Steuerkreis einen Eisenanker
   \centering
   \includegraphics[width=8cm]{pics/Relais.png}
   \caption{Funktionsweise eines Relais als Schema}
+  \cite{RelaisBild}
 \end{figure}
-\cite{RelaisBild}
+
 
 \subsubsection{Steuerung der Hardware}
 Um die Komponenten miteinander zu verbinden, war eine Programmiersprache notwendig, die mit den über GPIOs angeschlossenen Bauteilen kommunizieren kann. Dazu gab es eine Handvoll von Programmiersprachen, welche für die Entwicklung von Projekten mit dem Raspberry Pi in Frage kamen.
