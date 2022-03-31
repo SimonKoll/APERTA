@@ -12,25 +12,14 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-
-  /* const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-
-    //get Data from Categorie 'Components'
-    commerce.products.list({category_slug: ['components'],}).then(response => console.log(response));
-
-    setProducts(data);
-  }; */
   
   const fetchComponents = async() => {
     const { data: CProducts } = await commerce.products.list({category_slug: ['components'],});
-
     setProducts(CProducts);
   }
 
    const fetchPackages = async() => {
     const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
-
     setPproducts(PProducts);
   } 
 
@@ -40,31 +29,26 @@ const App = () => {
 
   const handleAddToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity);
-
     setCart(item.cart);
   };
 
   const handleUpdateCartQty = async (lineItemId, quantity) => {
     const response = await commerce.cart.update(lineItemId, { quantity });
-
     setCart(response.cart);
   };
 
   const handleRemoveFromCart = async (lineItemId) => {
     const response = await commerce.cart.remove(lineItemId);
-
     setCart(response.cart);
   };
 
   const handleEmptyCart = async () => {
     const response = await commerce.cart.empty();
-
     setCart(response.cart);
   };
 
   const refreshCart = async () => {
     const newCart = await commerce.cart.refresh();
-
     setCart(newCart);
   };
 
@@ -81,7 +65,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // fetchProducts();
     fetchComponents();
     fetchPackages();
     fetchCart();
