@@ -30,33 +30,6 @@ const Product = ({ product, onAddToCart }) => {
             </div>
         </div>
     </div>
-
-    /*
-    <Card className={classes.root}>
-    <Link className="product-link" to={`/detail/${product.id}`}>
-      <CardMedia className={classes.media} image={product.image.url} title={product.name} />
-      <CardContent>
-        <div className={classes.cardContent}>
-          <Typography gutterBottom variant="h6" component="h2">
-            {product.name}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h2">
-            €{product.price.formatted}
-          </Typography>
-        </div>
-        <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" component="p" />
-      </CardContent>
-      </Link>
-      <CardActions disableSpacing className={classes.cardActions}>
-        <div className="buy-btn">
-            <div className="buyBTN-content" onClick={handleAddToCart}>
-              <span className="buyBTN-text">Add to Cart</span>
-                <span className="addShoppingC"><AddShoppingCart className={classes.ascIcon} /></span>
-            </div>
-        </div>
-      </CardActions>
-    </Card>
-    */
   );
 };
 
