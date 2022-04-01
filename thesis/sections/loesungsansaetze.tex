@@ -4,7 +4,7 @@
 \setauthor{Benjamin Golic}
 \section{Automatic Number Plate Recognition (ANPR)[SK]}
 \setauthor{Simon Koll}
-Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Das Bild der Kamera muss zuerst eingelesen werden. Danach werden verschiedene Filter auf das Bild angewendet, um zuerst das Bild in Graustufen zu konvertieren, dann das Bild zu schärfen um dann die Konturen im Bild zu erkennen. Darauf folgt die eigentliche Erkennung der Kennzeichen. Hier wird mittels OCR-Technik der Text, den die Konturen bilden, erkannt und ausgegeben. Da bei diesem Ablauf auch Buchstaben erkannt werden, welche nicht auf dem Kennzeichen vorhanden sind, werden unteranderem Sonderzeichen und Leerzeichen verworfen. Das Ergebnis wird zur weiteren Überprüfung des Kennzeichens weiter gegeben.
+Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Der OpenCV-Python-Code für die Nummernschilderkennung umfasst drei Hauptschritte. Der erste Schritt ist die Erkennung von Nummernschildern. Die Konturfunktion wird verwendet, um die rechteckigen Objekte im Bild zu erkennen und das Nummernschild zu finden. Der zweite Schritt ist die Zeichensegmentierung. Sobald die Kontur das Nummernschild erkannt hat, müssen wir es ausschneiden und als neues Bild speichern. Und der letzte Schritt ist die Zeichenerkennung. Die optische Zeichenerkennung wird auf dem ausgeschnittenen Bild durchgeführt, um das Kennzeichen zu erkennen.
 
 \subsection{Überprüfung der Kennzeichen}
 Die erkannten Buchstaben werden genutzt, um eine Funktion aufzurufen, welche diese mit den zugelassenen Kennzeichen vergleicht. Dazu werden die zugelassenen Kennzeichen vom Server abgefragt, welcher diese aus der Datenbank lädt. Die Abfrage erfolgt über einen REST-Abfrage.
@@ -74,3 +74,42 @@ Der Server läuft auf einer Instanz einer Oracle Virtual Machine, ebenso die Mon
         \label{fig:vm:OCPU}
     \end{figure}
 \cite{vcpuVsocpu}
+\section{MongoDB}
+Die Datenbank läuft auf der selben Oracle VM Instanz wie das Backend. Somit gibt es zwischen Server und Datenbank keine zusätzliche Latenz. Da MongoDB eine nicht relationale Datenbank ist, werden die Daten in sogenannten Collections anstelle von Tabellen abgespeichert. Je nach abzuspeichernder Zugangsmöglichkeit, verändert sich das Format der Daten.
+Für ein Kennzeichen müssen die Daten wie folgt strukturiert sein:
+
+\subsubsection{Kennzeichen}
+\begin{lstlisting}[language=JSON, caption=Aufbau eines Kennzeichen in der Datenbank, label=lst:lsg:licenseplate]
+    {
+        "_id": "623f449cb8c1b2f4f64c4351",
+        "licenseplate_id": 1,
+        "licenseplate": "RO 108DV",
+        "time_created": 1647252201,
+        "active": true
+    }
+\end{lstlisting}
+Das Attribut \verb|_id| wird automatisch generiert und ist ein eindeutiger Schlüssel, welcher die eindeutige Identifizierung eines Datensatzes darstellt. Mithilfe des \verb|licenseplate_id| wird eine eindeutige Kennzeichen Identifikationsnummer gespeichert. \verb|licenseplate| ist das Kennzeichen, welches vom Client übergeben wurde. \verb|time_created| ist die Zeit, zu der das Kennzeichen erstellt wurde. \verb|active| gibt an, ob das Kennzeichen der aktiv ist.
+
+\subsubsection{Nummernfeld}
+Bei einer Nummernfeld-Kombination sieht der Datensatz wie folgt aus:
+\begin{lstlisting}[language=JSON, caption=Aufbau einer Nummernfeld-Kombination in der Datenbank, label=lst:lsg:numpad]
+    {
+        "_id": "622f181d35a3c2ce232acad9",
+        "numpad_id": 1,
+        "numpad_code": "123456",
+        "time_created": 1647252201,
+        "active": true
+    }
+\end{lstlisting}
+
+\subsubsection{NFC}
+Jede NFC-Karte hat eine eindeutige, 10-stellige Kartenidentifikationsnummer. Diese kann mittels eines RFID-Lesers ausgelesen werden. In der Datenbank werden die NFC-Informationen wie folgt gespeichert:
+\begin{lstlisting}[language=JSON, caption=Aufbau einer NFC-Karte in der Datenbank, label=lst:lsg:nfc]
+    {
+        "_id": "622f781cfbd4e8de471a4035",
+        "rfid_id": 3,
+        "rfid_code": "01928384756",
+        "time_created": "123456789",
+        "active": true
+    }
+    \end{lstlisting}
