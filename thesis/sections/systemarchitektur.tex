@@ -11,16 +11,3 @@ Der Raspberry ist über GPIOs mit dem RFID-Leser, dem Nummernfeld und dem Displa
 
 \section{Frontend (React-Applikation)}
 \setauthor{Benjamin Golic}
-
-\section{Backend (NodeJS-Server)[SK]}
-\setauthor{Simon Koll}
-Das Backend besteht aus einer JavaScipt Datei, in welcher sämtliche Endpunkte definiert werden. Weiters benötigt das Backend einige Pakete, um beispielsweise mit der Datenbank zu kommunizieren. Diese werden in \verb|package.json| aufgeführt. Bei erstmaliger Installation wird die Datei automatisch durchlaugfen, und installiert alle benötigten Dateien und Pakete. Dazu wird der Terminal-Befehl \verb|npm install| ausgeführt. Der Node Package Manager installiert alle Pakete im Ordner \verb|node_modules|.\\
-Der Server selbst wird weiters eingeteilt in:
-
-\begin{itemize}
-    \item \textit{Imports: } Zu beginn werden alle benötigten Pakete importiert. Dies geschiet mittels \verb|require()|.
-    \item \textit{Setup:  } In weiterer Folge werden benötigte Variablen, wie die Verbindungs-URL der MongoDB Datenbank, definiert. Da die Datenbank und der Server auf der selben Maschine laufen, der Host auf \verb|mongodb://127.0.0.1:27017| gesetzt. Der weitere Aufbau der UTL besteht aus Parametern wie zum Beispiel der \verb|serverSelectionTimeOutMS|.
-    \item \textit{Header: } Um den Zugriff des Raspberry auf den Server zu gewährleisten, müssen die Header-Parameter gesetzt werden. Dies geschieht mittels \verb|app.use()| und einer als Parameter übergebenen Funktion, in der mit \verb|res.setHeader()| die Header-Parameter gesetzt werden. Diese bestimmen welche IP-Adressen auf den Server zugreifen können, welche Methoden verwedet werden dürfen, sowie die zugelassenen Header bei Anfragen des Clients.
-\end{itemize}
-\section{Kennzeichenerkennung [SK]}
-\setauthor{Simon Koll}

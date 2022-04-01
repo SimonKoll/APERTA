@@ -72,7 +72,7 @@ Um besser zu verstehen, wie OCR funktioniert, hilft dieses Prozessdiagramm in de
   \cite{introToTesseract}
 \end{figure}
  Tesseract bietet die Möglichkeit, Text aus Bildern zu extrahieren. Dies kann in vielen verschiedenen Programmiersprachen erfolgen, oder über eine graphische Nutzeroberfläche eines Drittanbieters.\cite{AboutTesseract} Unterstützt wird Tesseract durch einen Python-Wrapper mit dem Namen \textbf{pytesseract}, welcher Bilder wie .jpeg, .png, .gif und viele mehr laden kann, sowie den gelesenen Text ausgeben kann anstatt ihn in einer Datei abspeichern zu müssen.\cite{AboutPyTesseract}
- 
+
 \section{Auswahl der Technologie - Backend[SK]}
 \setauthor{Simon Koll}
 \subsection{Anforderungen an das Backend}
@@ -206,7 +206,7 @@ Alternativ wäre auch eine Raspberry Pi Camera möglich gewesen, jedoch wurde di
 
 Um dem Nutzer vor der Garage mitzuteilen, was gerade geschieht, wird ein Display verwendet, auf dem mitgeteilt wird, ob die Kombination, welche auf dem Nummernfeld eingegeben wurde, korrekt ist, oder ob die NFC-Karte autorisiert ist.
 Da auf diesem Display nur kurze Textausgaben angezeigt werden, fiel die Entscheidung auf ein LCD-Display gesetzt, welches in zwei Zeilen beschrieben werden kann. Dieses bat zudem weitere Vorteile wie die geringen Kosten von 9€ pro Stück, die Spannungsversorgung durch den Raspberry Pi selbst, sowie die einfache Möglichkeit, Text darauf auszugeben.
-Im Lieferumfang des Displays war zudem ein I2C Serial Adapter, welcher durch seine 4 benötigen Ports um 8 Pins auf dem Raspberry Pi weniger benötigt, als das direkt angeschlossene Display. 
+Im Lieferumfang des Displays war zudem ein I2C Serial Adapter, welcher durch seine 4 benötigen Ports um 8 Pins auf dem Raspberry Pi weniger benötigt, als das direkt angeschlossene Display.
 \begin{figure}[H]
   \centering
   \includegraphics[width=15cm]{pics/DisplayComparison.jpg}
