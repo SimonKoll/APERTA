@@ -93,7 +93,7 @@ Bei der Verwendung der Funktion \verb|cv2.bilateralFilter()| sind folgende Param
     \item \textit{borderType: }Randmodus, der für die Extrapolation von Pixeln außerhalb des Bildes verwendet wird.
 \end{itemize}
 \cite{Filter}
-\subsubsection{Kantenerkennung}
+\subsubsection{Kantenerkennung \label{sec:anpr:kantenerkennung}}
 Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Diese Funktion wurde von John F. Canny entwickelt, und ist ein mehrstufiger Algorithmus, welcher in 4 Stufen aufgeteilt werden kann:
 \begin{compactenum}
     \item \textit{Rauschunterdrückung: }
@@ -147,4 +147,64 @@ Angewendet auf ein Graustufenbild, sieht das Ergebnis der Kantenerkennung wie fo
     \cite{CannyPic}
     \label{fig:anpr:edge:canny}
     \end{figure}
-\subsubsection{Kantenfindung}
+\subsubsection{Konturenfindung}
+Konturen können einfach als eine Kurve erklärt werden, die alle kontinuierlichen Punkte (entlang der Grenze) verbindet, die dieselbe Farbe oder Intensität haben. Die Konturen sind ein nützliches Werkzeug für die Formanalyse und die Erkennung von Objekten.
+Mit dem Ergebnis der Kantenerkennung aus \ref{sec:anpr:kantenerkennung} kann OpenCV Konturen eines weißen Objekts vor einem schwarzen Hintergrund finden. Dies geschieht mit dem Aufruf von \verb|cv2.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)|. Die Parameter können wie folgt beschrieben werden:
+\begin{compactenum}
+    \item \textit{thresh}: Das Bild, auf das die Konturen gesucht werden sollen.
+    \item \textit{mode}: Der Modus, der zur Konturensuche verwendet wird.
+    \item \textit{method}: Die Methode, die zur Konturennäherung verwendet wird.
+\end{compactenum}
+Als Rückgabewert gibt die Funktion die Konturen und die Hierarchie aus. Die Konturen sind eine Python-Liste mit allen Konturen im Bild. Jede einzelne Kontur ist ein Numpy-Array mit (x,y)-Koordinaten von Grenzpunkten des Objekts.
+Der dritte Parameter, die Konturennäherungsmethode, bestimmt, welche Begrenzungspunkte gespeichert werden. Bei \verb|cv2.CHAIN_APPROX_NONE| werden alle Punkte der Kontur gespeichert. Dies ist aber nicht nötig, da nur der Start- und Endpunkt der Linie benötigt werden. Daher ist es sinnvoller, \verb|cv2.CHAIN_APPROX_SIMPLE| zu verwenden, da diese Methode alle überflüssigen Punkte entfernt und die Konturen komprimiert, um so Speicherplatz zu sparen.
+In Abbildung \ref{fig:anpr:contour:cam} wird der Unterschied der beiden Methoden erkennnntlich gemacht. Anstelle von 734 Punkten bei der verwendung von \verb|cv2.CHAIN_APPROX_NONE| werden bei \verb|cv2.CHAIN_APPROX_SIMPLE| nur die Start- und Endpunkte der Konturen und damit insgesamt 4 Punkte gespeichert.\cite{drawContours}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/none.jpg}
+    \caption{Unterschied von}
+    \cite{CAMPic}
+    \label{fig:anpr:contour:cam}
+    \end{figure}
+\subsubsection{Überprüfung der Konturen}
+Im nächsten Schritt wird mittels \verb|imutils.grab_contours| überprüft, welche OpenCV Version verwendet wird. Dies unterscheidet sich in der Länge des Kontur-Tupels:
+\begin{itemize}
+    \item Ist das Tupel 2 Elemente lang, handelt es sich um OpenCV v2.4, v4-beta oder v4-official
+    \item Ist das Tupel 3 Elemente lang, handelt es sich um OpenCV v3, v4-pre oder v4-alpha
+\end{itemize}
+\cite{imutilsGrabContours}\\
+Nachdem die Konturen sortiert wurden, wird der Konturumfang mit \verb|cv2.arcLength| berechnet. Danach wird die Kontur unter Verwendung des Douglas-Peucker-Algorithmus mit dem vorher berechneten Konturumfang angepasst. Kommt dieser zu keinem Ergebnis, wird die Kontur verworfen und eine Fehlermeldung ausgegeben.\\
+Wurde jedoch eine geschlossene Kontur mit 4 Eckpunkten gefunden, beginnt die Funktion \verb|cv2.drawContours| mit der Zeichnung der Kontur. Die Funktionsparameter sind zum Einen das Bild, auf das die Kontur gezeichnet werden soll, und zum anderen die Kontur. Weitere Parameter, wie Farbe, Dicke und mehr können ebenfalls übergeben werden.
+\cite{drawContours}
+\subsubsection{Maskieren der relevanten Bildregion \label{sec:anpr:mask}}
+Da für den weiteren Ablauf des Programms nur noch die Region, in der sich das Kennzeichen befindet, relevant ist, wird diese maskiert und als neues Bild gespeichert:
+
+\begin{lstlisting}[language=Python, caption=Maskieren der Kennzeichenregion und Abspeichern in neuem Bild, label=lst:impl:anpr:mask]
+    mask = np.zeros(gray.shape, np.uint8)
+    new_image = cv2.drawContours(mask, [screenCnt], 0, 255, -1,)
+    new_image = cv2.bitwise_and(frame, frame, mask=mask)
+    (x, y) = np.where(mask == 255)
+    (topx, topy) = (np.min(x), np.min(y))
+    (bottomx, bottomy) = (np.max(x), np.max(y))
+    Cropped = gray[topx:bottomx+1, topy:bottomy+1]
+\end{lstlisting}
+
+\subsubsection{Texterkennung \label{sec:anpr:text}}
+Aus dem in \ref{sec:anpr:mask} erzeugten Bild kann nun der Text des Kennzeichens gelesen werden. Dies geschieht mit der Funktion :
+\begin{lstlisting}[language=Python, caption=Maskieren der Kennzeichenregion und Abspeicher in neuem Bild, label=lst:impl:anpr:text]
+    text = pytesseract.image_to_string(Cropped, config='--psm 11')
+\end{lstlisting}
+
+Mit \verb|config='--psm 11'| wird die Priorität der Texterkennung auf den Text selbst gesetzt. Da zuvor schon alle irrelevanten Bereiche des Bildes durch Maskieren entfernt wurden, wurde hier diese Priorität verwendet, um die Ergebnisse der Kennzeichenerkennung zu verbessern. \cite{PSM11} \\
+Dadurch kann es aber auch zu Problemen kommen, da nun Sonderzeichen erkannt werden, welche nicht auf dem Kennzeichen existieren. Um alle Leerzeichen und Sonderzeichen zu entfernen, wurden mit \verb|re.sub('[^a-zA-Z0-9 \n\.]', '', text)| alle nicht möglichen Zeichen aus dem Text entfernt.
+
+
+\subsubsection{Überprufung des erkannten Kennzeichens}
+Der Text aus \ref{sec:anpr:text} wird mit dem Aufruf des Modules \verb|checkPlate(text_replaced)| an ein Python-Script übergeben, welches für die weitere Überprüfung zuständig ist.
+
+\begin{lstlisting}[language=Python, caption=Abfrage der Kennzeichen aus der Datenbank, label=lst:impl:anpr:check]
+    print(type(text))
+    r = requests.get('http://130.162.215.116/get-licenseplates')
+    val = json.loads(r.text)
+\end{lstlisting}
+
+In \ref{lst:impl:anpr:check} wird die Antwort des Servers in ein JSON-Objekt geladen und mit \verb|json.loads| in ein Python-Objekt umgewandelt, welches die Daten der gefundenen Kennzeichen. Da die Formatierung der Kennzeichen aus der Datenbank sich leicht von dem der Ergebnis der Erkennung unterscheiden kann, wird mit \verb|str.maketrans| eine Tabelle erstellt, welche die Formatierung des Kennzeichens in einen String umwandelt.
