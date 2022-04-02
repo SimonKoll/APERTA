@@ -12,7 +12,7 @@ Nachdem das Bild angezeigt wurde, wird der erste Filter angewendet. Dabei handel
 \end{figure}
 
 \subsubsection{Filter}
-Als zweiter Filter fungiert ein \verb|cv2.bilateralFilter|. Die wichtigste Eigenschaft der bilateralen Filterung ist, dass sie keine Mittelwertbildung über die Kanten vornimmt. Deshalb wird sie auch als kantenerhaltender Filter bezeichnet.Bevor man sich die mathematischen Grundlagen des Bilateralfilters ansieht, ist es jedoch sinnvoll, kurz auf die Gaußsche Filterung einzugehen, da diese dem bilateralen Filter sehr ähnlich ist.
+Als zweiter Filter fungiert ein \verb|cv2.bilateralFilter|. Die wichtigste Eigenschaft der bilateralen Filterung ist, dass sie keine Mittelwertbildung über die Kanten vornimmt. Deshalb wird sie auch als kantenerhaltender Filter bezeichnet.Bevor  die mathematischen Grundlagen des Bilateralfilters erklärt werden, ist es jedoch sinnvoll, kurz auf die Gaußsche Filterung einzugehen, da diese dem bilateralen Filter ähnlich ist.
 Die Gaußsche Filterung ist ein gewichteter Durchschnitt der Intensität der benachbarten Positionen, wobei die Gewichtung mit dem räumlichen Abstand zur mittleren Position abnimmt.
 
 Mathematisch gesehen ist ein mit Gaußscher Unschärfe gefiltertes Bild gegeben durch:
@@ -34,6 +34,15 @@ Dabei sind \textit{p} und \textit{q} die Position der Pixel, I kennzeichnet das 
     G\(\sigma\) ist ein räumlicher Gauß, der den Einfluss der entfernten Pixel verringert. Der Abstand zwischen den Pixeln wird mit \(G\sigma(\|p-q\|)\) angegeben. Hierbei ist \(\sigma\) die Ausdehnung der Nachbarschaft.\\
     Der Gaußsche-Unschärfefilter untersucht nur naheliegende Pixel bei der Filterung. Es wird nicht berücksichtig, ob die Pixel die selbe Intensität haben, oder ob die Pixel am Rand liegen oder nicht. Daher werden auch Kanten verwischt, was zu einem Verlust wichtiger Details führt. Die bilaterale Filterung verwendet ebenfalls einen Gauß-Filter im Raum, berücksichtigt aber zusätzlich einen weiteren Gauß-Filter welcher eine Funktion der Pixeldifferenz ist. Die Gaußsche Funktion des Raums sorgt dafür, dass nur nahe gelegene Pixel für die Unschärfe berücksichtigt werden, während die Gaußsche Funktion der Intensitätsdifferenz dafür sorgt, dass nur die Pixel mit ähnlichen Intensitäten wie das zentrale Pixel für die Unschärfe berücksichtigt werden. So bleiben die Kanten erhalten, da die Pixel an den Kanten große Intensitätsunterschiede aufweisen.
     Der wichtige Punkt, der bei der bilateralen Filterung berücksichtigt wird, ist, dass zwei Pixel nicht nur dann nahe beieinander liegen, wenn sie räumlich nahe beieinander liegen, sondern auch, wenn sie eine gewisse Ähnlichkeit im photometrischen Bereich aufweisen. Diese Eigenschaften der bilateralen Filterung überwinden den Nachteil anderer Techniken wie \textit{Averaging Blur} oder \textit{Gaussian Blur}, da sie in der Lage ist, Kanten zu erhalten.\\
-    Der Bilaterale Filter wird wie folgt berechnet
+    Der Bilaterale Filter wird wie folgt berechnet:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{pics/Bilateral-Filtering-in-Python-OpenCV.jpeg}
+        \caption{Bilaterale Filterung Formel}
+        \cite{BilateralFormula1}
+        \label{fig:anpr:bilat:1}
+        \end{figure}
+WP ist ein Normalisierungsfaktor, welcher mit folgender Formel berechnet wird:
+
 \subsubsection{Kantenerkennung}
 \cite{Filter}
