@@ -8,8 +8,8 @@
 Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Der OpenCV-Python-Code für die Nummernschilderkennung umfasst drei Hauptschritte. Der erste Schritt ist die Erkennung von Nummernschildern. Die Konturfunktion wird verwendet, um die rechteckigen Objekte im Bild zu erkennen und das Nummernschild zu finden. Der zweite Schritt ist die Zeichensegmentierung. Sobald die Kontur das Nummernschild erkannt wurde, muss es ausgeschnitten und als neues Bild gespeichert werden. Der letzte Schritt ist die Zeichenerkennung. Die optische Zeichenerkennung wird auf dem ausgeschnittenen Bild durchgeführt, um das Kennzeichen zu erkennen.
 
 \subsection{Überprüfung der Kennzeichen}
-Die erkannten Buchstaben werden genutzt, um eine Funktion aufzurufen, welche diese mit den zugelassenen Kennzeichen vergleicht. Dazu werden die zugelassenen Kennzeichen vom Server abgefragt, welcher diese aus der Datenbank lädt. Die Abfrage erfolgt über einen REST-Abfrage.
-REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentational State Transfer, API für Application Programming Interface, welche gemeinsam eine Programmierschnittstelle bilden, mit der eine Anwendung mit einem Server kommunizieren kann. Dies wird meist mit dem HTTP-Protokoll genutzt, um Services über URLs zu erreichen. Dazu stehen die HTTP-Methoden GET, POST, PUT und DELETE zur Verfügung.
+Die erkannten Buchstaben werden genutzt, um eine Funktion aufzurufen, welche diese mit den zugelassenen Kennzeichen vergleicht. Dazu werden die zugelassenen Kennzeichen vom Server abgefragt, welcher diese aus der Datenbank lädt. Die Abfrage erfolgt über eine REST-Abfrage.
+REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentational State Transfer, API für Application Programming Interface, welche gemeinsam eine Programmierschnittstelle bilden, mit der Anwendungen mit einem Server kommunizieren können. Dies wird meist mit dem HTTP-Protokoll genutzt, um Services über URLs zu erreichen. Dazu stehen die HTTP-Methoden GET, POST, PUT und DELETE zur Verfügung.
 \begin{itemize}
     \item \textit{GET: } GET ist eine Methode, welche einen Inhalt eines Servers abruft.
     \item \textit{POST: } POST ist eine Methode, um vom Client Daten an den Server zu senden, welcher diese weiter verarbeiten und in die Datenbank speichern kann.
@@ -44,7 +44,7 @@ from threading import Thread
 \setauthor{Simon Koll}
 Der Server bildet das Rückgrat des Projektes. Hier werden die Daten aus der Datenbank abgefragt. Diese werden von einem Client über einen REST-Aufruf abgefragt. Der Server kann zudem die neu zugelassenen Kennzeichen in die Datenbank speichern.
 \subsection{Oracle VM}
-Der Server läuft auf einer Instanz einer Oracle Virtual Machine, ebenso die MongoDB-Datenbank. Die Oracle VM bietet die Möglichkeit, eine leistungsstarke Basis für den Server sowie die Datenbank bereitzustellen. Die technischen Daten der Instanz sind:
+Der Server läuft auf einer Instanz einer Oracle Virtual Machine, ebenso die MongoDB-Datenbank. Die Oracle VM bietet die Möglichkeit, eine leistungsstarke Basis für den Server sowie für die Datenbank bereitzustellen. Die technischen Daten der Instanz sind:
 \begin{table}[ht]
     \caption{Technische Daten der Oracle VM Instanz}
     \label{tab:vm}
