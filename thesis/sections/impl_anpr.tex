@@ -23,7 +23,7 @@ Mathematisch gesehen ist ein mit Gaußscher Unschärfe gefiltertes Bild gegeben 
     \cite{GBfilteredPicture}
     \label{fig:anpr_2}
     \end{figure}
-Dabei sind \textit{p} und \textit{q} die Position der Pixel, I kennzeichnet das Bild und G\(\sigma\) (x) den sogenannten zweidimensionalen Gauß-Kernel. 
+Dabei sind \textit{p} und \textit{q} die Position der Pixel, I kennzeichnet das Bild und G\(\sigma\)(x) den sogenannten zweidimensionalen Gauß-Kernel. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{pics/Gaussian-Filter-Formula-2.jpeg}
@@ -42,7 +42,109 @@ Dabei sind \textit{p} und \textit{q} die Position der Pixel, I kennzeichnet das 
         \cite{BilateralFormula1}
         \label{fig:anpr:bilat:1}
         \end{figure}
-WP ist ein Normalisierungsfaktor, welcher mit folgender Formel berechnet wird:
+W ist ein Normalisierungsfaktor, welcher mit folgender Formel berechnet wird:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{pics/Bilateral-Filtering-in-Python-OpenCV-Formula2.jpeg}
+    \caption{Formel des Normalisierungsfaktors Wp}
+    \cite{BilateralFormula2}
+    \label{fig:anpr:bilat:2}
+    \end{figure}
+Dem Gaußschen Filter werden 2 neue Terme hinzugefügt, um den bilateralen Filter zu erhalten. Diese Terme sind:
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{pics/Bilateral-Filtering-in-Python-OpenCV-Formula3.jpeg}
+    \caption{Term 1}
+    \cite{BilateralFormula3}
+    \label{fig:anpr:bilat:3}
+    \end{figure}
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{pics/Bilateral-Filtering-in-Python-OpenCV-Formula4.jpeg}
+        \caption{Term 2}
+        \cite{BilateralFormula4}
+        \label{fig:anpr:bilat:4}
+        \end{figure}
+Wie aus der Gauß-Filterung bereits bekannt, ist\textit{G\(\sigma\)s} ein räunlicher Gauß, welcher den Einfluss enfernter Pixel verringert. Der zweite Term ist \textit{G\(\sigma\)r}, ein Bereichs-Gauß, welcher Einflüsse von Pixeln \textit{q} mit anderen Intensitätswerten als \textit{Ip} verringert. Bereich bedeutet n diesem Fall Größen, die sich auf Intensitäten beziehen, wohingegen der Raum die Lage der Pixel beschreibt.\\
+\textit{\(\sigma\)s} ist ein Raumparameter, der für die räumliche Ausdehnung der Kernelgröße in der betrachteten Nachbarschaft beschreibt, und \textit{\(\sigma\)r} hingegen ein Entfernungsparameter, welcher die minimale Amplitude einer Kante beschreibt. Zusammen ergeben die Parameter das Ausmaß der Fiterung des Bildes \textit{I}.\\
+Daraus folgt:
+\begin{compactenum}
+    \item Jedes Pixel erhält einen Durchschnitt der benachbarten Pixel, mit dem es überschrieben wird.
+    \item Jedes benachbarte Pixel wird durch eine räumliche Komponente, die entfernte Pixel bestraft, und eine Bereichskomponente, die Pixel mit unterschiedlicher Intensität bestraft, gewichtet.
+    \item Die Kombination der beiden Komponenten stellen sicher, dass nur nahe, ähnliche Pixel zur Berechnung des Ergebnisses berücksichtigt werden.
+\end{compactenum}
+Die beiden Parameter \textit{\(\sigma\)r} und \textit{\(\sigma\)s} beeinflussen den bilateralen Filter, indem bei Erhöhung des Entfernungsparameter \textit{\(\sigma\)r} das Ergebnis dem einer Gaußschen Unschärfe ähnelt, und die Erhöhung des räumlichen Parameters \textit{\(\sigma\)s} zur Glättung von großen Merkmalen führt. Veranschaulicht kann dies furch folgende Grafik werden:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{pics/ParameterBeeinflussungBilateralFilter.jpg}
+    \caption{Beeinflussung durch Veränderung der Parameter \textit{\(\sigma\)s} und \textit{\(\sigma\)r}}
+    \cite{ParameterBilat}
+    \label{fig:anpr:bilat:parameter}
+    \end{figure}
 
-\subsubsection{Kantenerkennung}
+
+Bei der Verwendung der Funktion \verb|cv2.bilateralFilter()| sind folgende Parameter zu berücksichtigen:
+\begin{itemize}
+    \item \textit{src: } Ein Bild, auf das die Filterung angewendet wird.
+    \item \textit{dst: } Das Ergebnis der Filterung. Das Zielbild hat die selbe Größe und den selben Datentyp wie das Ausgangsbild \verb|src|.
+    \item \textit{d: }Durchmesser der Pixel-Nachbarschaften, welche zur Berechnung des Filters verwendet werden. Wird dieser negativ, kann auf eine Berechnung durch \textit{sigmaSpace} zurückgegriffen werden.
+    \item \textit{sigmaColor: } Ein größerer Wert des Parameters bedeutet, dass weiter entfernte Farben innerhalb der Pixelnachbarschaft zusammengemischt werden, was zu größeren Bereichen mit annähernd gleicher Farbe führt.
+    \item \textit{sigmaSpace: }Ein größerer Wert des Parameters bedeutet, dass weiter entfernte Pixel sich gegenseitig beeinflussen, solange ihre Farben nahe genug beieinander liegen. Wenn \textit{d>0} ist, gibt er die Größe der Nachbarschaft unabhängig von sigmaSpace an. Andernfalls ist d proportional zu sigmaSpace.
+    \item \textit{borderType: }Randmodus, der für die Extrapolation von Pixeln außerhalb des Bildes verwendet wird.
+\end{itemize}
 \cite{Filter}
+\subsubsection{Kantenerkennung}
+Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Diese Funktion wurde von John F. Canny entwickelt, und ist ein mehrstufiger Algorithmus, welcher in 4 Stufen aufgeteilt werden kann:
+\begin{compactenum}
+    \item \textit{Rauschunterdrückung: }
+    \begin{compactenum}
+        \item Da die Kantenerkennung anfällig für Bildrauschen ist, wird zunächst das Bildrauschen mit einem 5x5-Gauß-Filter entfernt
+    \end{compactenum}
+    \item \textit{Ermittlung des Intensitätsgradienten des Bildes: }
+    \begin{compactenum}
+        \item  Das geglättete Bild wird dann mit einem Sobel-Kernel sowohl in horizontaler als auch in vertikaler Richtung gefiltert, um die erste Ableitung in horizontaler Richtung \((Gx)\) und vertikaler Richtung \((Gy)\) zu erhalten. Aus diesen beiden Bildern können wir den Kantengradienten und die Richtung für jedes Pixel wie folgt ermitteln:
+        \begin{equation}
+            \begin{split}
+                \begin{aligned}
+                    \text{Kantengradient (G)} &= \sqrt{G^2x+G^2y}\\
+                    \text{Winkel (\(\theta\))} &= \tan^{-1}(\frac{Gy}{Gx})
+                \end{aligned}
+            \end{split}
+        \end{equation}
+        \item Die Richtung der Steigung ist immer senkrecht zu den Kanten. Sie wird auf einen von vier Winkeln gerundet, welche die vertikale, horizontale und zwei diagonale Richtungen darstellen.
+    \end{compactenum}
+    \item \textit{Non-Maximum-Suppression: }
+    \begin{compactenum}
+        \item Nachdem Gradient und Richtung ermittelt wurden, wird das Bild vollständig gescannt, um alle unerwünschten Pixel zu entfernen, die möglicherweise nicht die Kante bilden. Zu diesem Zweck wird bei jedem Pixel geprüft, ob es in dessen Umgebung ein lokales Maximum in der Richtung des Gradienten darstellt.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{pics/nms.jpg}
+            \caption{Non-Maximum-Suppression}
+            \cite{NMSPic}
+            \label{fig:anpr:edge:nms}
+            \end{figure}
+            Punkt A befindet sich auf der Kante in vertikaler Richtung. Die Richtung des Gradienten ist normal zur Kante. Die Punkte B und C liegen in Gradientenrichtung. Punkt A wird also mit den Punkten B und C daraufhin überprüft, ob er ein lokales Maximum bildet. Wenn ja, wird er für die nächste Stufe berücksichtigt, andernfalls wird er unterdrückt (auf Null gesetzt).Das Ergebnis ist ein Binärbild mit dünnen Rändern.
+    \end{compactenum}
+    \item \textit{Hysterese-Schwellenwertbildung: }
+    \begin{compactenum}
+        \item  In dieser Phase wird entschieden, welche Kanten wirklich Kanten sind und welche nicht. Hierfür werden zwei Schwellenwerte benötigt, minVal und maxVal. Alle Kanten, deren Intensitätsgradient größer als maxVal ist, sind sicher, dass es sich um Kanten handelt, und diejenigen, die unter minVal liegen, sind sicher, dass es sich um Nicht-Kanten handelt, und werden daher verworfen. Diejenigen, die zwischen diesen beiden Schwellenwerten liegen, werden auf der Grundlage ihrer Konnektivität als Kanten oder Nicht-Kanten klassifiziert. Wenn sie mit "sure-edge"-Pixeln verbunden sind, werden sie als Teil von Kanten betrachtet. Andernfalls werden sie ebenfalls verworfen.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{pics/hysteresis.jpg}
+            \caption{Hysterese-Schwellenwertbildung}
+            \cite{hysteresisPic}
+            \label{fig:anpr:edge:hysteresis}
+            \end{figure}
+            Die Kante A liegt oberhalb von maxVal, wird also als "sichere Kante" betrachtet. Obwohl die Kante C unter maxVal liegt, ist sie mit der Kante A verbunden, so dass sie ebenfalls als gültige Kante betrachtet wird und wir die vollständige Kurve erhalten. Aber die Kante B, obwohl sie oberhalb von minVal liegt und in der gleichen Region wie die Kante C ist, ist nicht mit einer "sicheren Kante" verbunden, so dass sie verworfen wird. Es ist also sehr wichtig, dass minVal und maxVal entsprechend ausgewählt werden, um das richtige Ergebnis zu erhalten.
+            In dieser Phase werden auch kleine Pixel entfernt, wobei davon ausgegangen wird, dass die Kanten lange Linien sind. Dadurch enstehen starke Kanten im Bild.
+    \end{compactenum}
+\end{compactenum}
+Angewendet auf ein Graustufenbild, sieht das Ergebnis der Kantenerkennung wie folgt aus:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/canny1.jpg}
+    \caption{Ergebnis der Kantenerkennung}
+    \cite{CannyPic}
+    \label{fig:anpr:edge:canny}
+    \end{figure}
+\subsubsection{Kantenfindung}
