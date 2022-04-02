@@ -201,10 +201,20 @@ Dadurch kann es aber auch zu Problemen kommen, da nun Sonderzeichen erkannt werd
 \subsubsection{Überprufung des erkannten Kennzeichens}
 Der Text aus \ref{sec:anpr:text} wird mit dem Aufruf des Modules \verb|checkPlate(text_replaced)| an ein Python-Script übergeben, welches für die weitere Überprüfung zuständig ist.
 
-\begin{lstlisting}[language=Python, caption=Abfrage der Kennzeichen aus der Datenbank, label=lst:impl:anpr:check]
+\begin{lstlisting}[language=Python, caption=Abfrage der Kennzeichen aus der Datenbank, label=lst:impl:anpr:check:db]
     print(type(text))
     r = requests.get('http://130.162.215.116/get-licenseplates')
     val = json.loads(r.text)
 \end{lstlisting}
 
-In \ref{lst:impl:anpr:check} wird die Antwort des Servers in ein JSON-Objekt geladen und mit \verb|json.loads| in ein Python-Objekt umgewandelt, welches die Daten der gefundenen Kennzeichen. Da die Formatierung der Kennzeichen aus der Datenbank sich leicht von dem der Ergebnis der Erkennung unterscheiden kann, wird mit \verb|str.maketrans| eine Tabelle erstellt, welche die Formatierung des Kennzeichens in einen String umwandelt.
+In \ref{lst:impl:anpr:check} wird die Antwort des Servers in ein JSON-Objekt geladen und mit \verb|json.loads| in ein Python-Objekt umgewandelt, welches die Daten der gefundenen Kennzeichen. Da die Formatierung der Kennzeichen aus der Datenbank sich leicht von dem der Ergebnis der Erkennung unterscheiden kann, wird mit \verb|str.maketrans| eine Zuordnungstabelle erstellt, die im späteren Verlauf von der Methode \verb|str.translate| verwendet wird.\\
+Kennzeichen können im Dashboard deaktiviert werden und dürfen in diesem Zustand nicht die Garage öffnen. Um dies zu realisieren, wird der Boolean \verb|active| aus der Datenbankabfrage jedes Kennzeichens überprüft. Wenn dieser Boolean auf \verb|False| steht, wird das Kennzeichen nicht weiter überprüft.\\
+
+ \begin{lstlisting}[language=Python, caption=Überprüfung auf Gleichheit der beiden Strings, label=lst:impl:anpr:check]
+    if text.replace(" ", "").translate(table) == value["licenseplate"].translate(table).replace(" ", ""):
+        print("licenseplate recognized, initiating opening sequence")
+        initiateOpeningSequence()
+    else:
+        print("not recognized, staying closed")
+ \end{lstlisting}
+ Sind beide Kennzeichen gleich, wird die Methode \verb|initiateOpeningSequence| aufgerufen, welche das Relais ansteuert.

@@ -1,4 +1,6 @@
-\begin{lstlisting}[language=Python, caption=Relais code, label=lst:impl:relais]
+Das Relais wird von den drei Zutritssmöglichkeiten angesteuert. Dazu muss der GPIO, an dem sich die Steuerung des Relais befindet, als Ausgang definiert werden. Wenn das Garagentor geöffnet werden soll, muss über diesen GPIO Spannung abgegeben werden, um den Schalter auf der Innenseite der Garage zu immitieren. Das Relais wird wie ein Schalter in den Arbeitsstromkreis der Garagentorsteuerung eingebunden und schließt mit Ansteuerung des GPIOs den eigenen Steuerkreis, aktiviert den Arbeitskreis und der Öffnungsmechanismus wird vom Motor der Garage ausgeführt. Das Relais durch den Aufruf von \verb|initiateOpeningSequence| aus \ref{lst:impl:relais} angesteuert.
+
+\begin{lstlisting}[language=Python, caption=Ansteuerung des Relais, label=lst:impl:relais]
 import RPi.GPIO as GPIO
 import time
 
