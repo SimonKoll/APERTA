@@ -127,7 +127,7 @@ Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Di
     \end{compactenum}
     \item \textit{Hysterese-Schwellenwertbildung: }
     \begin{compactenum}
-        \item  In dieser Phase wird entschieden, welche Kanten wirklich Kanten sind und welche nicht. Hierfür werden zwei Schwellenwerte benötigt, minVal und maxVal. Alle Kanten, deren Intensitätsgradient größer als maxVal ist, sind sicher, dass es sich um Kanten handelt, und diejenigen, die unter minVal liegen, sind sicher, dass es sich um Nicht-Kanten handelt, und werden daher verworfen. Diejenigen, die zwischen diesen beiden Schwellenwerten liegen, werden auf der Grundlage ihrer Konnektivität als Kanten oder Nicht-Kanten klassifiziert. Wenn sie mit \textit{sure-edge}-Pixeln verbunden sind, werden sie als Teil von Kanten betrachtet. Ansonsten werden sie ebenfalls verworfen.
+        \item  In dieser Phase wird entschieden, welche Kanten wirklich Kanten sind und welche nicht. Hierfür werden zwei Schwellenwerte benötigt, minVal und maxVal. Alle Kanten, deren Intensitätsgradient größer als maxVal ist, sind sicher, dass es sich um Kanten handelt, und diejenigen, die unter minVal liegen, sind sicher, dass es sich um Nicht-Kanten handelt, und werden daher verworfen. Diejenigen, die zwischen diesen beiden Schwellenwerten liegen, werden auf der Grundlage ihrer Konnektivität als Kanten oder Nicht-Kanten klassifiziert. Wenn sie mit "\textit{sure-edge}"-Pixeln verbunden sind, werden sie als Teil von Kanten betrachtet. Andernfalls werden sie ebenfalls verworfen.
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\textwidth]{pics/hysteresis.jpg}
@@ -135,7 +135,7 @@ Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Di
             \cite{hysteresisPic}
             \label{fig:anpr:edge:hysteresis}
             \end{figure}
-            Die Kante A liegt oberhalb von maxVal, wird also als "sichere Kante" betrachtet. Obwohl die Kante C unter maxVal liegt, ist sie mit der Kante A verbunden, so dass sie ebenfalls als gültige Kante betrachtet wird und wir die vollständige Kurve erhalten. Aber die Kante B, obwohl sie oberhalb von minVal liegt und in der gleichen Region wie die Kante C ist, ist nicht mit einer "sicheren Kante" verbunden, so dass sie verworfen wird. Es ist also sehr wichtig, dass minVal und maxVal entsprechend ausgewählt werden, um das richtige Ergebnis zu erhalten.
+            Die Kante A liegt oberhalb von maxVal, wird also als \"sichere Kante\" betrachtet. Obwohl die Kante C unter maxVal liegt, ist sie mit der Kante A verbunden, so dass sie ebenfalls als gültige Kante betrachtet wird und wir die vollständige Kurve erhalten. Aber die Kante B, obwohl sie oberhalb von minVal liegt und in der gleichen Region wie die Kante C ist, ist nicht mit einer \"sicheren Kante\" verbunden, so dass sie verworfen wird. Es ist also sehr wichtig, dass minVal und maxVal entsprechend ausgewählt werden, um das richtige Ergebnis zu erhalten.
             In dieser Phase werden auch kleine Pixel entfernt, wobei davon ausgegangen wird, dass die Kanten lange Linien sind. Dadurch enstehen starke Kanten im Bild.
     \end{compactenum}
 \end{compactenum}
@@ -157,7 +157,7 @@ Mit dem Ergebnis der Kantenerkennung aus \ref{sec:anpr:kantenerkennung} kann Ope
 \end{compactenum}
 Als Rückgabewert gibt die Funktion die Konturen und die Hierarchie aus. Die Konturen sind eine Python-Liste mit allen Konturen im Bild. Jede einzelne Kontur ist ein Numpy-Array mit (x,y)-Koordinaten von Grenzpunkten des Objekts.
 Der dritte Parameter, die Konturennäherungsmethode, bestimmt, welche Begrenzungspunkte gespeichert werden. Bei \verb|cv2.CHAIN_APPROX_NONE| werden alle Punkte der Kontur gespeichert. Dies ist aber nicht nötig, da nur der Start- und Endpunkt der Linie benötigt werden. Daher ist es sinnvoller, \verb|cv2.CHAIN_APPROX_SIMPLE| zu verwenden, da diese Methode alle überflüssigen Punkte entfernt und die Konturen komprimiert, um so Speicherplatz zu sparen.
-In Abbildung \ref{fig:anpr:contour:cam} wird der Unterschied der beiden Methoden erkennnntlich gemacht. Anstelle von 734 Punkten bei der verwendung von \verb|cv2.CHAIN_APPROX_NONE| werden bei \verb|cv2.CHAIN_APPROX_SIMPLE| nur die Start- und Endpunkte der Konturen und damit insgesamt 4 Punkte gespeichert.\cite{drawContours}
+In Abbildung \ref{fig:anpr:contour:cam} wird der Unterschied der beiden Methoden erkenntlich gemacht. Anstelle von 734 Punkten bei der Verwendung von \verb|cv2.CHAIN_APPROX_NONE| werden bei \verb|cv2.CHAIN_APPROX_SIMPLE| nur die Start- und Endpunkte der Konturen und damit insgesamt 4 Punkte gespeichert.\cite{drawContours}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{pics/none.jpg}
@@ -207,7 +207,7 @@ Der Text aus \ref{sec:anpr:text} wird mit dem Aufruf des Modules \verb|checkPlat
     val = json.loads(r.text)
 \end{lstlisting}
 
-In \ref{lst:impl:anpr:check} wird die Antwort des Servers in ein JSON-Objekt geladen und mit \verb|json.loads| in ein Python-Objekt umgewandelt, welches die Daten der gefundenen Kennzeichen. Da die Formatierung der Kennzeichen aus der Datenbank sich leicht von dem der Ergebnis der Erkennung unterscheiden kann, wird mit \verb|str.maketrans| eine Zuordnungstabelle erstellt, die im späteren Verlauf von der Methode \verb|str.translate| verwendet wird.\\
+Im Code-Abschnitt \ref{lst:impl:anpr:check} wird die Antwort des Servers in ein JSON-Objekt geladen und mit \verb|json.loads| in ein Python-Objekt umgewandelt, welches die Daten der gefundenen Kennzeichen enthält. Da die Formatierung der Kennzeichen aus der Datenbank sich von dem der Ergebnis der Erkennung unterscheiden kann, wird mit \verb|str.maketrans| eine Zuordnungstabelle erstellt, die im späteren Verlauf von der Methode \verb|str.translate| verwendet wird, um die Formatierungsunterschiede zu beseitigen.\\
 Kennzeichen können im Dashboard deaktiviert werden und dürfen in diesem Zustand nicht die Garage öffnen. Um dies zu realisieren, wird der Boolean \verb|active| aus der Datenbankabfrage jedes Kennzeichens überprüft. Wenn dieser Boolean auf \verb|False| steht, wird das Kennzeichen nicht weiter überprüft.\\
 
  \begin{lstlisting}[language=Python, caption=Überprüfung auf Gleichheit der beiden Strings, label=lst:impl:anpr:check]

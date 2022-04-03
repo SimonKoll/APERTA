@@ -23,7 +23,6 @@
 # *.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
-thesis.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -334,8 +333,6 @@ TSWLatexianTemp*
 # *.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
-.pdf
-
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf

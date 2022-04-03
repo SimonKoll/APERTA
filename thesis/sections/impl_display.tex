@@ -2,7 +2,7 @@ Das Display kann mithilfe von drei verschiedenen Methoden unterschiedliche Texte
 \begin{enumerate}
     \item Kombination des Nummernfeldes korrekt
     \begin{compactenum}
-        \item Bei korrekter Eingabe des Nummernfelds wird das Display wie folgt beschrieben:
+        \item Bei korrekter Eingabe des Nummernfeldes wird das Display wie folgt beschrieben:
         \begin{lstlisting}[language=Python, caption=Ausgabe bei korrekter Eingabe der Kombination auf dem Nummernfeld, label=code_display_correct]
         outString = writingString
         lcd.text("Combination:", 1)
@@ -12,7 +12,7 @@ Das Display kann mithilfe von drei verschiedenen Methoden unterschiedliche Texte
     \end{compactenum}
     \item Kombination des Nummernfeldes nicht korrekt
     \begin{compactenum}
-        \item Bei inkorrekter Eingabe des Nummernfeldes soll für den Fall eines nicht authorisierten Zutritts nicht ausgegeben werden, an welcher Stelle der Eingabe sich der Fehler befindet. Daher gibt das Display \verb|Wrong Combination, please try again| aus.
+        \item Bei inkorrekter Eingabe des Nummernfeldes soll nicht ausgegeben werden, an welcher Stelle der Eingabe sich der Fehler befindet. Daher gibt das Display \verb|Wrong Combination, please try again| aus.
     \end{compactenum}
     \item NFC-Tag nicht korrekt
     \begin{compactenum}
