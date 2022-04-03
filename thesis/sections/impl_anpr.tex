@@ -1,5 +1,5 @@
 \subsection{Funktionsweise}
-Wie bereits in Kapitel \ref{lsg:def:anpr} angeführt, besteht die Kennzeichenerkennung aus 3 Schritten. Bevor diese jedoch durchlaufen werden können, müssen zuerst alle notwendigen Bibliotheken installiert und importiert werden. Die meisten können mittels \verb|pip3 install <name>|, oder aber auch mit \verb|sudo apt-get install <name>| installiert werden. \\
+Wie bereits in Kapitel \ref{lsg:def:anpr} angeführt, besteht die Kennzeichenerkennung aus 3 Schritten. Bevor diese jedoch durchlaufen werden können, müssen zuerst alle notwendigen Bibliotheken installiert und importiert werden. Diese können mittels \verb|pip3 install <name>|, oder aber auch mit \verb|sudo apt-get install <name>| installiert werden. \\
 Nachdem alle Bibliotheken und das Modul zur Überprüfung des Kennzeichens importiert wurden, beginnt mit \verb|cap = cv2.VideoCapture(0)| das Aufzeichnen des Bildes. Dieses wird durch eine Schleife ausgeführt, bis das Programm beendet wird. Falls die Kamera nicht aufgenommen werden kann, wird eine Fehlermeldung ausgegeben.
 \subsubsection{Graustufenbild}
 Nachdem das Bild angezeigt wurde, wird der erste Filter angewendet. Dabei handelt es sich um einen Filter, welcher das Bild in ein Graustufenbild umwandelt. Dieser wird  mit der Methode \verb|cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)| aufgerufen.
@@ -12,7 +12,7 @@ Nachdem das Bild angezeigt wurde, wird der erste Filter angewendet. Dabei handel
 \end{figure}
 
 \subsubsection{Filter}
-Als zweiter Filter fungiert ein \verb|cv2.bilateralFilter|. Die wichtigste Eigenschaft der bilateralen Filterung ist, dass sie keine Mittelwertbildung über die Kanten vornimmt. Deshalb wird sie auch als kantenerhaltender Filter bezeichnet.Bevor  die mathematischen Grundlagen des Bilateralfilters erklärt werden, ist es jedoch sinnvoll, kurz auf die Gaußsche Filterung einzugehen, da diese dem bilateralen Filter ähnlich ist.
+Als zweiter Filter fungiert ein \verb|cv2.bilateralFilter|. Die wichtigste Eigenschaft der bilateralen Filterung ist, dass sie keine Mittelwertbildung über die Kanten vornimmt. Deshalb wird sie auch als kantenerhaltender Filter bezeichnet. Bevor  die mathematischen Grundlagen des Bilateralfilters erklärt werden, ist es jedoch sinnvoll, kurz auf die Gaußsche Filterung einzugehen, da diese dem bilateralen Filter ähnlich ist.
 Die Gaußsche Filterung ist ein gewichteter Durchschnitt der Intensität der benachbarten Positionen, wobei die Gewichtung mit dem räumlichen Abstand zur mittleren Position abnimmt.
 
 Mathematisch gesehen ist ein mit Gaußscher Unschärfe gefiltertes Bild gegeben durch:
@@ -33,7 +33,7 @@ Dabei sind \textit{p} und \textit{q} die Position der Pixel, I kennzeichnet das 
     \end{figure}
     G\(\sigma\) ist ein räumlicher Gauß, der den Einfluss der entfernten Pixel verringert. Der Abstand zwischen den Pixeln wird mit \(G\sigma(\|p-q\|)\) angegeben. Hierbei ist \(\sigma\) die Ausdehnung der Nachbarschaft.\\
     Der Gaußsche-Unschärfefilter untersucht nur naheliegende Pixel bei der Filterung. Es wird nicht berücksichtig, ob die Pixel die selbe Intensität haben, oder ob die Pixel am Rand liegen oder nicht. Daher werden auch Kanten verwischt, was zu einem Verlust wichtiger Details führt. Die bilaterale Filterung verwendet ebenfalls einen Gauß-Filter im Raum, berücksichtigt aber zusätzlich einen weiteren Gauß-Filter welcher eine Funktion der Pixeldifferenz ist. Die Gaußsche Funktion des Raums sorgt dafür, dass nur nahe gelegene Pixel für die Unschärfe berücksichtigt werden, während die Gaußsche Funktion der Intensitätsdifferenz dafür sorgt, dass nur die Pixel mit ähnlichen Intensitäten wie das zentrale Pixel für die Unschärfe berücksichtigt werden. So bleiben die Kanten erhalten, da die Pixel an den Kanten große Intensitätsunterschiede aufweisen.
-    Der wichtige Punkt, der bei der bilateralen Filterung berücksichtigt wird, ist, dass zwei Pixel nicht nur dann nahe beieinander liegen, wenn sie räumlich nahe beieinander liegen, sondern auch, wenn sie eine gewisse Ähnlichkeit im photometrischen Bereich aufweisen. Diese Eigenschaften der bilateralen Filterung überwinden den Nachteil anderer Techniken wie \textit{Averaging Blur} oder \textit{Gaussian Blur}, da sie in der Lage ist, Kanten zu erhalten.\\
+    Der wichtige Punkt, der bei der bilateralen Filterung berücksichtigt wird, ist, dass zwei Pixel nicht nur dann nahe beieinander liegen, wenn sie dies räumlich tun, sondern auch, wenn sie eine gewisse Ähnlichkeit im photometrischen Bereich aufweisen. Diese Eigenschaften der bilateralen Filterung überwinden den Nachteil anderer Techniken wie \textit{Averaging Blur} oder \textit{Gaussian Blur}, da sie in der Lage ist, Kanten zu erhalten.\\
     Der Bilaterale Filter wird wie folgt berechnet:
     \begin{figure}[H]
         \centering
@@ -65,15 +65,15 @@ Dem Gaußschen Filter werden 2 neue Terme hinzugefügt, um den bilateralen Filte
         \cite{BilateralFormula4}
         \label{fig:anpr:bilat:4}
         \end{figure}
-Wie aus der Gauß-Filterung bereits bekannt, ist\textit{G\(\sigma\)s} ein räunlicher Gauß, welcher den Einfluss enfernter Pixel verringert. Der zweite Term ist \textit{G\(\sigma\)r}, ein Bereichs-Gauß, welcher Einflüsse von Pixeln \textit{q} mit anderen Intensitätswerten als \textit{Ip} verringert. Bereich bedeutet n diesem Fall Größen, die sich auf Intensitäten beziehen, wohingegen der Raum die Lage der Pixel beschreibt.\\
-\textit{\(\sigma\)s} ist ein Raumparameter, der für die räumliche Ausdehnung der Kernelgröße in der betrachteten Nachbarschaft beschreibt, und \textit{\(\sigma\)r} hingegen ein Entfernungsparameter, welcher die minimale Amplitude einer Kante beschreibt. Zusammen ergeben die Parameter das Ausmaß der Fiterung des Bildes \textit{I}.\\
+Wie aus der Gauß-Filterung bereits bekannt, ist\textit{G\(\sigma\)s} ein räumlicher Gauß, welcher den Einfluss enfernter Pixel verringert. Der zweite Term ist \textit{G\(\sigma\)r}, ein Bereichs-Gauß, welcher Einflüsse von Pixeln \textit{q} mit anderen Intensitätswerten als \textit{Ip} verringert. Bereich bedeutet n diesem Fall Größen, die sich auf Intensitäten beziehen, wohingegen der Raum die Lage der Pixel beschreibt.\\
+\textit{\(\sigma\)s} ist ein Raumparameter, der für die räumliche Ausdehnung der Kernelgröße in der betrachteten Nachbarschaft beschreibt, und \textit{\(\sigma\)r} hingegen ein Entfernungsparameter, welcher die minimale Amplitude einer Kante beschreibt. Zusammen ergeben die Parameter das Ausmaß der Filterung des Bildes \textit{I}.\\
 Daraus folgt:
 \begin{compactenum}
     \item Jedes Pixel erhält einen Durchschnitt der benachbarten Pixel, mit dem es überschrieben wird.
     \item Jedes benachbarte Pixel wird durch eine räumliche Komponente, die entfernte Pixel bestraft, und eine Bereichskomponente, die Pixel mit unterschiedlicher Intensität bestraft, gewichtet.
     \item Die Kombination der beiden Komponenten stellen sicher, dass nur nahe, ähnliche Pixel zur Berechnung des Ergebnisses berücksichtigt werden.
 \end{compactenum}
-Die beiden Parameter \textit{\(\sigma\)r} und \textit{\(\sigma\)s} beeinflussen den bilateralen Filter, indem bei Erhöhung des Entfernungsparameter \textit{\(\sigma\)r} das Ergebnis dem einer Gaußschen Unschärfe ähnelt, und die Erhöhung des räumlichen Parameters \textit{\(\sigma\)s} zur Glättung von großen Merkmalen führt. Veranschaulicht kann dies furch folgende Grafik werden:
+Die beiden Parameter \textit{\(\sigma\)r} und \textit{\(\sigma\)s} beeinflussen den bilateralen Filter, indem bei Erhöhung des Entfernungsparameter \textit{\(\sigma\)r} das Ergebnis dem einer Gaußschen Unschärfe ähnelt, und die Erhöhung des räumlichen Parameters \textit{\(\sigma\)s} zur Glättung von großen Merkmalen führt. Veranschaulicht kann dies durch folgende Grafik werden:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{pics/ParameterBeeinflussungBilateralFilter.jpg}
@@ -127,7 +127,7 @@ Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Di
     \end{compactenum}
     \item \textit{Hysterese-Schwellenwertbildung: }
     \begin{compactenum}
-        \item  In dieser Phase wird entschieden, welche Kanten wirklich Kanten sind und welche nicht. Hierfür werden zwei Schwellenwerte benötigt, minVal und maxVal. Alle Kanten, deren Intensitätsgradient größer als maxVal ist, sind sicher, dass es sich um Kanten handelt, und diejenigen, die unter minVal liegen, sind sicher, dass es sich um Nicht-Kanten handelt, und werden daher verworfen. Diejenigen, die zwischen diesen beiden Schwellenwerten liegen, werden auf der Grundlage ihrer Konnektivität als Kanten oder Nicht-Kanten klassifiziert. Wenn sie mit "sure-edge"-Pixeln verbunden sind, werden sie als Teil von Kanten betrachtet. Andernfalls werden sie ebenfalls verworfen.
+        \item  In dieser Phase wird entschieden, welche Kanten wirklich Kanten sind und welche nicht. Hierfür werden zwei Schwellenwerte benötigt, minVal und maxVal. Alle Kanten, deren Intensitätsgradient größer als maxVal ist, sind sicher, dass es sich um Kanten handelt, und diejenigen, die unter minVal liegen, sind sicher, dass es sich um Nicht-Kanten handelt, und werden daher verworfen. Diejenigen, die zwischen diesen beiden Schwellenwerten liegen, werden auf der Grundlage ihrer Konnektivität als Kanten oder Nicht-Kanten klassifiziert. Wenn sie mit \textit{sure-edge}-Pixeln verbunden sind, werden sie als Teil von Kanten betrachtet. Ansonsten werden sie ebenfalls verworfen.
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\textwidth]{pics/hysteresis.jpg}
