@@ -25,7 +25,7 @@ Die Applikation ist, wie bei Angular-Projekten üblich, in unterschiedliche Ordn
 \subsubsection{App}
 Die Dateien, welche mit app.component beginnen, werden als App bezeichnet. Sie stellen die Hauptkomponente der Angular-Applikation dar. Für das Routing im Projekt könnte noch eine app-routing.module.ts Datei angelegt werden. Wird diese nicht erstellt, kann das Routing auch in der app.module.ts durchgeführt werden.
 
-\begin{lstlisting}[caption=app.module.ts]
+\begin{lstlisting}[language=typescript, caption=app.module.ts]
     @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +61,7 @@ export class AppModule { }
 
 In dieser Datei finden die Imports der Node-Module statt. Zusätzlich werden auch die verwendeten Services importiert. Die Module werden unterteilt, um sie strukturierter zu speichern. Außerdem werden die Angular Materials Module importiert, welche der Programmiererin oder dem Programmierer helfen, die Applikation leichter zu gestalten. 
 
-\begin{lstlisting}[caption=Routing der Komponenten in der app.module.ts]
+\begin{lstlisting}[language=typescript, caption=Routing der Komponenten in der app.module.ts]
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
@@ -124,9 +124,15 @@ Für die Daten und Logik, welche nicht nur in einer Komponente verwendet werden,
 
 Das Service liefert also die eigentlichen Daten für die Komponente. Die Daten gehören nicht in die Komponente. Explizite Aufgaben sollten in einem entsprechenden Service ausgelagert werden. Um die ausgelagerten Daten dann in die Komponente zu bekommen, wird Dependency Injection verwendet.
 
-Dependency Injection
+\subsection{Dependency Injection}
 Unter Dependency Injection oder auch Inversion of Control wird ein Design-Pattern verstanden. Die Dependency sollte also nicht von der aufrufenden Stelle selbst erzeugt werden. Letztere sollte die Kontrolle abgeben und nur die Abhängigkeiten definieren. 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{./pics/DependencyInjection.png}
+  \caption{Dependency Injection}
+\end{figure}
+\pagebreak
 In Angular werden die verschiedenen Services vom sogenannten Injector verwaltet. Dieser gibt eine Referenz des Service und die aufrufende Stelle an, sofern dieser definiert ist. Über den Konstruktor wird die Definition der Abhängigkeit abgebildet. In einem Konstruktor können dann die Methoden des Service aufgerufen und somit auf die Daten zugegriffen werden.
 \cite{AngularService}
 

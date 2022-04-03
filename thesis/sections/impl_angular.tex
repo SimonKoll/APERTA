@@ -154,7 +154,7 @@ Eine For-Schleife wird verwendet, um den Code mehrmals zu durchzulaufen oder um 
 \subsubsection{Binding}
 Es gibt verschiedene Wege für das Binding in Angular. Sie erlauben die Kommunikation zwischen HTML und TypeScript. In der Profil-Komponente wurde das Property Binding verwendet. Durch das Property Binding wird eine Variable mit einer DOM-Property, HTML Attributen, Direktive oder Komponente Properties verbunden. Die Kommunikationsrichtung dabei ist von TypeScript-Datei zu HTML-Datei.
 \cite{Binding}
-
+\pagebreak
 \begin{lstlisting}[caption=KeyPad Model]
     export class KeyPad {
   Id : number = 0;
@@ -228,6 +228,14 @@ Die Login-Komponente stellt in unserem Projekt die Seite dar, auf der sich angem
 \subsubsection{<section>}
 Der section-Tag stellt eine Unterteilung des Dokuments dar. Etwa eine thematische Gruppierung des Inhaltes, typischerweise mit einer Überschrift. Die section sollte identifizierbar sein.
 \cite{SectionTag}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/Loginseite.png}
+  \caption{Loginseite}
+\end{figure}
+\pagebreak
 
 \begin{lstlisting}[language=typeScript, caption=profile.component.ts]
     import { Input } from '@angular/core';
