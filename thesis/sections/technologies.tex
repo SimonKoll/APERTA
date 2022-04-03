@@ -302,7 +302,15 @@ Es gibt jedoch Ausnahmen, wie die +5V-Pins. Diese bieten für externe Schaltunge
 
 \cite{GPIO}
 \subsubsection{NFC-Leser}
-\subsubsection{Numpad}
+\subsubsection{Numpad [DH]}
+Das Numpad ermöglich dem Benutzer die Eingabe eines 6-stelligen Zahlencodes. Dazu wird bei APERTA ein übliches Nummernfeld angeschlossen, der eingegeben Code wird dann mit den vorhandenen Codes in der Datenbank geprüft und abgeglichen. Stimmen die Zahlenkombinationen überein so öffnet sich das Garagentor. Zur Überprüfung wird der eingegebene Code auf dem LCD angezeigt. So kann sich vergewissert werden, dass keine falschen Zahlen eingegeben werden. Sollte doch eine falsche Kombination eingegeben worden sein, wird auf dem Display eine Fehlermeldung ausgegeben.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/Nummerfeld.png}
+  \caption{Abbildung eines Nummernfelds}
+  \cite{Nummernfeld}
+\end{figure}
 \subsubsection{Kamera}
 Die Kamera ermöglicht dem Raspberry Pi, die Kennzeichen zu sehen und darauf die Kennzeichen zu erkennen. Dazu wird bei APERTA eine handelsübliche Webcam verwendet, die über einen der beiden USB 3.0 Ports am Raspberry angeschlossen wird.
 Um genug Auflösung für die Kennzeichenerkennung zu gewährleisten, wurde auf eine Webcam zurückgegriffen, welche mit bis zu 1920 Pixeln mal 1080 Pixeln aufnehmen kann.
