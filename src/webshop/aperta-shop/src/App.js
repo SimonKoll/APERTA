@@ -7,11 +7,10 @@ import { commerce } from './lib/commerce';
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [products, setProducts] = useState([]);
   const [pproducts, setPproducts] = useState([]);
-  const [cart, setCart] = useState({});
-  const [order, setOrder] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
   
   const fetchComponents = async() => {
     const { data: CProducts } = await commerce.products.list({category_slug: ['components'],});
@@ -22,6 +21,9 @@ const App = () => {
     const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
     setPproducts(PProducts);
   } 
+
+  const [cart, setCart] = useState({});
+  const [order, setOrder] = useState({});
 
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());
