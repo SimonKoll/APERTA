@@ -1,12 +1,18 @@
 \section{Übersicht der Systemarchitektur}
+\setauthor{Simon Koll}
 \begin{figure}[h]
     \centering
     \includegraphics[width=10cm]{pics/APERTASystemarchitektur.jpg}
     \caption{Systemarchitektur}
     \end{figure}
 Diese Diplomarbeit setzt sich aus zwei voneinander unabhängigen Systemen zusammen. Das Shopsystem, bestehend aus einem React-Frontend, kommuniziert mit zwei Bibliotheken, CommerceJS und Stripe, welche für die Produktverwaltung, sowie den Bezahlvorgang zuständig sind. Das Angular-Frontend des Dashboard in Verbindung mit dem NodeJS Server, der MongoDB Datenbank sowie dem Raspberry bietet das zweite System.
+<<<<<<< HEAD
 Der Raspberry ist über GPIOs mit dem RFID-Leser, dem Nummernfeld und dem Display verbunden. Weiters wurde die Kamera an einen der USB 3.0 Ports des Raspberry angeschlossen.
 \section{Frontend (Angular-Applikation) [DH]}
+=======
+Der Raspberry ist über GPIOs mit dem RFID-Leser, dem Nummernfeld und dem Display verbunden. Weiters wurde die Kamera an einen der USB 3.0 Ports des Raspberry angeschlossen. Wird eine der Zutrittsmöglichkeiten positiv abgeschlossen, steuert der Raspberry Pi das Relais an, welches die Garage öffnet.
+\section{Frontend (Angular-Applikation)}
+>>>>>>> 8b2d001391dd8d26c7e90d13a7e95efb34cf0421
 \setauthor{David Hauser}
 
 Die Profilseite ist ein wichtiger Teil des webbasierten Clients, jedoch gibt es für die einzelnen Bauteile auch eigene Unterseiten. Auf diesen Seiten hat die Benutzerin oder der Benutzer noch mehr Möglichkeiten über die Komponenten zu entscheiden. Um die Daten für den Raspberry Pi bereitstellen zu können, werden noch weitere Funktionen benötigt.

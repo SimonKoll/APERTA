@@ -22,7 +22,7 @@ In den Unterseiten der Bauteileinstellungen haben der User und die Userin noch w
 \section{Automatic Number Plate Recognition (ANPR)[SK]}
 \setauthor{Simon Koll}
 \label{lsg:def:anpr}
-Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Der OpenCV-Python-Code für die Nummernschilderkennung umfasst drei Hauptschritte. Der erste Schritt ist die Erkennung von Nummernschildern. Die Konturfunktion wird verwendet, um die rechteckigen Objekte im Bild zu erkennen und das Nummernschild zu finden. Der zweite Schritt ist die Zeichensegmentierung. Sobald die Kontur das Nummernschild erkannt wurde, muss es ausgeschnitten und als neues Bild gespeichert werden. Der letzte Schritt ist die Zeichenerkennung. Die optische Zeichenerkennung wird auf dem ausgeschnittenen Bild durchgeführt, um das Kennzeichen zu erkennen.
+Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Der OpenCV-Python-Code für die Nummernschilderkennung umfasst drei Hauptschritte. Der erste Schritt ist die Erkennung von Nummernschildern. Die Konturfunktion wird verwendet, um die rechteckigen Objekte im Bild zu erkennen und das Nummernschild zu finden. Der zweite Schritt ist die Zeichensegmentierung. Sobald die Kontur des Nummernschildes erkannt wurde, muss es ausgeschnitten und als neues Bild gespeichert werden. Der letzte Schritt ist die Zeichenerkennung. Die optische Zeichenerkennung wird auf dem ausgeschnittenen Bild durchgeführt, um das Kennzeichen zu erkennen.
 
 \subsection{Überprüfung der Kennzeichen}
 Die erkannten Buchstaben werden genutzt, um eine Funktion aufzurufen, welche diese mit den zugelassenen Kennzeichen vergleicht. Dazu werden die zugelassenen Kennzeichen vom Server abgefragt, welcher diese aus der Datenbank lädt. Die Abfrage erfolgt über eine REST-Abfrage.
@@ -33,7 +33,7 @@ REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentationa
     \item \textit{PUT: } PUT bietet die Möglichkeit, bereits bestehende Daten zu ändern.
     \item \textit{DELETE: } DELETE bietet die Möglichkeit, bestehende Daten zu löschen.
 \end{itemize}\cite{WhatIsREST}
-Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeit, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} parallel gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. Dies kann beispielsweise wie folgt erfolgen: 
+Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeiten, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. Dies kann beispielsweise wie folgt erfolgen:
 \begin{lstlisting}[language=Python, caption=Funktionsweise von Multiprocessing, label=lst:lsg:multiprocessing]
 import time
 from threading import Thread
@@ -106,7 +106,7 @@ Für ein Kennzeichen müssen die Daten wie folgt strukturiert sein:
         "active": true
     }
 \end{lstlisting}
-Das Attribut \verb|_id| wird automatisch generiert und ist ein eindeutiger Schlüssel, welcher die eindeutige Identifizierung eines Datensatzes darstellt. Mithilfe des \verb|licenseplate_id| wird eine eindeutige Kennzeichen Identifikationsnummer gespeichert. \verb|licenseplate| ist das Kennzeichen, welches vom Client übergeben wurde. \verb|time_created| ist die Zeit, zu der das Kennzeichen erstellt wurde. \verb|active| gibt an, ob das Kennzeichen der aktiv ist.
+Das Attribut \verb|_id| wird automatisch generiert und ist ein eindeutiger Schlüssel, welcher die eindeutige Identifizierung eines Datensatzes darstellt. Mithilfe des \verb|licenseplate_id| wird eine eindeutige Kennzeichenidentifikationsnummer gespeichert. \verb|licenseplate| ist das Kennzeichen, welches vom Client übergeben wurde. \verb|time_created| ist die Zeit, zu der das Kennzeichen erstellt wurde. \verb|active| gibt an, ob das Kennzeichen aktiv ist.
 
 \subsubsection{Nummernfeld}
 Bei einer Nummernfeld-Kombination sieht der Datensatz wie folgt aus:
