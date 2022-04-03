@@ -1,7 +1,156 @@
-\section{Auswahl der Technologie - Client}
-\setauthor{David Hauser}
+\section{Auswahl der Technologie - Client [DH] [BG]}
+\setauthor{Benjamin Golic}
+
+Da die Kennzeichenverwaltung und der Web-Shop plattformunabhängig eingesetzt werden sollen, ist die Entscheidung auf eine Web-Applikation gefallen.
+
+Eine Web-Applikation ist eine Anwendung, die über das Internet abrufbar ist. Diese wird mittels Client-Server-Architektur umgesetzt. Bei dieser Architektur befinden sich die Daten und die Logikschicht auf einem Server und die Darstellung davon erfolgt im Webbrowser des Benutzenden.
+
+Da Web-Applikationen lediglich einen Web-Browser erfordern, sind sie plattformübergreifend nutzbar und erfordern kein spezielles Betriebssystem.
+Im Vergleich dazu, werden bei klassischen Softwarelösungen oftmals Betriebssysteme oder spezielle Programme vorausgesetzt, um auf die vollständige Funktionalität zurückgreifen zu können.
+
+\subsubsection{Komponente: Webserver [BG]}
+\setauthor{Benjamin Golic}
+Web-Applikationen werden auf Webservern ausgeführt. Im einfachsten Fall wird nur ein Server genutzt, allerdings handelt es sich in der Praxis meist um mehrere Systeme. 
+
+Grundsätzlich wird zwischen zwei Architekturen unterschieden, zum einen „Standalone“ und zum anderen „Integriert“. Bei der „Standalone“ – Architektur ist die Webanwendung ein Skript, das bei jeder Anfrage neu ausgeführt wird. Bei der „Integriert“ – Architektur ist die Webanwendung ein Teil des Webservers.
+
+Für die Datenspeicherung werden Dateien oder Datenbankserver verwendet. Außerdem können benutzerbezogene Daten in Form von Cookies auf dem Clientrechner gespeichert werden.
+
+\subsubsection{Komponente: Client [BG]}
+\setauthor{Benjamin Golic}
+
+Der Web-Client ist der Web-Browser, der mit dem Webserver mittels des Request-Response-Verfahrens kommuniziert. Hierbei sendet der Web-Browser einen HTTP-Header mit einem Request an den Webserver, und der Webserver antwortet darauf mit einer HTTP-Response. Ein Request kann beispielsweise die Nachfrage nach einem Webseiteninhalt sein. 
+
+\subsubsection{Vorteile einer Webapplikation: [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{itemize}
+  \item Plattformunabhängig
+  \item Keine zusätzlichen Installationen notwendig
+  \item Wartungsarbeiten finden an der Anwendung auf dem Webserver statt, dies bedeutet, dass die Nutzenden keine Updates installieren müssen, um die neuen Versionen der Web-App nutzen zu können
+\end{itemize}
+
+\subsubsection{Nachteile einer Webapplikation: [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{itemize}
+  \item -	Konstant funktionsfähige Internetverbindung notwendig
+  \item -	Da alle Daten auf einem Cloud-System gespeichert werden, sind bei einem Hackerangriff alle Daten in Gefahr
+\end{itemize}
+\cite{WebApplikation} \cite{WebClientServer} \cite{dvsw}
 
 \subsection{Unterschied Framework und Library}
+\setauthor{Benjamin Golic}
+
+Generell verfolgen Frameworks und Libraries das gleiche Ziel, nämlich den Funktionsumfang eines Programmes zu erweitern. Jedoch gibt es grundlegende Unterschiede zwischen den beiden.
+
+\subsubsection{Library: [BG]}
+\setauthor{Benjamin Golic}
+
+Bei Libraries handelt es sich um Sammlungen von Klassen und Funktionen. Diese können die Entwickelnden in den eigenen Code einbinden. Der Zugriff auf die Funktionen der Library erfolgen über die Programmierschnittstelle (API, kurz für Application Programming Interface). Dieser ist allerdings auf „öffentliche“ Funktionen begrenzt. „Private“ Funktionen arbeiten nur im Hintergrund.
+
+\subsubsection{Framework: [BG]}
+\setauthor{Benjamin Golic}
+
+Frameworks sind eine spezielle Art von Libraries, die allerdings keine Funktionen enthalten. Frameworks liefern den Bauplan und das Grundgerüst für ein Programm.
+
+\cite{LibFramw}
+
+\begin{quote}
+  „Das Framework stellt eine wiederverwendbare, gemeinsame Struktur für Anwendungen zur Verfügung. Entwickler binden das Framework in ihre eigenen Anwendungen ein und erweitern es so, dass es ihre bestimmten Anforderungen erfüllt.“
+\end{quote} \cite{framevsL2}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/LibraryFramework.png}
+  \caption{Unterschied zwischen der Funktionsweise eines Frameworks und einer Library}
+  \cite{LibFramwImage}
+\end{figure}
+
+Um das Programmieren einer Web-Applikation zu erleichtern, wird auf JavaScript-Libraries und -Frameworks zurückgegriffen. Hier ist es möglich, zwischen vielen verschiedenen Möglichkeiten zu wählen. Die Wahl des richtigen Werkzeugs hängt von unzähligen Faktoren ab. Beispielsweise achten viele auf die Popularität oder auf die Etablierung. Für manche spielt auch die Unterstützung der Community eine wichtige Rolle bei der Entscheidung.
+
+Die am häufigsten verwendeten JavaScript-Frameworks beziehungsweise -Libraries sind Angular, Vue.js und React.
+\cite{framevsL2}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/interesseFL.png}
+  \caption{Interesse im zeitlichen Verlauf}
+  \cite{InteresseGraph}
+\end{figure}
+
+Der größte Unterschied zwischen den drei populärsten JavaScript-Frameworks ist die Verwendung des DOMs (Document Object Model). React und Vue verwenden ein virtuelles DOM, wobei hingegen Angular auf das echte DOM setzt. Die Art des DOMs wirkt sich auf die Leistungsfähigkeit aus. Da bei dem virtuellem DOM die Nodes (Node-Schnittstellen sind die zentralen Objekte des DOMs) nur bei Bedarf neu geladen werden müssen, ist die Leistung deutlich besser im Vergleich zu echten DOMs.
+
+Ein weiterer sehr großer Unterschied zwischen den Frameworks ist das Architekturmuster. Vue basiert auf dem Architekturmuster MVVM und Angular auf MVC, React hingegen basiert auf gar keinem Architekturmuster.
+MVC steht für „Model View Controller“ und ist ein beliebtes Architekturmuster in der Programmentwicklung. Hierbei wird das Programm in drei Abschnitte aufgeteilt, in ein Model, eine Ansicht und eine Steuerung.
+
+Das Model wird dazu verwendet, um die Logik der Anwendung zu implementieren. Es besteht aus mehreren Model-Klassen, wobei jede eine grundlegende Einheit innerhalb der verwendeten Datenstruktur verwendet. Des Weiteren stellen diese Klassen die grundlegenden Datenoperationen zur Verfügung.
+
+Die View-Klassen sind für die grafische Benutzeroberfläche zuständig. Sie zeigen die von den Model-Klassen zur Verfügung gestellten Daten an, ohne eine direkte Verbindung aufzubauen.
+
+Der Controller stellt ein Verbindungsstück zwischen den View- und Model-Klassen dar. Dieser ist für die Benutzeraktionen, die von der View weitergeleitet werden, zuständig.
+
+\subsubsection{Vorteile von MVC: [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{itemize}
+  \item Ein Model kann in mehreren Views dargestellt werden
+  \item Niedrige Kupplung
+  \item Hohe Wiederverwendbarkeit
+  \item Hohe Wertbarkeit
+\end{itemize}
+
+\subsubsection{Nachteile von MVC: [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{itemize}
+  \item Keine klare Definition
+  \item Zu enge Verbindung zwischen View und Control
+\end{itemize}
+\cite{mvcBild} \cite{mvcVSmvvm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/mvc.jpg}
+  \caption{Aufbau des MVC-Patterns}
+  \cite{mvcBild}
+\end{figure}
+
+MVVM steht für „Model-View-ViewModel“ und ist ebenfalls ein Software-Architekturmuster. Es besteht aus einem Model, einem ViewModel und einer View. 
+
+Wie beim MVC enthalten die Model-Klassen die Daten. Das ViewModel fungiert als Verbindung zwischen Model und View. Es wandelt die Datenobjekte des Models so um, dass die View diese leichter darstellen kann. Ebenfalls wie beim MVC ist die View hier für die Benutzeroberfläche zuständig.
+
+Der konzeptionelle Unterschied zwischen MVC und MVVM liegt darin, dass für MVC der Einstiegspunkt der Anwendung der Controller ist, während für MVVM der Einstiegspunkt die View ist.
+\cite{mvcVSmvvm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/mvvm.jpeg}
+  \caption{Aufbau des MVVM-Patterns}
+  \cite{mvcVSmvvm}
+\end{figure}
+
+Schlussendlich sind Angular und React für das Frontend ausgewählt worden, wobei Angular für das Frontend der Systemverwaltung und React für den Web-Shop verwendet wurde. Diese Entscheidungen wurden von mehreren Faktoren beeinflusst. Die Hauptfaktoren hierbei waren die persönlichen Erfahrungen und Kompetenzen.
+
+\subsubsection{Vorteile von MVVM: [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{itemize}
+  \item Logik kann unabhängig von der Darstellung bearbeitet werden
+  \item Nützlich bei größeren Teamarbeiten
+  \item Vereinfachte Testung der Komponenten
+\end{itemize}
+
+\subsubsection{Nachteile von MVVM: [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{itemize}
+  \item Data-Binding erschwert das Debugging
+  \item	Das bidirektionales Data-Binding ist für Wiederverwendung von Code ungünstig
+\end{itemize}
+
+\cite{mvcBild} \cite{mvcVSmvvm}
+
 \subsection{Technologie zur Entwicklung des Frontends}
 \subsection{Angular [DH]}
 \setauthor{David Hauser}
