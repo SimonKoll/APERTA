@@ -3,7 +3,134 @@
 
 \subsection{Unterschied Framework und Library}
 \subsection{Technologie zur Entwicklung des Frontends}
-\subsection{Angular}
+\subsection{Angular [DH]}
+\setauthor{David Hauser}
+Angular ist eines der großen Frameworks für Single-Page-Webanwendungen. Genauer ist es ein sehr erfolgreiches, clientseitiges JavaScript-Web-Framework zur Erstellung von Single-Page-Webanwendungen. Mittlerweile hat sich Angular sogar schon eher zu einer Plattform weiterentwickelt. Neben der reinen „API“ zur Anwendungsentwicklung beinhaltet Angular auch schon Entwicklungs-Werkzeuge, Generatoren und mitgelieferte Architektur-Konzepte. Es ist somit eine Ready-to-Rock Lösung, um Enterprise-Anwendungen zu entwickeln.
+
+Angular wurde 2009 auf den Markt gebracht und konnte sich durch ihre Mission bei den vielen anderen Frameworks durchsetzen. Es ist ein wunderbares Ökosystem mit einer großartigen Community entstanden. Der Fokus auf Qualität und Enterprise ist dennoch zu spüren. Nach eigenen Angaben nutzt selbst Google das Framework in über 1600 Projekten.
+
+\subsubsection{Das Ökosystem von Angular [DH]}
+Die Plattform von Angular ist sehr groß. Die Basis dafür bietet das Core-Framework, in welchem fundamentale Konzepte implementiert sind, welche für moderne Webanwendungen essenziell sind. Separat sind noch zwei weiter Core-Konzepte nutzbar, diese sind die Angular CLI und die Verwaltung von Komponenten. Sie bilden die Kernfunktion und werden in fast allen Anwendungen benötigt. Einige weiter Module lassen sich noch einbinden:
+
+\begin{itemize}
+  \item Routing – Routing für Single Page Applications
+  \item forms – Formulare und Validierung
+  \item i18n – Mehrsprachige Anwendungen
+  \item Animations – Animationen für Transitionen
+  \item PWA – Offline Fähigkeiten
+  \item HTTP – HTTP, Rest und GraphQL Kommunikation
+  \item und noch unzählige mehr  
+\end{itemize}
+\cite{AngularBeschreibung}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/Ökosystem_Angular.png}
+  \caption{Ökosystem von Angular}
+  \cite{OekosystemAngularBild}
+\end{figure}
+
+\textit{Konsistenz}
+Codekonsistenz ist ein wichtiges Ziel, welches bei der Programmierung mit Angular immer anzustreben ist. Das gesamte Framework basiert auf Komponenten und Diensten, diese sehen in ihrem Aufbau immer gleich aus. Sie können sich als wie ein Baustein vorgestellt werden. Alle Angular-Komponenten führen zu Beginn folgendes aus:
+\begin{itemize}
+  \item Import der erforderlichen ES-Module
+  \item Definiton eines @Component-Dekorators
+  \item Platzierung von Code in einer Komponentenklasse
+\end{itemize}	
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/Komponenten_Klasse.png}
+  \caption{Aufbau einer Komponente}
+  \cite{AufbauKomponenteBild}
+\end{figure}
+
+Der Aufbau eines Bausteins ist immer gleich, ganz gleich welche Komponente geschrieben wird. Natürlich können einige Aspekte hinzugefügt werden, doch die Gesamtstruktur sieht immer gleich aus. Das sorgt für Konsistenz von Anfang an.
+
+Services sind ein weiterer großer Bereich der Konsistenz in Angular. Diese sind ebenfalls wieder aufgebaut wie Bausteine. In den Konstruktor einer Service Klasse können alle Abhängigkeiten, die vom Service erfordert werden, eingefügt werden.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/Code_Service.png}
+  \caption{Beispielcode einer Service-Klasse}
+\end{figure}
+
+\subsubsection{Produktivität}
+Die Produktivität rückt durch die Konsistenz in den Vordergrund. Denn der Entwickler muss sich keine Gedanken darüber machen, ob er die Dinge auf die „richtige Weise“ macht. Komponenten und Services sehen gleich aus, wiederverwendbarer Anwendungscode wird in Serviceklassen abgelegt und ES-Module organisieren zugehörige Funktionen und ermöglichen, dass der Code self-contained und self-responsible ist. Daten werden mithilfe von Eingabeeigenschaften an Komponenten übergeben und lassen sich durch Ausgabeeigenschaften weitergeben.
+
+\subsubsection{Wartbarkeit}
+Angular hat den Vorteil, dass es von einer großen Community, mit Hilfe von Open-Source-Beiträgen regelmäßig erweitert. Den größten Teil der Erweiterungen trägt allerdings Google bei. Es ist nie sicher, wie lange ein bestehendes System genutzt werden kann. Angular hat den Vorteil, dass sich Google über die Auswirkungen von etwaigen Änderungen bewusst ist und da Google Angular selbst in Projekten verwendet, gibt es die Sicherheit, dass sich nichts schlagartig verändert oder die Wartung eingestellt wird. Neben der Unterstützung durch das Angular Team, ist auch die beschriebene Konsistenz ein Vorteil für die einfache Wartbarkeit.
+
+\subsubsection{Modularität}
+Angular organisiert den Code in sogenannten „Buckets“. Komponenten, Services, Pipes oder Anweisungen müssen in einem oder mehreren Buckets organisieren. Die „Buckets“ werden in Angular als Module bezeichnet. Sie bieten die Möglichkeit, die Anwendungsfunktionalität zu organisieren und in Funktionen oder wiederverwendbare Abschnitte zu unterteilen. Module bieten außerdem noch viele andere Vorteile. 
+
+\subsubsection{Frühzeitige Fehlererkennung}
+TypeScript ist die Sprache zur Erstellung von Angular, dass bringt einige Vorteile mit sich:
+
+\begin{itemize}
+  \item TypeScript ist keine eigenständige Sprache und somit eine Obermenge von JavaScript. Es kann vorhandener ES JavaScript Code verwendet werden und der Code funktioniert einwandfrei.
+  \item Außerdem unterstützt TypeScript die wichtigsten ES-Funktionen.
+  \item Typen werden von TypeScript unterstützt, und sind für eine Frühzeitige Fehlererkennung enorm wichtig. Dadurch wird leichter erkannt ob etwas falsch übergeben oder verwendet wird.
+  \item TypeScript Code kann direkt über den Browser debuggt werden.
+  \item Bei TypeScript können ebenso Klassen und/oder funktionale Programmiertechniken verwendet werden.
+\end{itemize}
+
+Angular wurde ebenso mit dem hinter Gedanken an Testbarkeit entwickelt. Die Angular-CLI macht den Prozess des Komponententests und des End-to-End Tests sehr einfach. Standardmäßig wird Karma und Jasmine dafür verwendet. Zudem kann mit dem Befehl „ng test“ alle im Projekt vorhandenen Tests ausgeführt werden.
+
+\cite{VorteileAngular}
+
+\subsubsection{Nachteile von Angular}
+\begin{itemize}
+  \item Es gibt viele Wege in Angular das gleiche Ziel zu erreichen, deshalb ist es für den Programmierer oft schwer sich für den richtigen und effizientesten Weg zu entscheiden.
+  \item Zudem sind die Lebenszyklusmethoden komplex, was sie nur schwer zu verstehen lässt.
+  \item Das Nutzen von Direktiven ist für die Manipulation des DOM sehr hilfreich, jedoch ist die Erstellung nicht gerade einfach.
+  \item Das Erlernen von Angular ist aufgrund von nicht vollständig ausreichender Dokumentation etwas schwieriger.
+\end{itemize}
+\cite{NachteileAngular}
+
+\subsection{Angular Materials}
+Um das Design der Anwendung zu vereinfachen, wurde Angular Materials verwendet. Angular Materials sind moderne, schlichte Designkomponenten, mit denen unter relativ geringem Aufwand optisch ansprechende Anwendungen gestaltet werden können, welche sich auch auf allen Anzeigegeräten mit geringem Zusatzaufwand umsetzen lassen. \cite{AngularMaterials}
+
+Objekte sollen in einem drei-dimensionale Raum simuliert und eine natürliche, intuitive Darstellung und Interaktion ermöglicht werden. Bei der Entwicklung müssen dafür verschieden Prinzipien beachtet werden. 
+
+\begin{itemize}
+  \item Materialien besitzen eine einheitliche Höhe von 1dp, können aber in x- und y-Dimension verschieden sein.
+  \item Der geworfene Schatten von Materialen ist je nach Höhe unterschiedlich.
+  \item Materialien sind für die Darstellung von Inhalten, welche dynamisch veränderbar sind, zuständig. Es kann nur ein Teil von Materialien damit ausgefüllt werden, der Platz ist durch dessen Dimensionen beschränkt.
+  \item Materialien sind Festkörper und können nur an freien Positionen eingesetzt werden. Ihre Transformationen sind, auf freien Platz im Raum, beschränkt.
+  \item Sie dürfen ihre Form und Größe jederzeit ändern, wobei die zuvor genannten Einschränkungen zu beachten sind. Die Materialien sind trotzdem als fest anzusehen und dürfen nicht gefalten oder verbogen werden.
+  \item Materialien können sich verbinden oder trennen.
+\end{itemize}
+
+Es werden von Angular Material bereits viele Designideen vorumgesetzt angeboten. Diese müssen oftmals nur als css-Klasse oder Direktive angefügt werden.
+
+\begin{itemize}
+  \item Theming: Das Farbschemata kann mittels scss-Mixins einfach geändert werden. Um komplexere Änderungen vorzunehmen, können eigene Mixins erstellt werden.
+  \item Elevation helpers: Die z-Positionen können durch css-Klassen oder Mixins einfach dargestellt werden. Es gibt auch ein Mixin für Animationen bei Höhenänderung.
+  \item Typography: font-size, -height und -weight sind von css-Klassen vorgegeben, mithilfe von Mixins können auch diese verändert werden.
+\end{itemize}
+
+\begin{lstlisting}[caption=Hinzufügen von Angular Materials]
+  npm install --save @angular/material @angular/cdk @angular/animations
+\end{lstlisting}
+
+Mit diesem Befehl wird Angular Material zum Projekt hinzugefügt.
+Material: Dieses Standardpaket enthält die Materialkomponenten.
+CDK (Component Dev Kit): Dieses Paket stellt dem Entwickler, komponentenunabhängige Werkzeuge zur Verfügung.
+Animations: Für erweiterte Animation, wird diese Paket benötigt.
+
+Theme
+Das Design von Angular Materials muss durch ein Theme definiert werden. Es kann eines der vorgefertigen verwendet oder auch eine eigenes definiert werden. Zur Auswahl bei den vorgefertigten Themes stehen:
+
+\begin{itemize}
+  \item deeppurple-amber.css
+  \item indigo-pink.css
+  \item pink-bluegrey.css
+  \item purple-green.css
+\end{itemize}
+\cite{AngularMaterials}
+
+
 \subsection{React}
 
 \section{Auswahl der Technologie - Datenbank[SK]}
@@ -175,7 +302,15 @@ Es gibt jedoch Ausnahmen, wie die +5V-Pins. Diese bieten für externe Schaltunge
 
 \cite{GPIO}
 \subsubsection{NFC-Leser}
-\subsubsection{Numpad}
+\subsubsection{Numpad [DH]}
+Das Numpad ermöglich dem Benutzer die Eingabe eines 6-stelligen Zahlencodes. Dazu wird bei APERTA ein übliches Nummernfeld angeschlossen, der eingegeben Code wird dann mit den vorhandenen Codes in der Datenbank geprüft und abgeglichen. Stimmen die Zahlenkombinationen überein so öffnet sich das Garagentor. Zur Überprüfung wird der eingegebene Code auf dem LCD angezeigt. So kann sich vergewissert werden, dass keine falschen Zahlen eingegeben werden. Sollte doch eine falsche Kombination eingegeben worden sein, wird auf dem Display eine Fehlermeldung ausgegeben.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/Nummerfeld.png}
+  \caption{Abbildung eines Nummernfelds}
+  \cite{Nummernfeld}
+\end{figure}
 \subsubsection{Kamera}
 Die Kamera ermöglicht dem Raspberry Pi, die Kennzeichen zu sehen und darauf die Kennzeichen zu erkennen. Dazu wird bei APERTA eine handelsübliche Webcam verwendet, die über einen der beiden USB 3.0 Ports am Raspberry angeschlossen wird.
 Um genug Auflösung für die Kennzeichenerkennung zu gewährleisten, wurde auf eine Webcam zurückgegriffen, welche mit bis zu 1920 Pixeln mal 1080 Pixeln aufnehmen kann.
