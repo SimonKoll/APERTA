@@ -1,0 +1,247 @@
+\subsection{Implementierung von Commerce.js}
+\setauthor{Benjamin Golic}
+
+Um die, in Commerce.js gespeicherten, Produkte im Webshop anzeigen zu können, ist eine API-Datenabfrage erforderlich. Die Commer.js eigene Library ermöglicht dies ganz einfach mit der Methode „commerce.products.list()“. Die Abfrage sieht somit wie folgt aus:
+
+\begin{lstlisting}[language=JavaScript]
+    const [products, setProducts] = useState([]);
+    const [pproducts, setPproducts] = useState([]);
+    
+    const fetchComponents = async() => {
+      const { data: CProducts } = await commerce.products.list({category_slug: ['components'],});
+      setProducts(CProducts);
+    }
+  
+     const fetchPackages = async() => {
+      const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
+      setPproducts(PProducts);
+    }
+\end{lstlisting}
+
+Hier werden die Daten nach Kategorie gruppiert abgerufen und in States gespeichert. Damit die potenziellen Käuferinnen oder Käufer die Produkte auf der Weboberfläche sehen können, benötigen wir folgenden Source-Code:
+
+\begin{lstlisting}[language=JavaScript]
+    const Product = ({ product, onAddToCart }) => {
+        const classes = useStyles();
+        const handleAddToCart = () => onAddToCart(product.id, 1);
+      
+        return (
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=HTML]
+    <div className="card">
+         <Link className="product-link" to={`/detail/${product.id}`}>
+            <img className="card__img" src={product.image.url} alt={product.name} />
+        </Link>
+      
+        <Link className="product-link" to={`/detail/${product.id}`}>
+            <div className="card__banner">
+                <h2 className="card__title">{product.name}</h2>
+                <h3 className="card__price">{product.price.formatted}</h3>
+            </div>
+            <div className="card__content" dangerouslySetInnerHTML={{ __html: product.description }} />
+        </Link>
+        <div className="buy-btn">
+            <div className="buyBTN-content" onClick={handleAddToCart}>
+                <span className="buyBTN-text">Add to Cart</span>
+                <span className="addShoppingC"><AddShoppingCart className={classes.ascIcon} /></span>
+            </div>
+        </div>
+    </div>
+\end{lstlisting}
+
+Die Function-Komponente bekommt „product“ und „onAddToCart“ als Parameter übergegen. Der Parameter „onAddToCart“ wird für die Funktionalität des Warenkorbs verwendet, er ermöglicht das Hinzufügen von Produkten.
+
+Die Produkte werden in „Cards“ dargestellt, diese wurden mit Div-Boxen aufgebaut. Um das Produktbild anzuzeigen, muss als Source des Image-Tags „{product.image.url}“ verwendet werden. Der Produktname wird mittels „{product.name}“ angezeigt.  Damit der Preis mit korrektem Format dargestellt werden kann, wird die Property „{product.price.formatted}“ genutzt. Um die Produktbeschreibung anzeigen zu können, ist es erforderlich diese mithilfe der Eigenschaft „dangerouslySetInnerHTML“ aufzurufen. Dabei wird die Property der Eigenschaft übergeben.
+
+Der Link-Tag wird dazu verwendet, um auf eine Detail-Ansicht des Produktes weiterzuleiten. Hierbei werden dynamische Unterseiten mithilfe von dynamischen URLs erstellt, da die Produkt-ID als URL-Parameter übergeben wird.
+
+\subsubsection{Warenkorb}
+\setauthor{Benjamin Golic}
+Um einen funktionsfähigen Waren zu erhalten, sind einige States erforderlich, diese werden wie folgt gesetzt:
+
+\begin{lstlisting}[language=JavaScript]
+    const [cart, setCart] = useState({});
+    const [order, setOrder] = useState({});
+
+    const fetchCart = async () => {
+        setCart(await commerce.cart.retrieve());
+    };
+
+    const handleAddToCart = async (productId, quantity) => {
+        const item = await commerce.cart.add(productId, quantity);
+        setCart(item.cart);
+    };
+
+    const handleUpdateCartQty = async (lineItemId, quantity) => {
+        const response = await commerce.cart.update(lineItemId, { quantity });
+        setCart(response.cart);
+    };
+
+    const handleRemoveFromCart = async (lineItemId) => {
+        const response = await commerce.cart.remove(lineItemId);
+        setCart(response.cart);
+    };
+
+    const handleEmptyCart = async () => {
+        const response = await commerce.cart.empty();
+        setCart(response.cart);
+    };
+
+    const refreshCart = async () => {
+        const newCart = await commerce.cart.refresh();
+        setCart(newCart);
+    };
+
+    const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+        try {
+        const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+
+        setOrder(incomingOrder);
+
+        refreshCart();
+        } catch (error) {
+        setErrorMessage(error.data.error.message);
+        }
+    };
+
+    useEffect(() => {
+        fetchComponents();
+        fetchPackages();
+        fetchCart();
+        
+    }, []);
+\end{lstlisting}
+
+Die „useEffect()“-Methode ermöglicht die automatische Aktualisierung der Daten, ohne die Website zu aktualisieren.
+
+Um einen Bezahlvorgang zu ermöglichen, wird die Plattform „Stripe“ verwendet. Die Programmierung des Bezahlvorgangs erfolgt mittels Checkout-Token, diese werden durch Commerce.js generiert. Die Generierung dieses Tokens erfolgt, wie folgt:
+
+\begin{lstlisting}[language=JavaScript]
+    useEffect(() => {
+        if (cart.id) {
+          const generateToken = async () => {
+            try {
+              const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
+    
+              setCheckoutToken(token);
+            } catch {
+              if (activeStep !== steps.length) navigate('/');
+            }
+          };
+    
+          generateToken();
+        }
+      }, [cart]);
+\end{lstlisting}
+
+Ein wichtiger Bestandteil des Bestellvorgangs ist die Angabe der Versandadresse. Hierfür wird ein Adressformular verwendet. Nach der erfolgreichen Eingabe werden Daten in einem State abgespeichert.
+
+\begin{lstlisting}[language=JavaScript]
+    const test = (data) => {
+        setShippingData(data);
+    
+        nextStep();
+    };
+\end{lstlisting}
+
+Mithilfe folgender Zeile wird eine Bestellbestätigung angezeigt, nachdem man alle Schritte des Bestellvorgangs durchgegangen ist:
+
+\begin{lstlisting}[language=JavaScript]
+    {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
+\end{lstlisting}
+
+Für das Adressformular werden für alle benötigten Daten. bezüglich des Versandes, die Auswahlmöglichkeiten von Commerce.js abgerufen und in States abgespeichert. Dies erfolgt folgendermaßen:
+
+\begin{lstlisting}[language=JavaScript]
+    const [shippingCountries, setShippingCountries] = useState([]);
+    const [shippingCountry, setShippingCountry] = useState('');
+    const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+    const [shippingSubdivision, setShippingSubdivision] = useState('');
+    const [shippingOptions, setShippingOptions] = useState([]);
+    const [shippingOption, setShippingOption] = useState('');
+    const methods = useForm();
+
+    const fetchShippingCountries = async (checkoutTokenId) => {
+        const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
+
+        setShippingCountries(countries);
+        setShippingCountry(Object.keys(countries)[0]);
+    };
+
+    const fetchSubdivisions = async (countryCode) => {
+        const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+
+        setShippingSubdivisions(subdivisions);
+        setShippingSubdivision(Object.keys(subdivisions)[0]);
+    };
+
+    const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => {
+        const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region: stateProvince });
+
+        setShippingOptions(options);
+        setShippingOption(options[0].id);
+    };
+
+    useEffect(() => {
+        fetchShippingCountries(checkoutToken.id);
+    }, []);
+
+    useEffect(() => {
+        if (shippingCountry) fetchSubdivisions(shippingCountry);
+    }, [shippingCountry]);
+
+    useEffect(() => {
+        if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
+    }, [shippingSubdivision]);
+\end{lstlisting}
+
+\newpage
+
+\subsection{Implementierung von Stripe}
+\setauthor{Benjamin Golic}
+
+Für den Bezahlungsvorgang wird mithilfe des Systems „Stripe“ ein Zahlungsmittelformular erstellt. Dieses Formular dient dazu, die Kreditkartendaten des Kaufenden zu erhalten. Die Daten werden überprüft und wenn es alle Kriterien erfüllt, wird das Geld abgebucht und auf das Geschäftskonto überwiesen. Somit ist der Bestellvorgang beendet.
+
+Das Ganze wird mit folgendem Source-Code implementiert:
+
+\begin{lstlisting}[language=JavaScript]
+    const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
+    const handleSubmit = async (event, elements, stripe) => {
+        event.preventDefault();
+
+        if (!stripe || !elements) return;
+
+        const cardElement = elements.getElement(CardElement);
+
+        const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
+
+        if (error) {
+        console.log('[error]', error);
+        } else {
+        const orderData = {
+            line_items: checkoutToken.live.line_items,
+            customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
+            shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
+            fulfillment: { shipping_method: shippingData.shippingOption },
+            payment: {
+            gateway: 'stripe',
+            stripe: {
+                payment_method_id: paymentMethod.id,
+            },
+            },
+        };
+
+        console.log(orderData);
+
+        onCaptureCheckout(checkoutToken.id, orderData);
+
+        nextStep();
+        }
+    };
+\end{lstlisting}
+
+Stripe liefert das Formular für die Kreditkartendaten mittels „stripe.createPaymentMethod“. Alle anderen erforderlichen Daten sind bereits in States abgespeichert, diese werden alle in das Objekt „orderData“ gespeichert. Die Zahlungsmethode wird ebenfalls dort abgespeichert. 
+
+Am Ende der Bestellung  wird die Commerce.js Methode „onCaptureCheckout“ aufgerufen, hierbei werden der Checkout-Token und das Objekt „orderData“ übergeben. Diese Methode dient dazu den Bestellvorgang abzuschließen. Alles weitere wird im Hintergrund erledigt.
