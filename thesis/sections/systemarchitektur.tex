@@ -136,5 +136,218 @@ Unter Dependency Injection oder auch Inversion of Control wird ein Design-Patter
 In Angular werden die verschiedenen Services vom sogenannten Injector verwaltet. Dieser gibt eine Referenz des Service und die aufrufende Stelle an, sofern dieser definiert ist. Über den Konstruktor wird die Definition der Abhängigkeit abgebildet. In einem Konstruktor können dann die Methoden des Service aufgerufen und somit auf die Daten zugegriffen werden.
 \cite{AngularService}
 
-\section{Frontend (React-Applikation)}
+\section{Frontend (React-Applikation) [BG]}
 \setauthor{Benjamin Golic}
+Die React-Applikation besteht aus mehreren Komponenten.
+
+\subsubsection{Applikationsstruktur}
+\setauthor{Benjamin Golic}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{pics/react-ordnerstruktur.png}
+  \caption{Ordnerstruktur der React-Applikation}
+\end{figure}
+
+Grundsätzlich besteht eine React-App aus Node-Modules, einer TS-Config, einem Package-File und dem Source-Code. Das Package-File dient zur Verwaltung der Projekt-Abhängigkeiten und -Metadaten. Die TS-Config ist für die Kompilieroptionen des Projekts verantwortlich.
+
+Des Weiteren verwenden Entwicklerinnen oder Entwickler eine „.env“-Datei in ihren Projekten. Da diese Datei sensible Daten, wie beispielsweise API-Schlüssel enthalten, werden sie nicht versioniert. Aus diesem Grund müssen die Entwickelnden die Datei lokal gespeichert haben. Die „.env“-Datei ist eine gewöhnliche Textdatei, die Umgebungsvariablen beinhaltet.
+\cite{envFile}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/bsp-env.png}
+  \caption{Ordnerstruktur der React-Applikation}
+  \cite{envExample}
+\end{figure}
+
+\subsubsection{React-Komponente [BG]}
+\setauthor{Benjamin Golic}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{pics/react-komponentenstruktur.png}
+  \caption{Komponenten der React-Applikation und Aufbau der „ProductDetail“-Komponente}
+\end{figure}
+
+Grundsätzlich gibt es keine Vorgaben wie eine React-Komponente aufgebaut sein soll. Es gibt lediglich gängige Ansätze, an die sich die Entwickelnden halten können. Die zwei beliebtesten Ansätze sind die Gruppierung nach Markmalen oder Routen und die Gruppierung nach dem Dateitypen.
+\cite{reactComponents}
+
+In diesem Projekt bestehen die Komponenten aus einer „.jsx“-Datei, einer „styles.js“-Datei und meistens zusätzlich aus einer „styles.css“-Datei. Die „.jsx“-Datei ist für den Aufbau und der Logik verantwortlich. Die anderen beiden Dateien werden für die Gestaltung verwendet.
+
+Die „App.js“-Datei ist die Haupt-Komponente der React-Applikation. Diese Komponente dient als Container für alle anderen Komponenten. Sie enthält unter anderem das Routing.
+\cite{appJS}
+
+Das Routing dient dazu, die Benutzeroberfläche mit dem URL zu synchronisieren. Es legt fest, welcher Inhalt bei welcher URL angezeigt werden soll. Es ermöglicht die Navigierung durch die Web-Applikation, ohne die komplette Seite neu laden zu müssen.
+\cite{reactRouting}
+
+\begin{lstlisting}[language=JavaScript, caption=Source-Code des Routers, label=lst:impl:reactRouterSourceCode]
+  <Router>
+    <div style={{ display: 'flex' }}>
+      <CssBaseline />
+      <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+      <Routes>
+        <Route path="/components" element={<Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />} />
+        <Route path="/packages" element={<Products products={pproducts} onAddToCart={handleAddToCart} handleUpdateCartQty />} />
+        <Route path="/home" element={<Home products={pproducts} onAddToCart={handleAddToCart} handleUpdateCartQty/>} />
+        <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} /> } />
+        <Route exact path="/checkout" element={ <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} /> } />
+        <Route exact path="/" element={<Home products={pproducts} onAddToCart={handleAddToCart} handleUpdateCartQty/>} />
+        <Route exact path="/detail/:id" element={<Details onAddToCart={handleAddToCart} handleUpdateCartQty />} />
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </div>
+  </Router> 
+\end{lstlisting}
+
+\subsubsection{Gestaltung der Benutzeroberfläche}
+\setauthor{Benjamin Golic}
+
+Für die Gestaltung der Benutzeroberfläche kamen CSS und JSS zum Einsatz.
+
+JSS ist eine JavaScript-Library, die es Entwickelnden ermöglicht, Stile auf konfliktfreie und wiederverwendbare Weise zu schreiben. Diese Bibliothek kann sowohl client- als auch serverseitig kompiliert werden.
+\cite{jss}
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel Source-Code für die Verwendung von JSS, label=lst:impl:bspJSS]
+  import jss from "jss";
+  import preset from "jss-preset-default";
+  
+  jss.setup(preset());
+  
+  const styles = {
+    wrapper: {
+      padding: 40,
+      background: "#f7df1e",
+      textAlign: "center"
+    },
+    title: {
+      font: {
+        size: 40,
+        weight: 900
+      },
+      color: "#24292e"
+    },
+    link: {
+      color: "#24292e",
+      "&:hover": {
+        opacity: 0.5
+      }
+    }
+  };
+\end{lstlisting} \cite{jssExample}
+
+Da Webapplikationen auch auf mobilen Geräten verfügbar sein sollen, muss die Benutzeroberfläche an unterschiedlichste Bildschirmgrößen angepasst werden. Hierbei wird von „Responsive Design“ gesprochen. Um dies zu realisieren, können Entwicklerinnen oder Entwickler auf bestimmte CSS-Libraries zurückgreifen. Allerdings bietet klassisches CSS „Flexbox“ und „Grid“ Möglichkeiten für die Realisierung eines Responsive Designs. Bei diesen Möglichkeiten handelt es sich um zwei signifikant unterschiedliche Layout-Technologien.
+
+\subsubsection{CSS-Flexbox}
+\setauthor{Benjamin Golic}
+
+Dieses Modell bietet sich besonders für lineare Strukturen an, da es mit zwei Achsen, auf denen Inhalte verteilt werden können, arbeitet. Grundsätzlich wird hier mit einem Flex-Container und den darin enthaltenen Kind-Elementen (Flex-Items) gearbeitet. 
+\cite{flexbox}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/flexDirection.png}
+  \caption{Darstellung der Flex-Direction}
+  \cite{flexbox2}
+\end{figure}
+
+
+\begin{lstlisting}[language=HTML, caption=HTML-Code vom Aufbau einer Flexbox , label=lst:impl:flexHTML]
+  <div class="flex-container">
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+  </div>
+\end{lstlisting} \cite{flexbox}
+
+Um die Flexbox auf dem Container-Element zu aktivieren, müssen wir dem „flex-container“ im CSS-Code die Eigenschaft „display:flex“ deklarieren.
+\cite{flexbox}\\
+
+\begin{lstlisting}[language=CSS, caption=CSS-Code zur Aktivierung der Flexbox, label=lst:impl:flexCSS]
+  .flex-container {
+    display: flex;
+  }
+\end{lstlisting} \cite{flexbox}
+
+\subsubsection{CSS-Grid}
+\setauthor{Benjamin Golic}
+
+Mit diesem Modell werden Zeilen und Spalten für einen Bereich definiert, für welche dann Elemente zugewiesen werden. Grundsätzlich wird hier mit einem Elternelement gearbeitet, in dem das Raster definiert wird. Die darin enthaltenen Kind-Elemente werden im Raster positioniert.
+\cite{cssgrid}
+
+\newpage
+
+\begin{lstlisting}[language=HTML, caption=HTML-Code vom Aufbau eines Grids, label=lst:impl:gridHTML]
+  <div class="container"> 
+    <div>Element 1</div> 
+    <div>Element 2</div> 
+    <div>Element 11</div> 
+    <div>Element 12</div> 
+ </div>
+\end{lstlisting} \cite{cssgrid}
+
+Dem Elternelement wird mit Hilfe der CSS-Eigenschaft „display:grid“ mitgeteilt, dass CSS-Grids verwendet werden.
+
+\begin{lstlisting}[language=CSS, caption=CSS-Code zur Aktivierung des Grids, label=lst:impl:gridCSS]
+.container { 
+  display: grid; 
+  grid-template-rows:200px 1fr 100px; 
+  grid-template-columns:25% 25% 25% 25%; 
+}
+\end{lstlisting} \cite{cssgrid}
+
+Mit den Eigenschaften „grid-template-columns“ und „grid-template-rows“ werden Rasterlinien festgelegt.
+\cite{cssgrid}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{pics/cssGridDarstellung.jpg}
+  \caption{Darstellung eines Responsive-Designs durch CSS-Grids}
+  \cite{cssgridDarstellung}
+\end{figure}
+
+\newpage
+
+\subsubsection{Commerce.js}
+\setauthor{Benjamin Golic}
+
+Commerce.js ist ein Headless-E-Commerce-Backend, welches die Integration von E-Commerce in jedes Web- und Mobil-Projekt beschleunigt. Die JavaScript-SDK und API-Suite wurden mit Fokus auf Entwickelnde entwickelt. Außerdem ermöglicht es Entwickelnden, dasselbe E-Commerce-Backend für eine Web-App und einer mobilen Anwendung zu verwenden.
+\cite{commerceJS}\\
+
+Mit Commerce.js ist es möglich eigene Produkte mit beliebigen Produktinformationen hinzuzufügen.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{pics/apertaProdukteCommerce.png}
+  \caption{APERTA-Produkte in Commerce.js}
+\end{figure}
+
+Da die Nutzung des Verwaltungs-Dashboards keinen Programm-Code erfordert, ermöglicht es Content-Autoren, Fulfillment-Teams und Geschäftsinhabern die Verwaltung von Produkten, Kunden und Bestellungen.
+\cite{commerceJS}
+
+\newpage
+
+\subsubsection{Stripe}
+\setauthor{Benjamin Golic}
+
+Stripe ist eine Online-Zahlungsabwicklungs- und Kreditkartenverarbeitungsplattform für Unternehmen. Diese Plattform ermöglicht eine sichere und effiziente Verarbeitung von Geldern per Kreditkarte oder Bank und überweist diese Gelder auf das Konto des Verkaufenden. Stripe umfasst sowohl eine Plattform für die Zahlungsabwicklung als auch ein Gateway für Kreditkartenzahlungen. Zusätzlich zu einmaligen Bezahlvorgängen bietet Stripe auch die Möglichkeit für Abonnements.
+
+Bei einer korrekten Integration werden die vom Kaufenden eingetragenen Informationen beim Bezahlungsvorgang vom Web-Shop über die Stripe-Software gesendet. Diese überprüft, ob das zu zahlende Geld verfügbar ist und verarbeitet die Zahlung, bevor sie an das Händlerkonto gesendet wird. Nach einem erfolgreichem Zahlungsprozess erhalten Kaufende und Verkaufende eine Verkaufsbestätigung.
+
+Falls bei einem Zahlungsvorgang etwas schieflaufen sollte, beispielsweise durch unzureichende Deckung auf dem Konto des Kaufenden, wird die Transaktion durch Stripe abgelehnt. Des Weiteren wird der Kaufende darüber benachrichtigt und bekommt die Möglichkeit, eine andere Zahlungsmethode zu verwenden.
+
+Darüber hinaus überwacht Stripe auch betrügerische Transaktionen und blockiert alle verdächtig erscheinenden Transaktionen.
+
+Bei Stripe ist man nicht auf eine Zahlungsart beschränkt. Es gibt eine große Auswahlmöglichkeit an viele gängigen Bezahlungsmethoden. Außerdem kann man mehrere davon aktivieren.
+
+Des Weiteren liefert Stripe den Verkaufenden jede Menge an Statistiken und Berichten über die getätigten Verkäufe.
+
+\cite{stripe}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{pics/StripeBericht.png}
+  \caption{Stripe-Berichtsübersicht}
+\end{figure}
