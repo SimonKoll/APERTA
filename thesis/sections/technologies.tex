@@ -151,6 +151,8 @@ Schlussendlich sind Angular und React für das Frontend ausgewählt worden, wobe
 
 \cite{mvcBild} \cite{mvcVSmvvm}
 
+\newpage
+
 \subsection{Technologie zur Entwicklung des Frontends}
 \subsection{Angular [DH]}
 \setauthor{David Hauser}
@@ -279,8 +281,334 @@ Das Design von Angular Materials muss durch ein Theme definiert werden. Es kann 
 \end{itemize}
 \cite{AngularMaterials}
 
+\newpage
 
-\subsection{React}
+\subsection{React [BG]}
+\setauthor{Benjamin Golic}
+React, auch bekannt unter React.js oder ReactJS, ist eine Open-Source JavaScript-Library, die zur Realisierung moderner Benutzeroberflächen dient. Die Bibliothek wurde das erste Mal im Jahr 2011 in einem Facebook-Newsfeed verwendet. Im Jahr 2012 wurde sie dann bei Instagram eingesetzt und im darauffolgenden Jahr ist sie als Open-Source Projekt veröffentlicht worden. 
+
+Die Grundeigenschaft von React ist, dass es komponentenbasiert ist. Das bedeutet, dass die Anwendung in logisch trennbare Einheiten unterteilt wird, die dann unabhängig voneinander behandelt werden können. Aus diesem Grund eignet sich React besonders gut für Single-Page-Applications.
+\cite{WasIstReact}
+
+\begin{lstlisting}[language=JavaScript, caption=Möglicher Aufbau einer Komponente in einer JavaScript-Funktion, label=lst:impl:aufbauJSFunction]
+  function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
+  }
+\end{lstlisting} \cite{WasIstReact}
+
+\begin{lstlisting}[language=JavaScript, caption=Möglicher Aufbau einer Komponente in einer JavaScript-Klasse, label=lst:impl:aufbauJSClass]
+  class Welcome extends React.Component {
+    render() {
+      return <h1>Hello, {this.props.name}</h1>;
+    }
+  }
+\end{lstlisting} \cite{WasIstReact}
+
+\subsubsection{Single-Page-Applications: [BG]}
+\setauthor{Benjamin Golic}
+
+Single-Page-Applications bestehen im Gegensatz zu Multi-Page-Applications aus einem HTML-Dokument und können neue beziehungsweise veränderte Daten dynamisch laden. Da dies zu einer client-seitigen Verarbeitung der Anwendung führt, wird die Server-Client Kommunikation verringert.
+
+Das dynamische Laden der Daten bedeutet, dass die Seite nicht aktualisiert beziehungsweise verlassen werden muss, da sich lediglich der Inhalt der aktuellen Ansicht clientseitig verändert.
+
+Da nur eine Abfrage an den Server erfolgt, werden gleich alle Daten übermittelt. Aus diesem Grund ist es möglich, dass Nutzende sich durch die Website navigieren.
+
+\cite{vergleichSPAundMPA} \cite{T3NReact}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/vergleichSPA-MPA.png}
+  \caption{Aufbau einer Komponente}
+  \cite{vergleichSPAundMPA}
+\end{figure}
+
+Der HTML-Source-Code einer Komponente wird in JavaScript-Klassen und -Funktionen geschrieben. Der ganze Source-Code wird hierbei mit der Syntaxerweiterung JSX geschrieben, wobei diese Erweiterung hauptsächlich für React entwickelt wurde.
+
+Die Komponenten bestehen intern aus Properties und einem State. Außerdem werden sie in einer Baumstruktur angeordnet.
+\cite{WasIstReact}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/aufbauReactComponent.jpg}
+  \caption{Aufbau einer Komponente}
+  \cite{WasIstReact}
+\end{figure}
+
+\newpage
+
+\subsubsection{JSX: [BG]}
+\setauthor{Benjamin Golic}
+
+JSX steht für JavaScript Syntax Extension beziehungsweise für JavaScript XML. Es ist eine Erweiterung der gewöhnlichen JavaScript-Grammatik für React. Bei der normalen JavaScript Grammatik wird JavaScript in Form von kleineren Scripten innerhalb einer HTML-Datei verwendet. Im Vergleich dazu ist das Ganze bei JSX genau umgekehrt, denn hier wird der HTML Code innerhalb der JavaScript-Klassen beziehungsweise Funktionen verwendet.
+
+Damit der Browser die JSX-Dateien interpretieren kann, ist ein Präprozessor notwendig. Dieser wandelt den JSX-Code in gewöhnliches JavaScript um.
+Bei der Umwandlung wird aus jedem HTML-Tag in der JSX-Datei ein Element mittels React.create erzeugt.
+
+\cite{JSX}
+
+\begin{lstlisting}[language=JavaScript, caption=JSX-Code, label=lst:impl:jsx]
+  <MyButton color="blue" shadowSize={2}>
+    Click Me
+  </MyButton>
+\end{lstlisting}\cite{JSX}
+
+\begin{lstlisting}[language=JavaScript, caption=JSX-Code in gewöhnliches JavaScript kompiliert, label=lst:impl:jsxInJS]
+  React.createElement(
+    MyButton,
+    {color: "blue", shadowSize: 2},
+    "Click Me"
+  )
+\end{lstlisting}\cite{JSX}
+
+Ein erwähnenswertes Merkmal von JSX ist, dass die Möglichkeit besteht, bestehende React-Komponenten über die Punkt-Notation innerhalb des JSX-Source-Codes aufzurufen.
+\cite{JSX}
+
+\subsubsection{Props: [BG]}
+\setauthor{Benjamin Golic}
+Props sind Eigenschaften, die an Komponenten übergeben werden. Diese Eigenschaften erweitern die Funktionalität. Sie können innerhalb der Komponente wie Variablen in Verwendung genommen werden.
+\cite{PropsAndComponents} 
+
+\begin{lstlisting}[language=JavaScript, caption=Komponente 'Welcome' die Props 'props' erwartet, label=lst:impl:componentWelcome]
+  function Welcome(props) {
+    return <h1>Hallo {props.name}</h1>;
+  }
+\end{lstlisting}\cite{PropsAndComponents}
+
+\begin{lstlisting}[language=JavaScript, caption=Aufruf der Komponente 'Welcome' mit Übergabe des props 'name', label=lst:impl:UebergabeName]
+  <Welcome name="Sara" />
+\end{lstlisting}\cite{PropsAndComponents}
+
+\begin{lstlisting}[language=JavaScript, caption=Ausgabe der Komponente 'Welcome', label=lst:impl:ausgabeComponentWelcome]
+  Hallo, Sara
+\end{lstlisting}
+
+Bei der Verwendung von Props muss darauf geachtet werden, dass diese Read-Only sind.
+\cite{PropsAndComponents2}
+
+\subsubsection{State: [BG]}
+\setauthor{Benjamin Golic}
+Eine weitere Besonderheit von React ist die Verwendung von States. Ein State ist die Beschreibung des Istzustands der Applikation. Beim Aufrufen der Website befindet sich diese in einem Initial State. Alle veränderbaren Daten einer Komponente, die einen Einfluss auf den Zustand der View haben, werden in der State Variable hinterlegt.
+Sobald sich der State innerhalb einer Komponente verändert, wird die Seite neu gerendert, somit werden die veränderten Daten direkt angezeigt.
+\cite{T3NReact}
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel Code eines Click Counters mit der Nutzung on States, label=lst:impl:CountButton]
+  class CountButton extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state={
+        count: 0,
+        text: "Click Counter"
+      };
+    }
+
+    handleClick() {
+      this.setState({
+        count: this.state.count + 1
+      });
+    }
+
+    render() {
+      return (
+        <div>
+          <h2>{this.state.count}</h2>
+          <button onClick={this.handleClick.bind(this)}>
+            {this.state.text}
+          </button>
+        </div>
+      );
+    }
+  }
+\end{lstlisting} \cite{CountButtonExampleCode}
+
+\newpage
+
+\subsubsection{Map: [BG]}
+\setauthor{Benjamin Golic}
+Eine Map ist ein Datentyp, der zusätzlich zum Wert auch einen eindeutigen zugehörigen Key abspeichert. Aufgrund der Einzigartigkeit jedes gespeicherten Schlüssels ist es nicht möglich, dass doppelte Paare in einer Map gespeichert werden. Die Schlüssel dienen zum Nachschlagen der zugehörigen Daten.
+
+Die map()-Methode wird in React hauptsächlich dazu verwendet, um Arrays durchzulaufen beziehungsweise um sie an der grafischen Benutzeroberfläche anzuzeigen. Beim Durchlaufen der Daten wird ein neues Array erstellt, indem die Methode eine bereitgestellte Funktion für jedes Element im aufrufenden Array aufruft.
+\cite{Map}
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel Code für die Nutzung der map()-Methode, label=lst:impl:mapMethode]
+  const Users = () => {
+  const data = [
+    { id: 1, name: "John Doe" },
+    { id: 2, name: "Victor Wayne" },
+    { id: 3, name: "Jane Doe" },
+  ];
+
+  return (
+    <div className="users">
+      {data.map((user) => (
+        <div className="user">{user}</div>
+      ))}
+    </div>
+  );
+};
+\end{lstlisting} \cite{Map}
+
+\subsubsection{React ohne JSX: [BG]}
+\setauthor{Benjamin Golic}
+Es besteht die Möglichkeit, React ohne JSX zu benutzen. Dies ist für Entwickelnde, die keine Kompilierung in der eigenen Entwicklungsumgebung durchführen möchten, empfehlenswert.
+Da sich jedes JSX Element mittels des Aufrufes von „React.createElement(component, props, ...children)“ aufrufen lässt, ist es möglich alles im einfachen JavaScript umzusetzen.
+\cite{JSX}
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel Code 'Hello World' mit JSX, label=lst:impl:helloWorldJSX]
+  class Hello extends React.Component {
+    render() {
+      return <div>Hello {this.props.toWhat}</div>;
+    }
+  }
+
+  ReactDOM.render(
+    <Hello toWhat="World" />,
+    document.getElementById('root')
+  );
+\end{lstlisting} \cite{ReactWithoutJSX}
+
+\begin{lstlisting}[language=JavaScript, caption='Hello World' mit einfachem JavaScript, label=lst:impl:helloWorldJSX]
+  class Hello extends React.Component {
+    render() {
+      return React.createElement('div', null, `Hello ${this.props.toWhat}`);
+    }
+  }
+  
+  ReactDOM.render(
+    React.createElement(Hello, {toWhat: 'World'}, null),
+    document.getElementById('root')
+  );
+\end{lstlisting} \cite{ReactWithoutJSX}
+
+Des Weiteren besteht die Möglichkeit React mit TypeScript zu benutzen, falls dies dem Anwendenden lieber ist als JavaScript. Hierfür gibt es TSX, dies ist die TypeScript Variante von JSX.
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel-Code eines Click Counters in TSX label=lst:impl:TSXcounter]
+  import * as React from 'react';
+
+  export default class Counter extends React.Component {
+    state = {
+      count: 0
+    };
+
+    increment = () => {
+      this.setState({
+        count: (this.state.count + 1)
+      });
+    };
+
+    decrement = () => {
+      this.setState({
+        count: (this.state.count - 1)
+      });
+    };
+
+    render () {
+      return (
+        <div>
+          <h1>{this.state.count}</h1>
+          <button onClick={this.increment}>Increment</button>
+          <button onClick={this.decrement}>Decrement</button>
+        </div>
+      );
+    }
+  }
+\end{lstlisting} \cite{ReactWithoutJSX2}
+
+\subsubsection{Arbeiten im Team mit React: [BG]}
+\setauthor{Benjamin Golic}
+Da alle Komponenten in einer eigenen Datei gespeichert werden, kann jedes Teammitglied beziehungsweise jedes kleinere Team in einem großen Projekt-Team für eine oder mehrere Komponenten verantwortlich sein. Dies verringert die Gefahr von Merge-Konflikten in Git und sorgt dafür, dass andere Teammitglieder den Code von anderen überschreiben.
+\cite{PropsAndComponents2}
+
+\subsubsection{Single-Responsibility-Prinzip: [BG]}
+\setauthor{Benjamin Golic}
+Bei großen React-Projekten wird in den meisten Fällen das Single-Responsibility-Prinzip angewendet. Dies bedeutet, dass die einzelnen Komponenten immer einen einzigen Existenzzweck haben sollen und nur eine Sache gleichzeitig tun sollen. Das Ganze dient dazu, dass die Komponenten wiederverwendet werden, wie zum Beispiel eine Suchleiste.
+\cite{SRP}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/SRP.png}
+  \caption{Beispiel für die Verwendung des Single-Responsibility-Prinzips}
+  \cite{SRP}
+\end{figure}
+
+\newpage
+
+\subsubsection{One Way Data Flow: [BG]}
+\setauthor{Benjamin Golic}
+React überträgt die Daten nur in eine Richtung zu den Komponenten, und zwar von „oben“ nach „unten“. Es werden nur Events, die von Nutzenden der Website ausgelöst werden, in gegenläufiger Richtung weitergegeben. Durch das Ganze sind Zusammenhänge und Wechselwirkungen einer Anwendung sehr überschaubar. Dies führt dazu, dass das Debugging vereinfacht wird.
+\cite{owdf}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/owdf.jpg}
+  \caption{Darstellung des 'One Way Data Flow'}
+  \cite{owdf}
+\end{figure}
+
+\subsubsection{Hooks: [BG]}
+\setauthor{Benjamin Golic}
+React Hooks bieten die Möglichkeit React-Funktionen, wie zum Beispiel State-Funktionen, in Function-Komponenten zu nutzen, dies war davor nur in Class- Komponenten möglich. Es gibt eine Reihe an unterschiedlichen Hooks.
+
+Der wichtigste und am häufigsten verwendete Hook ist der State Hook. Er bietet die Möglichkeit, die State-Funktionalität in Function-Komponenten zu verwenden.
+
+\cite{hooks}
+
+\newpage
+
+\begin{lstlisting}[language=JavaScript, caption=Code-Beispiel für Nutzung des State Hooks, label=lst:impl:stateHook]
+  import React, { useState } from 'react';
+
+  function Example() {
+    const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <p>Du hast mich {count} mal geklickt</p>
+        <button onClick={() => setCount(count + 1)}>
+          Klick mich
+        </button>
+      </div>
+    );
+  }
+\end{lstlisting} \cite{hooks}
+
+Die Funktion 'useState' liefert ein Array zurück, das in zwei Konstanten aufgeteilt wird. Die erste Konstante ist die Repräsentation des aktuellen States. Die zweite Konstante ist eine Funktion, die es ermöglicht, den aktuellen State zu verändern. Die Benennung dieser Konstanten spielt keine Rolle, da es sich um normale JavaScript-Konstanten handelt. Die Funktion 'useState' bekommt den Initial State als Argument übergeben.
+
+Ein weiterer sehr wichtiger Hook ist der Effect Hook. Dieser Hook wird hauptsächlich für Änderungen verwendet, die bisher in Lifecycle-Methoden ausgeführt wurden. Dies bedeutet, dass bestimmte Änderungen durchgeführt werden, nachdem die Benutzeroberfläche gerendert wurde.
+\cite{hooks}
+
+\begin{lstlisting}[language=JavaScript, caption=Code-Beispiel für Nutzung des Effect Hooks, label=lst:impl:effectHook]
+  import React, { useState, useEffect } from 'react';
+
+  function Example() {
+    const [count, setCount] = useState(0);
+  
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+      // Update the document title using the browser API
+      document.title = `You clicked ${count} times`;
+    });
+  
+    return (
+      <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+\end{lstlisting} \cite{hooks2}
+
+Der Funktion 'useState' wird eine Funktion übergeben, die jedem neuen Rendering der Benutzeroberfläche ausgeführt wird.
+
+Weitere Hooks:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/rHooks.png}
+  \caption{Übersicht weiterer React-Hooks}
+  \cite{hooks}
+\end{figure}
 
 \section{Auswahl der Technologie - Datenbank[SK]}
 \setauthor{Simon Koll}
