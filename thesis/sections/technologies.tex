@@ -258,8 +258,8 @@ Es werden von Angular Material bereits viele fertige Designideen angeboten. Dies
 \begin{itemize}
   \item Theming: Das Farbschemata kann mittels scss-Mixins einfach geändert werden. Um komplexere Änderungen vorzunehmen, können eigene Mixins erstellt werden.
   \item Elevation helpers: Die z-Positionen können durch css-Klassen oder Mixins einfach dargestellt werden. Es gibt auch ein Mixin für Animationen bei Höhenänderung.
-  \item Typography: font-size, -height und -weight sind von css-Klassen vorgegeben, mithilfe von Mixins können auch diese verändert werden.
-\end{itemize}
+  \item Typography: font-size, -height und -weight sind von css-Klassen vorgegeben, mithilfe von Mixins können auch diese verändert werden. \\
+\end{itemize} 
 
 \begin{lstlisting}[caption=Hinzufügen von Angular Materials]
   npm install --save @angular/material @angular/cdk @angular/animations
@@ -270,7 +270,7 @@ Material: Dieses Standardpaket enthält die Materialkomponenten.
 CDK (Component Dev Kit): Dieses Paket stellt dem Entwickler, komponentenunabhängige Werkzeuge zur Verfügung.
 Animations:  Dieses Paket wird für erweiterte Animation benötigt.
 
-Theme
+\subsubsection{Theme}
 Das Design von Angular Materials muss durch ein Theme definiert werden. Es kann eines der vorgefertigen verwendet oder auch eine eigenes definiert werden. Zur Auswahl bei den vorgefertigten Themes stehen:
 
 \begin{itemize}
@@ -280,22 +280,26 @@ Das Design von Angular Materials muss durch ein Theme definiert werden. Es kann 
   \item purple-green.css
 \end{itemize}
 \cite{AngularMaterials}
-
-\newpage
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{pics/Themes.png}
+  \caption{Themes von Angular}
+  \cite{AngularThemePic}
+\end{figure}
 
 \subsection{React [BG]}
 \setauthor{Benjamin Golic}
 React, auch bekannt unter React.js oder ReactJS, ist eine Open-Source JavaScript-Library, die zur Realisierung moderner Benutzeroberflächen dient. Die Bibliothek wurde das erste Mal im Jahr 2011 in einem Facebook-Newsfeed verwendet. Im Jahr 2012 wurde sie dann bei Instagram eingesetzt und im darauffolgenden Jahr ist sie als Open-Source Projekt veröffentlicht worden. 
 
 Die Grundeigenschaft von React ist, dass es komponentenbasiert ist. Das bedeutet, dass die Anwendung in logisch trennbare Einheiten unterteilt wird, die dann unabhängig voneinander behandelt werden können. Aus diesem Grund eignet sich React besonders gut für Single-Page-Applications.
-\cite{WasIstReact}
-
+\cite{WasIstReact} \\
+ 
 \begin{lstlisting}[language=JavaScript, caption=Möglicher Aufbau einer Komponente in einer JavaScript-Funktion, label=lst:impl:aufbauJSFunction]
   function Welcome(props) {
     return <h1>Hello, {props.name}</h1>;
   }
-\end{lstlisting} \cite{WasIstReact}
-
+\end{lstlisting} \cite{WasIstReact} \\
+ 
 \begin{lstlisting}[language=JavaScript, caption=Möglicher Aufbau einer Komponente in einer JavaScript-Klasse, label=lst:impl:aufbauJSClass]
   class Welcome extends React.Component {
     render() {
@@ -336,22 +340,12 @@ Die Komponenten bestehen intern aus Properties und einem State. Außerdem werden
 
 \newpage
 
-\subsubsection{JSX:}
-\setauthor{Benjamin Golic}
-
-JSX steht für JavaScript Syntax Extension beziehungsweise für JavaScript XML. Es ist eine Erweiterung der gewöhnlichen JavaScript-Grammatik für React. Bei der normalen JavaScript Grammatik wird JavaScript in Form von kleineren Scripten innerhalb einer HTML-Datei verwendet. Im Vergleich dazu ist das Ganze bei JSX genau umgekehrt, denn hier wird der HTML Code innerhalb der JavaScript-Klassen beziehungsweise Funktionen verwendet.
-
-Damit der Browser die JSX-Dateien interpretieren kann, ist ein Präprozessor notwendig. Dieser wandelt den JSX-Code in gewöhnliches JavaScript um.
-Bei der Umwandlung wird aus jedem HTML-Tag in der JSX-Datei ein Element mittels React.create erzeugt.
-
-\cite{JSX}
-
 \begin{lstlisting}[language=JavaScript, caption=JSX-Code, label=lst:impl:jsx]
   <MyButton color="blue" shadowSize={2}>
     Click Me
   </MyButton>
 \end{lstlisting}\cite{JSX}
-
+ 
 \begin{lstlisting}[language=JavaScript, caption=JSX-Code in gewöhnliches JavaScript kompiliert, label=lst:impl:jsxInJS]
   React.createElement(
     MyButton,
@@ -366,18 +360,18 @@ Ein erwähnenswertes Merkmal von JSX ist, dass die Möglichkeit besteht, bestehe
 \subsubsection{Props:}
 \setauthor{Benjamin Golic}
 Props sind Eigenschaften, die an Komponenten übergeben werden. Diese Eigenschaften erweitern die Funktionalität. Sie können innerhalb der Komponente wie Variablen in Verwendung genommen werden.
-\cite{PropsAndComponents} 
-
+\cite{PropsAndComponents} \\
+ 
 \begin{lstlisting}[language=JavaScript, caption=Komponente 'Welcome' die Props 'props' erwartet, label=lst:impl:componentWelcome]
   function Welcome(props) {
     return <h1>Hallo {props.name}</h1>;
   }
-\end{lstlisting}\cite{PropsAndComponents}
-
+\end{lstlisting}\cite{PropsAndComponents} \\
+ 
 \begin{lstlisting}[language=JavaScript, caption=Aufruf der Komponente 'Welcome' mit Übergabe des props 'name', label=lst:impl:UebergabeName]
   <Welcome name="Sara" />
-\end{lstlisting}\cite{PropsAndComponents}
-
+\end{lstlisting}\cite{PropsAndComponents} \\
+ 
 \begin{lstlisting}[language=JavaScript, caption=Ausgabe der Komponente 'Welcome', label=lst:impl:ausgabeComponentWelcome]
   Hallo, Sara
 \end{lstlisting}
@@ -389,8 +383,8 @@ Bei der Verwendung von Props muss darauf geachtet werden, dass diese Read-Only s
 \setauthor{Benjamin Golic}
 Eine weitere Besonderheit von React ist die Verwendung von States. Ein State ist die Beschreibung des Istzustands der Applikation. Beim Aufrufen der Website befindet sich diese in einem Initial State. Alle veränderbaren Daten einer Komponente, die einen Einfluss auf den Zustand der View haben, werden in der State Variable hinterlegt.
 Sobald sich der State innerhalb einer Komponente verändert, wird die Seite neu gerendert, somit werden die veränderten Daten direkt angezeigt.
-\cite{T3NReact}
-
+\cite{T3NReact} \\
+ 
 \begin{lstlisting}[language=JavaScript, caption=Beispiel Code eines Click Counters mit der Nutzung on States, label=lst:impl:CountButton]
   class CountButton extends React.Component {
     constructor(props) {
@@ -427,7 +421,7 @@ Sobald sich der State innerhalb einer Komponente verändert, wird die Seite neu 
 Eine Map ist ein Datentyp, der zusätzlich zum Wert auch einen eindeutigen zugehörigen Key abspeichert. Aufgrund der Einzigartigkeit jedes gespeicherten Schlüssels ist es nicht möglich, dass doppelte Paare in einer Map gespeichert werden. Die Schlüssel dienen zum Nachschlagen der zugehörigen Daten.
 
 Die map()-Methode wird in React hauptsächlich dazu verwendet, um Arrays durchzulaufen beziehungsweise um sie an der grafischen Benutzeroberfläche anzuzeigen. Beim Durchlaufen der Daten wird ein neues Array erstellt, indem die Methode eine bereitgestellte Funktion für jedes Element im aufrufenden Array aufruft.
-\cite{Map}
+\cite{Map} \\
 
 \begin{lstlisting}[language=JavaScript, caption=Beispiel Code für die Nutzung der map()-Methode, label=lst:impl:mapMethode]
   const Users = () => {
@@ -451,8 +445,7 @@ Die map()-Methode wird in React hauptsächlich dazu verwendet, um Arrays durchzu
 \setauthor{Benjamin Golic}
 Es besteht die Möglichkeit, React ohne JSX zu benutzen. Dies ist für Entwickelnde, die keine Kompilierung in der eigenen Entwicklungsumgebung durchführen möchten, empfehlenswert.
 Da sich jedes JSX Element mittels des Aufrufes von „React.createElement(component, props, ...children)“ aufrufen lässt, ist es möglich alles im einfachen JavaScript umzusetzen.
-\cite{JSX}
-
+\cite{JSX} \\
 \begin{lstlisting}[language=JavaScript, caption=Beispiel Code 'Hello World' mit JSX, label=lst:impl:helloWorldJSX]
   class Hello extends React.Component {
     render() {
@@ -464,7 +457,8 @@ Da sich jedes JSX Element mittels des Aufrufes von „React.createElement(compon
     <Hello toWhat="World" />,
     document.getElementById('root')
   );
-\end{lstlisting} \cite{ReactWithoutJSX}
+\end{lstlisting}
+\cite{ReactWithoutJSX} \\
 
 \begin{lstlisting}[language=JavaScript, caption='Hello World' mit einfachem JavaScript, label=lst:impl:helloWorldJSX]
   class Hello extends React.Component {
@@ -472,14 +466,13 @@ Da sich jedes JSX Element mittels des Aufrufes von „React.createElement(compon
       return React.createElement('div', null, `Hello ${this.props.toWhat}`);
     }
   }
-  
   ReactDOM.render(
     React.createElement(Hello, {toWhat: 'World'}, null),
     document.getElementById('root')
   );
 \end{lstlisting} \cite{ReactWithoutJSX}
 
-Des Weiteren besteht die Möglichkeit React mit TypeScript zu benutzen, falls dies dem Anwendenden lieber ist als JavaScript. Hierfür gibt es TSX, dies ist die TypeScript Variante von JSX.
+Des Weiteren besteht die Möglichkeit React mit TypeScript zu benutzen, falls dies dem Anwendenden lieber ist als JavaScript. Hierfür gibt es TSX, dies ist die TypeScript Variante von JSX. 
 
 \begin{lstlisting}[language=JavaScript, caption=Beispiel-Code eines Click Counters in TSX label=lst:impl:TSXcounter]
   import * as React from 'react';
@@ -530,8 +523,6 @@ Bei großen React-Projekten wird in den meisten Fällen das Single-Responsibilit
   \cite{SRP}
 \end{figure}
 
-\newpage
-
 \subsubsection{One Way Data Flow:}
 \setauthor{Benjamin Golic}
 React überträgt die Daten nur in eine Richtung zu den Komponenten, und zwar von „oben“ nach „unten“. Es werden nur Events, die von Nutzenden der Website ausgelöst werden, in gegenläufiger Richtung weitergegeben. Durch das Ganze sind Zusammenhänge und Wechselwirkungen einer Anwendung sehr überschaubar. Dies führt dazu, dass das Debugging vereinfacht wird.
@@ -574,7 +565,7 @@ Der wichtigste und am häufigsten verwendete Hook ist der State Hook. Er bietet 
 Die Funktion 'useState' liefert ein Array zurück, das in zwei Konstanten aufgeteilt wird. Die erste Konstante ist die Repräsentation des aktuellen States. Die zweite Konstante ist eine Funktion, die es ermöglicht, den aktuellen State zu verändern. Die Benennung dieser Konstanten spielt keine Rolle, da es sich um normale JavaScript-Konstanten handelt. Die Funktion 'useState' bekommt den Initial State als Argument übergeben.
 
 Ein weiterer sehr wichtiger Hook ist der Effect Hook. Dieser Hook wird hauptsächlich für Änderungen verwendet, die bisher in Lifecycle-Methoden ausgeführt wurden. Dies bedeutet, dass bestimmte Änderungen durchgeführt werden, nachdem die Benutzeroberfläche gerendert wurde.
-\cite{hooks}
+\cite{hooks} \\
 
 \begin{lstlisting}[language=JavaScript, caption=Code-Beispiel für Nutzung des Effect Hooks, label=lst:impl:effectHook]
   import React, { useState, useEffect } from 'react';
@@ -601,8 +592,8 @@ Ein weiterer sehr wichtiger Hook ist der Effect Hook. Dieser Hook wird hauptsäc
 
 Der Funktion 'useState' wird eine Funktion übergeben, die jedem neuen Rendering der Benutzeroberfläche ausgeführt wird.
 
-Weitere Hooks:
-
+Weitere Hooks: 
+\\
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{pics/rHooks.png}
@@ -624,7 +615,7 @@ Die Datenbank spielt für das Projekt eine wichtige Rolle, daher wurden hier fol
 
 Das Team befand sich vor der Entscheidung, ein relationales Datenbanksystem zu verwenden, oder ein nicht relationales Datenbanksystem.
 Die größten Unterschiede hierbei sind, dass bei relationalen SQL-Datenbanken den gespeicherten Daten Tabellen vorgegeben sind, das sogenannte Schema. Das ist bei NoSQL-Datenbanken ebenfalls möglich, jedoch optional.
-Relationale Datenbanken verfolgen das ACID-Prinzip. ACID steht für
+Relationale Datenbanken verfolgen das ACID-Prinzip. ACID steht für: \\
 
 \begin{itemize}
   \item \textit{Atomicity}
@@ -659,7 +650,7 @@ OpenCV hat eine modulare Struktur, was bedeutet, dass das Paket mehrere gemeinsa
     \item Kamerakalibrierung und 3D-Rekonstruktion (calib3d) - grundlegende Geometriealgorithmen für mehrere Ansichten, Einzel- und Stereokamerakalibrierung, Objektposenschätzung, Stereokorrespondenzalgorithmen und Elemente der 3D-Rekonstruktion.
     \item 2D Features Framework (features2d) - Erkennung auffälliger Merkmale, Deskriptoren und Deskriptor-Matcher.
     \item Objekterkennung (objdetect) - Erkennung von Objekten und Instanzen der vordefinierten Klassen (z. B. Gesichter, Augen, Tassen, Menschen, Autos usw.).
-    \item High-Level-GUI (highgui) - eine leicht zu bedienende Schnittstelle zu einfachen UI-Funktionen.
+    \item High-Level-GUI (highgui) - eine leicht zu bedienende Schnittstelle für einfache UI-Funktionen.
     \item Video I/O (videoio) - eine einfach zu bedienende Schnittstelle für Videoaufnahmen und Videocodecs.
     \item Einige andere Hilfsmodule, wie z.B. FLANN- und Google-Test-Wrapper, Python-Bindings, und andere.
 \end{itemize}

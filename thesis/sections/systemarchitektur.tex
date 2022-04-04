@@ -23,7 +23,7 @@ Die Profilseite ist ein wichtiger Teil des webbasierten Clients, jedoch gibt es 
 Die Applikation ist, wie bei Angular-Projekten üblich, in unterschiedliche Ordner aufgeteilt. Der App-Ordner besitzt mehrere Unterordner, welche ähnliche Funktionen gruppieren.
 
 \subsubsection{App}
-Die Dateien, welche mit app.component beginnen, werden als App bezeichnet. Sie stellen die Hauptkomponente der Angular-Applikation dar. Für das Routing im Projekt könnte noch eine app-routing.module.ts Datei angelegt werden. Wird diese nicht erstellt, kann das Routing auch in der app.module.ts durchgeführt werden.
+Die Dateien, welche mit app.component beginnen, werden als App bezeichnet. Sie stellen die Hauptkomponente der Angular-Applikation dar. Für das Routing im Projekt könnte noch eine app-routing.module.ts Datei angelegt werden. Wird diese nicht erstellt, kann das Routing auch in der app.module.ts durchgeführt werden. 
 
 \begin{lstlisting}[language=typescript, caption=app.module.ts]
     @NgModule({
@@ -76,7 +76,7 @@ const routes: Routes = [
 
 Mittels [RouterModule.forRoot(routes)] werden die Routen innerhalb des Projekts definiert. Sie navigieren die Userin oder der User durch die einzelnen Views.
 
-Um den Pfad einer Route zu bestimmen wird der Pfadname angegeben.  Darauf folgt die Komponente, welche aufgerufen werden soll.
+Um den Pfad einer Route zu bestimmen wird der Pfadname angegeben.  Darauf folgt die Komponente, welche aufgerufen werden soll. 
 
 \begin{lstlisting}[caption=app.component.html]
     <app-navbar></app-navbar>
@@ -178,7 +178,7 @@ In diesem Projekt bestehen die Komponenten aus einer „.jsx“-Datei, einer „
 Die „App.js“-Datei ist die Haupt-Komponente der React-Applikation. Diese Komponente dient als Container für alle anderen Komponenten. Sie enthält unter anderem das Routing.
 \cite{appJS}
 
-Das Routing dient dazu, die Benutzeroberfläche mit dem URL zu synchronisieren. Es legt fest, welcher Inhalt bei welcher URL angezeigt werden soll. Es ermöglicht die Navigierung durch die Web-Applikation, ohne die komplette Seite neu laden zu müssen.
+Das Routing dient dazu, die Benutzeroberfläche mit dem URL zu synchronisieren. Es legt fest, welcher Inhalt bei welcher URL angezeigt werden soll. Es ermöglicht die Navigierung durch die Web-Applikation, ohne die komplette Seite neu laden zu müssen. 
 \cite{reactRouting}
 
 \begin{lstlisting}[language=JavaScript, caption=Source-Code des Routers, label=lst:impl:reactRouterSourceCode]
@@ -206,7 +206,7 @@ Das Routing dient dazu, die Benutzeroberfläche mit dem URL zu synchronisieren. 
 
 Für die Gestaltung der Benutzeroberfläche kamen CSS und JSS zum Einsatz.
 
-JSS ist eine JavaScript-Library, die es Entwickelnden ermöglicht, Stile auf konfliktfreie und wiederverwendbare Weise zu schreiben. Diese Bibliothek kann sowohl client- als auch serverseitig kompiliert werden.
+JSS ist eine JavaScript-Library, die es Entwickelnden ermöglicht, Stile auf konfliktfreie und wiederverwendbare Weise zu schreiben. Diese Bibliothek kann sowohl client- als auch serverseitig kompiliert werden. 
 \cite{jss}
 
 \begin{lstlisting}[language=JavaScript, caption=Beispiel Source-Code für die Verwendung von JSS, label=lst:impl:bspJSS]
@@ -262,8 +262,8 @@ Dieses Modell bietet sich besonders für lineare Strukturen an, da es mit zwei A
   </div>
 \end{lstlisting} \cite{flexbox}
 
-Um die Flexbox auf dem Container-Element zu aktivieren, müssen wir dem „flex-container“ im CSS-Code die Eigenschaft „display:flex“ deklarieren.
-\cite{flexbox}\\
+Um die Flexbox auf dem Container-Element zu aktivieren, muss dem „flex-container“ im CSS-Code die Eigenschaft „display:flex“ zugewiesen werden. 
+\cite{flexbox}
 
 \begin{lstlisting}[language=CSS, caption=CSS-Code zur Aktivierung der Flexbox, label=lst:impl:flexCSS]
   .flex-container {
@@ -274,7 +274,7 @@ Um die Flexbox auf dem Container-Element zu aktivieren, müssen wir dem „flex-
 \subsubsection{CSS-Grid}
 \setauthor{Benjamin Golic}
 
-Mit diesem Modell werden Zeilen und Spalten für einen Bereich definiert, für welche dann Elemente zugewiesen werden. Grundsätzlich wird hier mit einem Elternelement gearbeitet, in dem das Raster definiert wird. Die darin enthaltenen Kind-Elemente werden im Raster positioniert.
+Mit diesem Modell werden Zeilen und Spalten für einen Bereich definiert, für welche dann Elemente zugewiesen werden. Grundsätzlich wird hier mit einem Elternelement gearbeitet, in dem das Raster definiert wird. Die darin enthaltenen Kind-Elemente werden im Raster positioniert. 
 \cite{cssgrid}
 
 \newpage
@@ -288,7 +288,7 @@ Mit diesem Modell werden Zeilen und Spalten für einen Bereich definiert, für w
  </div>
 \end{lstlisting} \cite{cssgrid}
 
-Dem Elternelement wird mit Hilfe der CSS-Eigenschaft „display:grid“ mitgeteilt, dass CSS-Grids verwendet werden.
+Dem Elternelement wird mit Hilfe der CSS-Eigenschaft „display:grid“ mitgeteilt, dass CSS-Grids verwendet werden. 
 
 \begin{lstlisting}[language=CSS, caption=CSS-Code zur Aktivierung des Grids, label=lst:impl:gridCSS]
 .container { 

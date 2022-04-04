@@ -1,40 +1,40 @@
 \subsection{Implementierung von Commerce.js}
 \setauthor{Benjamin Golic}
 
-Um die, in Commerce.js gespeicherten, Produkte im Webshop anzeigen zu können, ist eine API-Datenabfrage erforderlich. Die Commer.js eigene Library ermöglicht dies ganz einfach mit der Methode „commerce.products.list()“. Die Abfrage sieht somit wie folgt aus:
+Um die, in Commerce.js gespeicherten, Produkte im Webshop anzeigen zu können, ist eine API-Datenabfrage erforderlich. Die Commer.js eigene Library ermöglicht dies ganz einfach mit der Methode „commerce.products.list()“. Die Abfrage sieht somit wie folgt aus: 
+\newpage
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Abfrage der Produkte, label=lst:impl:commerce]
     const [products, setProducts] = useState([]);
     const [pproducts, setPproducts] = useState([]);
     
     const fetchComponents = async() => {
-      const { data: CProducts } = await commerce.products.list({category_slug: ['components'],});
+      const { data: CProducts } = await commerce.products.list(
+          {category_slug: ['components'],});
       setProducts(CProducts);
     }
   
      const fetchPackages = async() => {
-      const { data: PProducts } = await commerce.products.list({category_slug: ['packages'],});
+      const { data: PProducts } = await commerce.products.list(
+          {category_slug: ['packages'],});
       setPproducts(PProducts);
     }
 \end{lstlisting}
 
-Hier werden die Daten nach Kategorie gruppiert abgerufen und in States gespeichert. Damit die potenziellen Käuferinnen oder Käufer die Produkte auf der Weboberfläche sehen können, benötigen wir folgenden Source-Code:
-
-\begin{lstlisting}[language=JavaScript]
+Hier werden die Daten nach Kategorie gruppiert abgerufen und in States gespeichert. Damit die potenziellen Käuferinnen oder Käufer die Produkte auf der Weboberfläche sehen können, wird folgender Source-Code benötigt: \\
+\begin{lstlisting}[language=JavaScript, caption={components.js}]
     const Product = ({ product, onAddToCart }) => {
         const classes = useStyles();
         const handleAddToCart = () => onAddToCart(product.id, 1);
-      
         return (
 \end{lstlisting}
 
 
-\begin{lstlisting}[language=HTML]
+\begin{lstlisting}[language=HTML, caption={components.html}]
     <div className="card">
          <Link className="product-link" to={`/detail/${product.id}`}>
             <img className="card__img" src={product.image.url} alt={product.name} />
         </Link>
-      
         <Link className="product-link" to={`/detail/${product.id}`}>
             <div className="card__banner">
                 <h2 className="card__title">{product.name}</h2>
@@ -59,9 +59,9 @@ Der Link-Tag wird dazu verwendet, um auf eine Detail-Ansicht des Produktes weite
 
 \subsubsection{Warenkorb}
 \setauthor{Benjamin Golic}
-Um einen funktionsfähigen Waren zu erhalten, sind einige States erforderlich, diese werden wie folgt gesetzt:
+Um einen funktionsfähigen Waren zu erhalten, sind einige States erforderlich, diese werden wie folgt gesetzt: \\
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Warenkorb, label=lst:impl:cart]
     const [cart, setCart] = useState({});
     const [order, setOrder] = useState({});
 
@@ -110,15 +110,14 @@ Um einen funktionsfähigen Waren zu erhalten, sind einige States erforderlich, d
         fetchComponents();
         fetchPackages();
         fetchCart();
-        
     }, []);
 \end{lstlisting}
 
 Die „useEffect()“-Methode ermöglicht die automatische Aktualisierung der Daten, ohne die Website zu aktualisieren.
 
-Um einen Bezahlvorgang zu ermöglichen, wird die Plattform „Stripe“ verwendet. Die Programmierung des Bezahlvorgangs erfolgt mittels Checkout-Token, diese werden durch Commerce.js generiert. Die Generierung dieses Tokens erfolgt, wie folgt:
+Um einen Bezahlvorgang zu ermöglichen, wird die Plattform „Stripe“ verwendet. Die Programmierung des Bezahlvorgangs erfolgt mittels Checkout-Token, diese werden durch Commerce.js generiert. Die Generierung dieses Tokens erfolgt, wie folgt: \\
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Generierung des Tokens]
     useEffect(() => {
         if (cart.id) {
           const generateToken = async () => {
@@ -136,9 +135,9 @@ Um einen Bezahlvorgang zu ermöglichen, wird die Plattform „Stripe“ verwende
       }, [cart]);
 \end{lstlisting}
 
-Ein wichtiger Bestandteil des Bestellvorgangs ist die Angabe der Versandadresse. Hierfür wird ein Adressformular verwendet. Nach der erfolgreichen Eingabe werden Daten in einem State abgespeichert.
+Ein wichtiger Bestandteil des Bestellvorgangs ist die Angabe der Versandadresse. Hierfür wird ein Adressformular verwendet. Nach der erfolgreichen Eingabe werden Daten in einem State abgespeichert. \\
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Speicherung Daten aus dem Adressformular]
     const test = (data) => {
         setShippingData(data);
     
@@ -146,15 +145,15 @@ Ein wichtiger Bestandteil des Bestellvorgangs ist die Angabe der Versandadresse.
     };
 \end{lstlisting}
 
-Mithilfe folgender Zeile wird eine Bestellbestätigung angezeigt, nachdem man alle Schritte des Bestellvorgangs durchgegangen ist:
+Mithilfe folgender Zeile wird eine Bestellbestätigung angezeigt, nachdem man alle Schritte des Bestellvorgangs durchgegangen ist: 
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Bestellbestätigung]
     {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
 \end{lstlisting}
 
-Für das Adressformular werden für alle benötigten Daten. bezüglich des Versandes, die Auswahlmöglichkeiten von Commerce.js abgerufen und in States abgespeichert. Dies erfolgt folgendermaßen:
+Für das Adressformular werden für alle benötigten Daten bezüglich des Versandes, die Auswahlmöglichkeiten von Commerce.js abgerufen und in States abgespeichert. Dies erfolgt folgendermaßen: \\
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Adressformular]
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
     const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -206,7 +205,7 @@ Für den Bezahlungsvorgang wird mithilfe des Systems „Stripe“ ein Zahlungsmi
 
 Das Ganze wird mit folgendem Source-Code implementiert:
 
-\begin{lstlisting}[language=JavaScript]
+\begin{lstlisting}[language=JavaScript, caption=Implementierung von Stripe]
     const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();

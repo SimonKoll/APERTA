@@ -56,7 +56,7 @@ REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentationa
     \item \textit{PUT: } PUT bietet die Möglichkeit, bereits bestehende Daten zu ändern.
     \item \textit{DELETE: } DELETE bietet die Möglichkeit, bestehende Daten zu löschen.
 \end{itemize}\cite{WhatIsREST}
-Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeiten, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. Dies kann beispielsweise wie folgt erfolgen:
+Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeiten, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. Dies kann beispielsweise wie folgt erfolgen: 
 \begin{lstlisting}[language=Python, caption=Funktionsweise von Multiprocessing, label=lst:lsg:multiprocessing]
 import time
 from threading import Thread
@@ -117,7 +117,7 @@ Der Server läuft auf einer Instanz einer Oracle Virtual Machine, ebenso die Mon
 \cite{vcpuVsocpu}
 \section{MongoDB}
 Die Datenbank läuft auf der selben Oracle VM Instanz wie das Backend. Somit gibt es zwischen Server und Datenbank keine zusätzliche Latenz. Da MongoDB eine nicht relationale Datenbank ist, werden die Daten in sogenannten Collections anstelle von Tabellen abgespeichert. Je nach abzuspeichernder Zugangsmöglichkeit, verändert sich das Format der Daten.
-Für ein Kennzeichen müssen die Daten wie folgt strukturiert sein:
+Für ein Kennzeichen müssen die Daten wie folgt strukturiert sein: 
 
 \subsubsection{Kennzeichen}
 \begin{lstlisting}[language=JSON, caption=Aufbau eines Kennzeichen in der Datenbank, label=lst:lsg:licenseplate]
@@ -132,7 +132,7 @@ Für ein Kennzeichen müssen die Daten wie folgt strukturiert sein:
 Das Attribut \verb|_id| wird automatisch generiert und ist ein eindeutiger Schlüssel, welcher die eindeutige Identifizierung eines Datensatzes darstellt. Mithilfe des \verb|licenseplate_id| wird eine eindeutige Kennzeichenidentifikationsnummer gespeichert. \verb|licenseplate| ist das Kennzeichen, welches vom Client übergeben wurde. \verb|time_created| ist die Zeit, zu der das Kennzeichen erstellt wurde. \verb|active| gibt an, ob das Kennzeichen aktiv ist.
 
 \subsubsection{Nummernfeld}
-Bei einer Nummernfeld-Kombination sieht der Datensatz wie folgt aus:
+Bei einer Nummernfeld-Kombination sieht der Datensatz wie folgt aus: 
 \begin{lstlisting}[language=JSON, caption=Aufbau einer Nummernfeld-Kombination in der Datenbank, label=lst:lsg:numpad]
     {
         "_id": "622f181d35a3c2ce232acad9",
@@ -144,7 +144,7 @@ Bei einer Nummernfeld-Kombination sieht der Datensatz wie folgt aus:
 \end{lstlisting}
 
 \subsubsection{NFC}
-Jede NFC-Karte hat eine eindeutige, 10-stellige Kartenidentifikationsnummer. Diese kann mittels eines RFID-Lesers ausgelesen werden. In der Datenbank werden die NFC-Informationen wie folgt gespeichert:
+Jede NFC-Karte hat eine eindeutige, 10-stellige Kartenidentifikationsnummer. Diese kann mittels eines RFID-Lesers ausgelesen werden. In der Datenbank werden die NFC-Informationen wie folgt gespeichert: 
 \begin{lstlisting}[language=JSON, caption=Aufbau einer NFC-Karte in der Datenbank, label=lst:lsg:nfc]
     {
         "_id": "622f781cfbd4e8de471a4035",

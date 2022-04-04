@@ -1,5 +1,4 @@
 Das Frontend, genauer gesagt das Profilmanagement, wurde in Angular entwickelt. Die einzelnen Seiten sind eigene Komponenten. Die Navigationsleiste ist die einzige Komponente, welche dauerhaft in der Webanwendung zu sehen ist.
-
 \begin{lstlisting}[language=html, caption=Navigationsleiste Komponente]
     <div class="content">
   <div class="leftSide">
@@ -25,7 +24,7 @@ DIV ist eine Abkürzung für den Begriff „division“ (=Bereich). Sie dienen z
 \cite{DivContainer}
 
 \subsubsection{<a>-Tag}
-Der Anchor Tag ist einer der vielen HTML-Tags. Er definiert den Anfangs- und Endpunkt eines Hyperlinks, welcher eine Website oder die Unterseiten in einem Projekt miteinander verlinkt.
+Der Anchor Tag ist einer der vielen HTML-Tags. Er definiert den Anfangs- und Endpunkt eines Hyperlinks, welcher eine Website oder die Unterseiten in einem Projekt miteinander verlinkt. 
 \cite{ATag}
 
 \begin{lstlisting}[language=html, caption=Profil Komponente]
@@ -152,7 +151,7 @@ Eine For-Schleife wird verwendet, um den Code mehrmals zu durchzulaufen oder um 
 \cite{NgFor}
 
 \subsubsection{Binding}
-Es gibt verschiedene Wege für das Binding in Angular. Sie erlauben die Kommunikation zwischen HTML und TypeScript. In der Profil-Komponente wurde das Property Binding verwendet. Durch das Property Binding wird eine Variable mit einer DOM-Property, HTML Attributen, Direktive oder Komponente Properties verbunden. Die Kommunikationsrichtung dabei ist von TypeScript-Datei zu HTML-Datei.
+Es gibt verschiedene Wege für das Binding in Angular. Sie erlauben die Kommunikation zwischen HTML und TypeScript. In der Profil-Komponente wurde das Property Binding verwendet. Durch das Property Binding wird eine Variable mit einer DOM-Property, HTML Attributen, Direktive oder Komponente Properties verbunden. Die Kommunikationsrichtung dabei ist von TypeScript-Datei zu HTML-Datei. 
 \cite{Binding}
 \pagebreak
 \begin{lstlisting}[caption=KeyPad Model]
@@ -226,7 +225,7 @@ Das KeyPad Model ist ein Beispiel für alle Models in unserem Projekt. In einer 
 Die Login-Komponente stellt in unserem Projekt die Seite dar, auf der sich angemeldet oder registriert werden kann. Sie verwendet einfache Input Felder für die Eingabe der Daten. Diese werden dann an die Datenbank weitergeleitet und verarbeitet.
 
 \subsubsection{<section>}
-Der section-Tag stellt eine Unterteilung des Dokuments dar. Etwa eine thematische Gruppierung des Inhaltes, typischerweise mit einer Überschrift. Die section sollte identifizierbar sein.
+Der section-Tag stellt eine Unterteilung des Dokuments dar. Etwa eine thematische Gruppierung des Inhaltes, typischerweise mit einer Überschrift. Die section sollte identifizierbar sein. 
 \cite{SectionTag}
 
 
@@ -288,7 +287,7 @@ Der section-Tag stellt eine Unterteilung des Dokuments dar. Etwa eine thematisch
 Die Profil-Komponente verarbeitet die Daten für die Kennzeichen. Mit der Funktion getSigns() werden die Daten vom http-service verarbeitet. Es werden die gesamten Daten in einem Array von Kennzeichen gespeichert. Mit der Methode getSignName() wird der Array, mithilfe einer while-Schleife durchlaufen, dabei werden die Strings der Kennzeichen auf eine Variable gespeichert. Diese werden dann, in der Webapplikation dargestellt.
 
 \subsubsection{HttpService}
-Mit this.httpService kann auf die Service Klasse zugegriffen werden. Diese stellt die gängigsten HTTP-Methoden zur Verfügung. Somit kann in der Komponente auf die Funktion getSigns(), welche im http-Service definiert ist, zugegriffen und ihre Werte verarbeitet werden.
+Mit this.httpService kann auf die Service Klasse zugegriffen werden. Diese stellt die gängigsten HTTP-Methoden zur Verfügung. Somit kann in der Komponente auf die Funktion getSigns(), welche im http-Service definiert ist, zugegriffen und ihre Werte verarbeitet werden. 
 \cite{HttpService}
 
 \begin{lstlisting}[language=typeScript, caption=http.service.ts]

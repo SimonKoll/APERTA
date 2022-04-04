@@ -6,7 +6,8 @@ Der Server selbst wird weiters eingeteilt in:
     \item \textit{Setup:  } In weiterer Folge werden benötigte Variablen, wie die Verbindungs-URL der MongoDB Datenbank, definiert. Da die Datenbank und der Server auf der selben Maschine laufen, wird der Host auf \verb|mongodb://127.0.0.1:27017| gesetzt. Der weitere Aufbau der UTL besteht aus Parametern wie zum Beispiel der \verb|serverSelectionTimeOutMS|.
     \item \textit{Express: }  Es bietet Möglichkeiten zum schreiben von Handlern für Anfragen mit verschiedenen HTTP-Verben an verschiedenen URL-Pfaden (Routen) sowie zur Festlegung allgemeiner Einstellungen für Webanwendungen, wie z. B. des Ports, der für die Verbindung verwendet werden soll, und des Speicherorts von Vorlagen, die für das Rendering der Antwort verwendet werden. Um die Express-Applikation zu erstellen, wird \verb|const app = express();| verwendet.
     \item \textit{Header: } Um den Zugriff des Raspberry auf den Server zu gewährleisten, müssen die Header-Parameter gesetzt werden. Dies geschieht mittels \verb|app.use()| und einer als Parameter übergebenen Funktion, in der mit \verb|res.setHeader()| die Header-Parameter gesetzt werden. Diese bestimmen welche IP-Adressen auf den Server zugreifen können, welche Methoden verwendet werden dürfen, sowie die zugelassenen Header bei Anfragen des Clients.
-    \item \textit{Konfiguration der Datenbank-Verbindung: } Um den Server mit der Datenbank kommunizieren zu lassen, sind einige Parameter notwendig. Diese werden wie folgt gesetzt: \begin{lstlisting}[language=Python, caption=Konfiguration der Datenbankanbindung, label=lst:impl:dbconf]
+    \item \textit{Konfiguration der Datenbank-Verbindung: } Um den Server mit der Datenbank kommunizieren zu lassen, sind einige Parameter notwendig. Diese werden wie folgt gesetzt: 
+    \begin{lstlisting}[language=Python, caption=Konfiguration der Datenbankanbindung, label=lst:impl:dbconf]
     MongoClient.connect(connstring, {useUnifiedTopology: true})
     .then(client => {
         const db = client.db('aperta')
@@ -16,7 +17,8 @@ Der Server selbst wird weiters eingeteilt in:
         const rfidCollection = db.collection('rfid')
         const numpadCollection = db.collection('numpad')
     \end{lstlisting}
-    \item \textit{Handler: } Handler sind die Endpunkte, mit denen die Clients kommunizieren. Diese unterscheiden sich je nach Art der Anfrage. Die Anfragen werden mittels \verb|app.get()|, \verb|app.post()|, \verb|app.put()| und \verb|app.delete()| definiert. Als Parameter wird der Endpunkt angegeben, sowie die Funktion, welche ausgeführt wird, wenn der Endpunkt aufgerufen wird. Eine Abfrage der Kennzeichen, welche in der Datenbank gespeichert sind, sieht somit wie folgt aus:  \begin{lstlisting}[language=JavaScript, caption=Abfrage der Kennzeichen, label=lst:impl:getlicenseplates]
+    \item \textit{Handler: } Handler sind die Endpunkte, mit denen die Clients kommunizieren. Diese unterscheiden sich je nach Art der Anfrage. Die Anfragen werden mittels \verb|app.get()|, \verb|app.post()|, \verb|app.put()| und \verb|app.delete()| definiert. Als Parameter wird der Endpunkt angegeben, sowie die Funktion, welche ausgeführt wird, wenn der Endpunkt aufgerufen wird. Eine Abfrage der Kennzeichen, welche in der Datenbank gespeichert sind, sieht somit wie folgt aus: 
+    \begin{lstlisting}[language=JavaScript, caption=Abfrage der Kennzeichen, label=lst:impl:getlicenseplates]
 
         app.get('/get-licenseplates', function(req, res) {
             licenseplateCollection.find().toArray()

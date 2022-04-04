@@ -102,7 +102,7 @@ Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Di
     \end{compactenum}
     \item \textit{Ermittlung des Intensitätsgradienten des Bildes: }
     \begin{compactenum}
-        \item  Das geglättete Bild wird dann mit einem Sobel-Kernel sowohl in horizontaler als auch in vertikaler Richtung gefiltert, um die erste Ableitung in horizontaler Richtung \((Gx)\) und vertikaler Richtung \((Gy)\) zu erhalten. Aus diesen beiden Bildern können wir den Kantengradienten und die Richtung für jedes Pixel wie folgt ermitteln:
+        \item  Das geglättete Bild wird dann mit einem Sobel-Kernel sowohl in horizontaler als auch in vertikaler Richtung gefiltert, um die erste Ableitung in horizontaler Richtung \((Gx)\) und vertikaler Richtung \((Gy)\) zu erhalten. Aus diesen beiden Bildern können der Kantengradienten und die Richtung für jedes Pixel wie folgt ermittelt:
         \begin{equation}
             \begin{split}
                 \begin{aligned}
@@ -135,7 +135,7 @@ Die Kantenerkennung wird mit dem Aufruf von \verb|cv2.Canny()| durchgeführt. Di
             \cite{hysteresisPic}
             \label{fig:anpr:edge:hysteresis}
             \end{figure}
-            Die Kante A liegt oberhalb von maxVal, wird also als \"sichere Kante\" betrachtet. Obwohl die Kante C unter maxVal liegt, ist sie mit der Kante A verbunden, so dass sie ebenfalls als gültige Kante betrachtet wird und wir die vollständige Kurve erhalten. Aber die Kante B, obwohl sie oberhalb von minVal liegt und in der gleichen Region wie die Kante C ist, ist nicht mit einer \"sicheren Kante\" verbunden, so dass sie verworfen wird. Es ist also sehr wichtig, dass minVal und maxVal entsprechend ausgewählt werden, um das richtige Ergebnis zu erhalten.
+            Die Kante A liegt oberhalb von maxVal, wird also als \"sichere Kante\" betrachtet. Obwohl die Kante C unter maxVal liegt, ist sie mit der Kante A verbunden, so dass sie ebenfalls als gültige Kante betrachtet wird und in der vollständigen Kurve enthalten ist. Aber die Kante B, obwohl sie oberhalb von minVal liegt und in der gleichen Region wie die Kante C ist, ist nicht mit einer \"sicheren Kante\" verbunden, so dass sie verworfen wird. Es ist also sehr wichtig, dass minVal und maxVal entsprechend ausgewählt werden, um das richtige Ergebnis zu erhalten.
             In dieser Phase werden auch kleine Pixel entfernt, wobei davon ausgegangen wird, dass die Kanten lange Linien sind. Dadurch enstehen starke Kanten im Bild.
     \end{compactenum}
 \end{compactenum}
@@ -176,7 +176,7 @@ Nachdem die Konturen sortiert wurden, wird der Konturumfang mit \verb|cv2.arcLen
 Wurde jedoch eine geschlossene Kontur mit 4 Eckpunkten gefunden, beginnt die Funktion \verb|cv2.drawContours| mit der Zeichnung der Kontur. Die Funktionsparameter sind zum Einen das Bild, auf das die Kontur gezeichnet werden soll, und zum anderen die Kontur. Weitere Parameter, wie Farbe, Dicke und mehr können ebenfalls übergeben werden.
 \cite{drawContours}
 \subsubsection{Maskieren der relevanten Bildregion \label{sec:anpr:mask}}
-Da für den weiteren Ablauf des Programms nur noch die Region, in der sich das Kennzeichen befindet, relevant ist, wird diese maskiert und als neues Bild gespeichert:
+Da für den weiteren Ablauf des Programms nur noch die Region, in der sich das Kennzeichen befindet, relevant ist, wird diese maskiert und als neues Bild gespeichert: 
 
 \begin{lstlisting}[language=Python, caption=Maskieren der Kennzeichenregion und Abspeichern in neuem Bild, label=lst:impl:anpr:mask]
     mask = np.zeros(gray.shape, np.uint8)
@@ -189,7 +189,7 @@ Da für den weiteren Ablauf des Programms nur noch die Region, in der sich das K
 \end{lstlisting}
 
 \subsubsection{Texterkennung \label{sec:anpr:text}}
-Aus dem in \ref{sec:anpr:mask} erzeugten Bild kann nun der Text des Kennzeichens gelesen werden. Dies geschieht mit der Funktion :
+Aus dem in \ref{sec:anpr:mask} erzeugten Bild kann nun der Text des Kennzeichens gelesen werden. Dies geschieht mit der Funktion : 
 \begin{lstlisting}[language=Python, caption=Maskieren der Kennzeichenregion und Abspeicher in neuem Bild, label=lst:impl:anpr:text]
     text = pytesseract.image_to_string(Cropped, config='--psm 11')
 \end{lstlisting}
@@ -199,7 +199,7 @@ Dadurch kann es aber auch zu Problemen kommen, da nun Sonderzeichen erkannt werd
 
 
 \subsubsection{Überprufung des erkannten Kennzeichens}
-Der Text aus \ref{sec:anpr:text} wird mit dem Aufruf des Modules \verb|checkPlate(text_replaced)| an ein Python-Script übergeben, welches für die weitere Überprüfung zuständig ist.
+Der Text aus \ref{sec:anpr:text} wird mit dem Aufruf des Modules \verb|checkPlate(text_replaced)| an ein Python-Script übergeben, welches für die weitere Überprüfung zuständig ist. 
 
 \begin{lstlisting}[language=Python, caption=Abfrage der Kennzeichen aus der Datenbank, label=lst:impl:anpr:check:db]
     print(type(text))
@@ -208,7 +208,7 @@ Der Text aus \ref{sec:anpr:text} wird mit dem Aufruf des Modules \verb|checkPlat
 \end{lstlisting}
 
 Im Code-Abschnitt \ref{lst:impl:anpr:check} wird die Antwort des Servers in ein JSON-Objekt geladen und mit \verb|json.loads| in ein Python-Objekt umgewandelt, welches die Daten der gefundenen Kennzeichen enthält. Da die Formatierung der Kennzeichen aus der Datenbank sich von dem der Ergebnis der Erkennung unterscheiden kann, wird mit \verb|str.maketrans| eine Zuordnungstabelle erstellt, die im späteren Verlauf von der Methode \verb|str.translate| verwendet wird, um die Formatierungsunterschiede zu beseitigen.\\
-Kennzeichen können im Dashboard deaktiviert werden und dürfen in diesem Zustand nicht die Garage öffnen. Um dies zu realisieren, wird der Boolean \verb|active| aus der Datenbankabfrage jedes Kennzeichens überprüft. Wenn dieser Boolean auf \verb|False| steht, wird das Kennzeichen nicht weiter überprüft.\\
+Kennzeichen können im Dashboard deaktiviert werden und dürfen in diesem Zustand nicht die Garage öffnen. Um dies zu realisieren, wird der Boolean \verb|active| aus der Datenbankabfrage jedes Kennzeichens überprüft. Wenn dieser Boolean auf \verb|False| steht, wird das Kennzeichen nicht weiter überprüft. 
 
  \begin{lstlisting}[language=Python, caption=Überprüfung auf Gleichheit der beiden Strings, label=lst:impl:anpr:check]
     if text.replace(" ", "").translate(table) == value["licenseplate"].translate(table).replace(" ", ""):

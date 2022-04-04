@@ -1,4 +1,4 @@
-Das der Raspberry Pi holt sich die gesamten Nummernfeldkombinationen von der Datenbank. Diese werden dann mit dem Eingegebenen Code abgeglichen und auf Übereinstimmungen geprüft. Stimmt der eingegebene Code und die Kombination der Datenbank überein, so öffnet sich das Garagentor.
+Das der Raspberry Pi holt sich die gesamten Nummernfeldkombinationen von der Datenbank. Diese werden dann mit dem Eingegebenen Code abgeglichen und auf Übereinstimmungen geprüft. Stimmt der eingegebene Code und die Kombination der Datenbank überein, so öffnet sich das Garagentor. 
 \begin{lstlisting}[language=python, caption=checkNumpad.py]
     import requests
     import json
@@ -26,7 +26,7 @@ Das der Raspberry Pi holt sich die gesamten Nummernfeldkombinationen von der Dat
 
 Die von der Datenbank erhaltenen Codes werden in einer Schleife durchlaufen. 
 
-Das Keypad muss mit dem Raspberry Pi über 8-pins verbunden werden. Die Pins für die Spalten sind Outputs und werden auf high gesetzt. Die Reihenpins dienen als Input, sie sind standardmässig auf high gesetzt. Der Output wird einmal auf low gesetzt, danach werden alle Inputs in kürzester Zeit abgefragt. Sollte es einen Wert geben, welcher auf low gesetzt ist, kann genau gesagt werden welche Taste gedrückt wurde.
+Das Keypad muss mit dem Raspberry Pi über 8-pins verbunden werden. Die Pins für die Spalten sind Outputs und werden auf high gesetzt. Die Reihenpins dienen als Input, sie sind standardmässig auf high gesetzt. Der Output wird einmal auf low gesetzt, danach werden alle Inputs in kürzester Zeit abgefragt. Sollte es einen Wert geben, welcher auf low gesetzt ist, kann genau gesagt werden welche Taste gedrückt wurde. 
 \begin{lstlisting}[language=python, caption=Numpad.py]
     import RPi.GPIO as GPIO
 import time
