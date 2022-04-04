@@ -22,7 +22,7 @@ Da die RFID-Karten bereits IDs besitzen, ist nur das Lesen der ID erforderlich. 
 Hierbei wird die Methode „reader.read()“ verwendet. Die Variablen „id“ und „text“ werden mit den Rückgabewerten dieser Methode deklariert. Um die ID zu überprüfen, wird die Methode „checkNFC()“ aufgerufen. Diese bekommt die Variable „id“ als Parameter übergeben.
 
 Die Methode „checkNFC()“ führt ein GET-Request aus, um alle registrierten RFID-Karten-IDs abzurufen. Die zurückgegebenen Werte werden in der Variable „r“ gespeichert. Mithilfe einer For-Schleife werden alle RFID-IDs mit dem Anfangsparameter der Methode verglichen. Sobald eine Übereinstimmung gefunden wurde, wird das Garagentor geöffnet.
-
+\newpage
 Das Ganze wird wie folgt im Source-Code umgesetzt: 
 
 \begin{lstlisting}[language=Python, caption=Überprüfung der RFID-Karten-ID]

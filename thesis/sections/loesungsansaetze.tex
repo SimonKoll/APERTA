@@ -5,14 +5,14 @@ Das Profil Management ist ein wichtiger Teil des Projekts. Es verwaltet den Benu
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{pics/Profil_Management.png}
+    \includegraphics[width=0.6\textwidth]{pics/Profil_Management.png}
     \caption{Profilmanagement}
     \end{figure}
 In den Unterseiten der Bauteileinstellungen haben der User und die Userin noch weitere Möglichkeiten ihre Bauteile zu verwalten. Bauteile können hinzugefügt, verändert oder entfernt werden. Außerdem kann ihr Aktivitätsstatus angepasst werden. 
 
     \begin{figure}[h]
         \centering
-        \includegraphics[width=0.8\textwidth]{pics/Kennzeichen_Einstellungen.png}
+        \includegraphics[width=0.6\textwidth]{pics/Kennzeichen_Einstellungen.png}
         \caption{Kennzeicheneinstellungen}
         \end{figure}
 \pagebreak
@@ -42,7 +42,7 @@ Des Weiteren ist es wichtig, neuen potenziellen Kundinnen oder Kunden unser Prod
     \caption{Screenshot der „About“-Unterseite des Webshops}
 \end{figure}
 
-\section{Automatic Number Plate Recognition (ANPR)[SK]}
+\section{Automatic Number Plate Recognition (ANPR) [SK]}
 \setauthor{Simon Koll}
 \label{lsg:def:anpr}
 Die Kennzeichenerkennung stellt das Alleinstellungsmerkmal des Projektes dar. Der OpenCV-Python-Code für die Nummernschilderkennung umfasst drei Hauptschritte. Der erste Schritt ist die Erkennung von Nummernschildern. Die Konturfunktion wird verwendet, um die rechteckigen Objekte im Bild zu erkennen und das Nummernschild zu finden. Der zweite Schritt ist die Zeichensegmentierung. Sobald die Kontur des Nummernschildes erkannt wurde, muss es ausgeschnitten und als neues Bild gespeichert werden. Der letzte Schritt ist die Zeichenerkennung. Die optische Zeichenerkennung wird auf dem ausgeschnittenen Bild durchgeführt, um das Kennzeichen zu erkennen.
@@ -56,7 +56,9 @@ REST ist weder ein Protokoll, noch ein Standard. REST steht für REpresentationa
     \item \textit{PUT: } PUT bietet die Möglichkeit, bereits bestehende Daten zu ändern.
     \item \textit{DELETE: } DELETE bietet die Möglichkeit, bestehende Daten zu löschen.
 \end{itemize}\cite{WhatIsREST}
-Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeiten, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. Dies kann beispielsweise wie folgt erfolgen: 
+Neben der Kennzeichenerkennung bietet das Projekt noch 2 weitere Zutrittsmöglichkeiten, nämlich das Nummernfeld sowie die NFC-Funktionalität. Damit alle Zutrittsmöglichkeiten parallel funktionieren, wird mit der Bibliothek \textit{threading} gearbeitet. Hiermit können mehrere Funktionen parallel gestartet werden. 
+\newpage
+Dies kann beispielsweise wie folgt erfolgen: 
 \begin{lstlisting}[language=Python, caption=Funktionsweise von Multiprocessing, label=lst:lsg:multiprocessing]
 import time
 from threading import Thread
@@ -80,7 +82,7 @@ from threading import Thread
 \end{lstlisting}
 \verb|thread_1| und \verb|thread_2| sind Threads, welche parallel ausgeführt werden. Sie bekommen als Parameter eine Funktion, welche ausgeführt werden soll, in diesem Fall \verb|funktion_1| und \verb|funktion_2|. Mit \verb|start()| werden die Threads gestartet.
     \cite{threading}
-\section{Backend}
+\section{Backend [SK]}
 \setauthor{Simon Koll}
 Der Server bildet das Rückgrat des Projektes. Hier werden die Daten aus der Datenbank abgefragt. Diese werden von einem Client über einen REST-Aufruf abgefragt. Der Server kann zudem die neu zugelassenen Kennzeichen in die Datenbank speichern.
 \subsection{Oracle VM}
@@ -115,7 +117,8 @@ Der Server läuft auf einer Instanz einer Oracle Virtual Machine, ebenso die Mon
         \label{fig:vm:OCPU}
     \end{figure}
 \cite{vcpuVsocpu}
-\section{MongoDB}
+\newpage
+\section{MongoDB [SK]}
 Die Datenbank läuft auf der selben Oracle VM Instanz wie das Backend. Somit gibt es zwischen Server und Datenbank keine zusätzliche Latenz. Da MongoDB eine nicht relationale Datenbank ist, werden die Daten in sogenannten Collections anstelle von Tabellen abgespeichert. Je nach abzuspeichernder Zugangsmöglichkeit, verändert sich das Format der Daten.
 Für ein Kennzeichen müssen die Daten wie folgt strukturiert sein: 
 

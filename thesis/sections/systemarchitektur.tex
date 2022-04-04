@@ -1,5 +1,5 @@
-\section{Übersicht der Systemarchitektur}
-\setauthor{Simon Koll}
+\section{Übersicht der Systemarchitektur[DH]}
+\setauthor{David Hauser}
 \begin{figure}[h]
     \centering
     \includegraphics[width=10cm]{pics/APERTASystemarchitektur.jpg}
@@ -7,6 +7,7 @@
     \end{figure}
 Diese Diplomarbeit setzt sich aus zwei voneinander unabhängigen Systemen zusammen. Das Shopsystem, bestehend aus einem React-Frontend, kommuniziert mit zwei Bibliotheken, CommerceJS und Stripe, welche für die Produktverwaltung, sowie den Bezahlvorgang zuständig sind. Das Angular-Frontend des Dashboard in Verbindung mit dem NodeJS Server, der MongoDB Datenbank sowie dem Raspberry bietet das zweite System.
 Der Raspberry ist über GPIOs mit dem RFID-Leser, dem Nummernfeld und dem Display verbunden. Weiters wurde die Kamera an einen der USB 3.0 Ports des Raspberry angeschlossen. Wird eine der Zutrittsmöglichkeiten positiv abgeschlossen, steuert der Raspberry Pi das Relais an, welches die Garage öffnet.
+\newpage
 \section{Frontend (Angular-Applikation) [DH]}
 \setauthor{David Hauser}
 
@@ -24,9 +25,9 @@ Die Applikation ist, wie bei Angular-Projekten üblich, in unterschiedliche Ordn
 
 \subsubsection{App}
 Die Dateien, welche mit app.component beginnen, werden als App bezeichnet. Sie stellen die Hauptkomponente der Angular-Applikation dar. Für das Routing im Projekt könnte noch eine app-routing.module.ts Datei angelegt werden. Wird diese nicht erstellt, kann das Routing auch in der app.module.ts durchgeführt werden. 
-
+\pagebreak
 \begin{lstlisting}[language=typescript, caption=app.module.ts]
-    @NgModule({
+@NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
@@ -99,7 +100,7 @@ Die Anzeigeelemente in Angular werden als Komponenten bezeichnet. Diese werden a
     \includegraphics[width=0.4\textwidth]{pics/Aufbau_Komponente.png}
     \caption{Aufbau einer Angular Komponente}
 \end{figure}
-
+\newpage
 Jede Komponente besteht aus:
 
 \begin{itemize}
@@ -123,16 +124,17 @@ Für die Daten und Logik, welche nicht nur in einer Komponente verwendet werden,
 \end{figure}
 
 Das Service liefert also die eigentlichen Daten für die Komponente. Die Daten gehören nicht in die Komponente. Explizite Aufgaben sollten in einem entsprechenden Service ausgelagert werden. Um die ausgelagerten Daten dann in die Komponente zu bekommen, wird Dependency Injection verwendet.
+\newpage
 
 \subsection{Dependency Injection}
-Unter Dependency Injection oder auch Inversion of Control wird ein Design-Pattern verstanden. Die Dependency sollte also nicht von der aufrufenden Stelle selbst erzeugt werden. Letztere sollte die Kontrolle abgeben und nur die Abhängigkeiten definieren. 
+Unter Dependency Injection oder auch Inversion of Control wird ein Design-Pattern verstanden. Die Dependency sollte also nicht von der aufrufenden Stelle selbst erzeugt werden. Letztere sollte die Kontrolle abgeben und nur die Abhängigkeiten definieren.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{./pics/DependencyInjection.png}
   \caption{Dependency Injection}
+\cite{DependencyInjection}
 \end{figure}
-\pagebreak
 In Angular werden die verschiedenen Services vom sogenannten Injector verwaltet. Dieser gibt eine Referenz des Service und die aufrufende Stelle an, sofern dieser definiert ist. Über den Konstruktor wird die Definition der Abhängigkeit abgebildet. In einem Konstruktor können dann die Methoden des Service aufgerufen und somit auf die Daten zugegriffen werden.
 \cite{AngularService}
 
@@ -145,7 +147,7 @@ Die React-Applikation besteht aus mehreren Komponenten.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{pics/react-ordnerstruktur.png}
+  \includegraphics[width=0.2\textwidth]{pics/react-ordnerstruktur.png}
   \caption{Ordnerstruktur der React-Applikation}
 \end{figure}
 
@@ -238,6 +240,7 @@ JSS ist eine JavaScript-Library, die es Entwickelnden ermöglicht, Stile auf kon
 \end{lstlisting} \cite{jssExample}
 
 Da Webapplikationen auch auf mobilen Geräten verfügbar sein sollen, muss die Benutzeroberfläche an unterschiedlichste Bildschirmgrößen angepasst werden. Hierbei wird von „Responsive Design“ gesprochen. Um dies zu realisieren, können Entwicklerinnen oder Entwickler auf bestimmte CSS-Libraries zurückgreifen. Allerdings bietet klassisches CSS „Flexbox“ und „Grid“ Möglichkeiten für die Realisierung eines Responsive Designs. Bei diesen Möglichkeiten handelt es sich um zwei signifikant unterschiedliche Layout-Technologien.
+ \newpage
 
 \subsubsection{CSS-Flexbox}
 \setauthor{Benjamin Golic}
@@ -277,7 +280,6 @@ Um die Flexbox auf dem Container-Element zu aktivieren, muss dem „flex-contain
 Mit diesem Modell werden Zeilen und Spalten für einen Bereich definiert, für welche dann Elemente zugewiesen werden. Grundsätzlich wird hier mit einem Elternelement gearbeitet, in dem das Raster definiert wird. Die darin enthaltenen Kind-Elemente werden im Raster positioniert. 
 \cite{cssgrid}
 
-\newpage
 
 \begin{lstlisting}[language=HTML, caption=HTML-Code vom Aufbau eines Grids, label=lst:impl:gridHTML]
   <div class="container"> 
@@ -303,12 +305,11 @@ Mit den Eigenschaften „grid-template-columns“ und „grid-template-rows“ w
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{pics/cssGridDarstellung.jpg}
+  \includegraphics[width=0.6\textwidth]{pics/cssGridDarstellung.jpg}
   \caption{Darstellung eines Responsive-Designs durch CSS-Grids}
   \cite{cssgridDarstellung}
 \end{figure}
 
-\newpage
 
 \subsubsection{Commerce.js}
 \setauthor{Benjamin Golic}
